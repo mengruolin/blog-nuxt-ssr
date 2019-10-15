@@ -56,10 +56,31 @@ module.exports = {
   */
   build: {
     transpile: [/^element-ui/],
+
+    postcss: {
+      // Add plugin names as key and arguments as value
+      // Install them before as dependencies with npm or yarn
+      plugins: {
+        // Disable a plugin by passing false as value 
+        
+        // 'postcss-url': false,
+        // 'postcss-nested': {},
+        // 'postcss-responsive-type': {},
+        // 'postcss-hexrgba': {}
+      },
+      preset: {
+        // Change the postcss-preset-env settings
+        autoprefixer: {
+          grid: false,
+          overrideBrowserslist: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4']
+        }
+      }
+    },
     /*
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      
     }
   }
 }
