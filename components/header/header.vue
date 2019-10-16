@@ -23,7 +23,6 @@
             placeholder="快搜"
             remote
           >
-            <el-option />
           </el-select>
         </el-col>
         <el-col :span="4">

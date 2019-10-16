@@ -18,11 +18,12 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#0000' },
   /*
   ** Global CSS
   */
   css: [
+    './assets/scss/normalize.scss',
     'element-ui/lib/theme-chalk/index.css'
   ],
   /*
