@@ -1,35 +1,42 @@
 <template>
   <div class="header">
-    <div class="container">
-      <el-row>
-        <el-col :span="3" style="text-align: center;">
-          <div class="logs-swiper">
-            <a href="/"><img src="/login_heard.png"></a>
-          </div>
-        </el-col>
-        <el-col :span="9">
-          <div class="ml-nav-list">
-            <div v-for="(items, k) of navList" :key="k" class="ml-nav-items">
-              <a class="nav-fonts" :href="items.linkTo" @click="handleCliceNav(item.linkTo)">{{ items.label }}</a>
-            </div>
-          </div>
-        </el-col>
-        <el-col :span="8">
-          <el-select
-            v-model="search"
-            class="c-w300"
-            multiple
-            filterable
-            placeholder="快搜"
-            remote
-          >
-          </el-select>
-        </el-col>
-        <el-col :span="4">
-          <a>登录</a>
-          <a>注册</a>
-        </el-col>
+    <div class="media-iphone">
+      <el-row :span="8">
+        <i class="el-icon-s-fold"></i>
       </el-row>
+    </div>
+    <div class="media-pc">
+      <div class="container">
+        <el-row>
+          <el-col :span="3" style="text-align: center;">
+            <div class="logs-swiper">
+              <a href="/"><img src="/login_heard.png"></a>
+            </div>
+          </el-col>
+          <el-col :span="9">
+            <div class="ml-nav-list">
+              <div v-for="(items, k) of navList" :key="k" class="ml-nav-items">
+                <a class="nav-fonts" :href="items.linkTo" @click="handleCliceNav(item.linkTo)">{{ items.label }}</a>
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="8">
+            <el-select
+              v-model="search"
+              class="c-w300"
+              multiple
+              filterable
+              placeholder="快搜"
+              remote
+            >
+            </el-select>
+          </el-col>
+          <el-col :span="4" style="line-height: 40px;">
+            <a class="nav-fonts">登录</a>
+            <a class="nav-fonts c-ml20">注册</a>
+          </el-col>
+        </el-row>
+      </div>
     </div>
   </div>
 </template>
@@ -53,6 +60,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.media-pc {
+  @media (max-width: 980px) {
+    display: none;
+  }
+}
+.media-iphone {
+  @media (min-width: 980px) {
+    display: none;
+  }
+}
 .header {
   width: 100vw;
   height: 50px;
