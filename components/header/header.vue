@@ -2,7 +2,7 @@
   <div class="header">
     <div class="media-iphone">
       <el-row :span="8">
-        <i class="el-icon-s-fold"></i>
+        <i class="el-icon-s-fold" />
       </el-row>
     </div>
     <div class="media-pc">
@@ -28,12 +28,11 @@
               filterable
               placeholder="快搜"
               remote
-            >
-            </el-select>
+            />
           </el-col>
           <el-col :span="4" style="line-height: 40px;">
-            <a class="nav-fonts">登录</a>
-            <a class="nav-fonts c-ml20">注册</a>
+            <a class="nav-fonts" @click="handleTest">登录</a>
+            <a class="nav-fonts c-ml20" @click="handle">注册</a>
           </el-col>
         </el-row>
       </div>
@@ -42,6 +41,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
@@ -54,7 +55,19 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapGetters(['num', 'n'])
+  },
   methods: {
+    ...mapActions(['test', 't']),
+    handleTest () {
+      // console.log(11)
+      this.test()
+      console.log(this.n)
+    },
+    handle () {
+      console.log('?')
+    }
   }
 }
 </script>
