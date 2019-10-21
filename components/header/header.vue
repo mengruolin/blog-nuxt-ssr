@@ -1,8 +1,10 @@
 <template>
   <div class="header">
     <div class="media-iphone">
-      <el-row :span="8">
-        <i class="el-icon-s-fold" />
+      <el-row>
+        <el-col :span="4" style="line-height: 40px;" @click.native="handleShowDrawer">
+          <i class="iconfont rotate-x">&#xe704;</i>
+        </el-col>
       </el-row>
     </div>
     <div class="media-pc">
@@ -65,6 +67,9 @@ export default {
       this.test()
       console.log(this.n)
     },
+    handleShowDrawer () {
+      this.$emit('show-darwer')
+    },
     handle () {
       console.log('?')
     }
@@ -73,23 +78,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.media-pc {
-  @media (max-width: 980px) {
-    display: none;
-  }
-}
-.media-iphone {
-  @media (min-width: 980px) {
-    display: none;
-  }
-}
 .header {
+  position: fixed;
   width: 100vw;
   height: 50px;
   box-sizing: border-box;
   padding: 5px 20px;
   background: rgb(255, 255, 255);
   border-bottom: solid #eeeeee 1px;
+  .heard-menu {
+    height: 100%;
+    line-height: 100%;
+  }
   .logs-swiper {
     width: 120px;
     height: 40px;

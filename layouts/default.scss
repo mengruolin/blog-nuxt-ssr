@@ -50,14 +50,22 @@ li {list-style: none;}
 
 
 ._lay {
+    position: relative;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
-    width: 960px;
-    position: absolute;
+    max-width: 960px;
+    height: 100%;
+    position: relative;
     left: 50%;
     transform: translate(-50%);
+}
+
+.content {
+    padding: 50px 0;       
 }
 
 .c-w200 {width: 200px;}
@@ -71,4 +79,10 @@ li {list-style: none;}
 
 .nav-fonts:hover {
     color: #CDC9C9;
+}
+
+.loginDialog {
+    & /deep/ .el-dialog {
+        width: 320px;
+    }
 }

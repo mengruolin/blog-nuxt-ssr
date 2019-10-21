@@ -1,16 +1,21 @@
 <template>
-  <div class="content">
-    this is fotter.
+  <div class="footer">
+    <div class="media-iphone">
+      <el-row>
+        11
+      </el-row>
+    </div>
+    <div class="media-pc">
+      <div class="container">
+        this is fotter.
+      </div>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
-.content {
-  position: absolute;
-  bottom: 0;
-  z-index: 1;
-  height: 40px;
-  width: 100%;
-  text-align: center;
-  border: solid 1px #000000;
-}
+ .footer {
+    background-color: aqua;
+    text-align: center;
+    height: 100px;
+  }
 </style>
