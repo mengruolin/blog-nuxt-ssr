@@ -2,11 +2,13 @@ import actions from './actions.js'
 import getters from './getters.js'
 
 const state = () => ({
-  counter: 1
+  disableLoad: false
 })
 
-const muntaions = {
-
+const mutations = {
+  changeDisableLoad (state, type) {
+    state.disableLoad = type
+  }
 }
 
-export { state, actions, muntaions, getters }
+export { state, actions, mutations, getters }

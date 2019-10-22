@@ -1,5 +1,5 @@
 const getters = {
-  nun: state => state.counter
+  disableLoad: state => state.disableLoad
 }
 
 export default getters

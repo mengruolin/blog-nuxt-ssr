@@ -32,7 +32,7 @@
               remote
             />
           </el-col>
-          <el-col :span="4" style="line-height: 40px;">
+          <el-col :span="4" style="line-height: 40px; text-align: right;">
             <a class="nav-fonts" @click="handleTest">登录</a>
             <a class="nav-fonts c-ml20" @click="handle">注册</a>
           </el-col>
@@ -79,13 +79,14 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  position: fixed;
+  position: absolute;
   width: 100vw;
   height: 50px;
   box-sizing: border-box;
   padding: 5px 20px;
   background: rgb(255, 255, 255);
   border-bottom: solid #eeeeee 1px;
+  z-index: 1;
   .heard-menu {
     height: 100%;
     line-height: 100%;
