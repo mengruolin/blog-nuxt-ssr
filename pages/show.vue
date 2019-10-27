@@ -29,8 +29,12 @@
           </el-col>
         </div>
       </div>
-      <load-loading v-if="loading" />
-      <no-loading v-if="noMore" />
+      <p v-if="loading">
+        加载中...
+      </p>
+      <p v-if="noMore">
+        没有更多了
+      </p>
     </div>
   </div>
 </template>
@@ -38,13 +42,10 @@
 <script>
 import { mapMutations, mapActions } from 'vuex'
 import homeList from '@/components/homeList/homeList.vue'
-import loadLoading from '@/components/loading/loadLoading.vue'
-import noLoading from '@/components/loading/noLoading.vue'
+
 export default {
   components: {
-    homeList,
-    loadLoading,
-    noLoading
+    homeList
   },
   data () {
     return {
@@ -85,7 +86,6 @@ export default {
 <style lang="scss" scoped>
 .main {
   position: relative;
-  padding: 30px 0 0 0;
-  overflow: hidden;
+  padding: 100px 0 0 0;
 }
 </style>

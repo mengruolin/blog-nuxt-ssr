@@ -79,12 +79,13 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  position: absolute;
-  width: 100vw;
-  height: 50px;
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  min-height: 50px;
   box-sizing: border-box;
   padding: 5px 20px;
-  background: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
   border-bottom: solid #eeeeee 1px;
   z-index: 1;
   .heard-menu {
