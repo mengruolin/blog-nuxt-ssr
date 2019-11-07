@@ -1,7 +1,7 @@
 import creatActions from '../../untils/helps'
 
 const actions = {
-  test: creatActions('get', '/ccc')
+  test: creatActions('getl', '/cheshi')
 }
 
 export default actions

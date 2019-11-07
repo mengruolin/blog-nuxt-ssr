@@ -16,6 +16,12 @@ module.exports = {
     ]
   },
   /*
+  **  router
+  */
+  router: {
+    base: '/'
+  },
+  /*
   ** Customize the progress-bar color
   */
   loading: { color: '#0000' },

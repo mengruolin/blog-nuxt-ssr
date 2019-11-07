@@ -4,7 +4,8 @@ const router = express.Router()
 router.get('/api/cheshi', (req, res) => {
     res.json({
         code: 0,
-        data: []
+        data: [],
+        message: '测试一下接口'
     })
 })
 

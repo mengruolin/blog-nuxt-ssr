@@ -1,13 +1,13 @@
-let baseApi = ''
+let baseURL = ''
 
 if (process.env.NODE_ENV === 'development') {
   console.log('env:' + 'development')
-  baseApi = '/'
+  baseURL = '/api'
 }
 
 if (process.env.NODE_ENV === 'production') {
   console.log('env:' + 'production')
-  baseApi = '/api'
+  baseURL = '/api'
 }
 
-export default { baseApi }
+export default { baseURL }

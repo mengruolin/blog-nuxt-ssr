@@ -12,13 +12,17 @@
         <el-row>
           <el-col :span="3" style="text-align: center;">
             <div class="logs-swiper">
-              <a href="/"><img src="/login_heard.png"></a>
+              <nuxt-link to="/">
+                <img src="@@/static/login_heard.png">
+              </nuxt-link>
             </div>
           </el-col>
           <el-col :span="9">
             <div class="ml-nav-list">
               <div v-for="(items, k) of navList" :key="k" class="ml-nav-items">
-                <a class="nav-fonts" :href="items.linkTo" @click="handleCliceNav(item.linkTo)">{{ items.label }}</a>
+                <nuxt-link no-prefetch class="nav-fonts" :to="items.linkTo" @click="handleCliceNav(item.linkTo)">
+                  {{ items.label }}
+                </nuxt-link>
               </div>
             </div>
           </el-col>
@@ -50,8 +54,8 @@ export default {
     return {
       search: '',
       navList: [
-        { label: '主页', linkTo: '/main' },
-        { label: '博客', linkTo: '/blog' },
+        { label: '主页', linkTo: '/bbs' },
+        { label: '博客', linkTo: '/show' },
         { label: '商店', linkTo: '/shope' },
         { label: '其它', linkTo: '/others' }
       ]

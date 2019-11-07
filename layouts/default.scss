@@ -50,13 +50,11 @@ li {list-style: none;}
 
 
 ._lay {
-    position: fixed;
-    height: 100vh;
+    position: relative;
     width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    overflow-x: hidden;
     background-color: rgb(245, 245, 245);
 }
 

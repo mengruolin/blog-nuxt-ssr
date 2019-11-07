@@ -2,7 +2,6 @@
   <div class="backtop-group">
     <el-backtop
       title="滚回顶部"
-      target="._lay"
       class="backtop"
     />
 
@@ -46,7 +45,7 @@ export default {
         font-size: 20px;
 
         &:hover {
-            background-color:#F5F5F5;
+            background-color:#F2F6FC;
         }
     }
 }

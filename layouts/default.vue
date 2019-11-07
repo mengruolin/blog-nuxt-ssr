@@ -1,11 +1,5 @@
 <template>
-  <div
-    v-infinite-scroll="pagingLoad"
-    infinite-scroll-distance="200"
-    infinite-scroll-disabled="disableLoad"
-    infinite-scroll-delay="500"
-    class="_lay"
-  >
+  <div class="_lay">
     <m-header
       @show-darwer="handleShowDrawer"
     />

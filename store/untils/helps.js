@@ -1,10 +1,12 @@
 // action构造函数
 // import http from './http.js'
-import env from './env.js'
+// import env from './env'
+import http from './http'
 
 export default function createActions (methods, url, mutations, init) {
-  url = `${env.baseApi}/url`
-  return function () {
-    console.log('eee:' + url)
+  // url = `/test`
+  return function (parmase) {
+    // console.log()
+    return http[methods](url, parmase)
   }
 }
