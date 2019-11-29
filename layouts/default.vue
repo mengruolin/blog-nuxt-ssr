@@ -1,8 +1,8 @@
 <template>
   <div class="_lay">
-    <div class="lay-header">
-      header
-    </div>
+    <el-header class="lay-height">
+      <c-header />
+    </el-header>
     <el-main class="lay-main">
       <nuxt />
     </el-main>
@@ -10,11 +10,14 @@
 </template>
 
 <script>
-
+import CHeader from './default/header'
 export default {
+  components: {
+    CHeader
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import url('./default.scss');
+@import './default/default.scss';
 </style>

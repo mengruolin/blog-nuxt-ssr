@@ -16,6 +16,7 @@
 import scrollPage from '@/components/scrollList/index.vue'
 
 export default {
+  layout: 'default',
   components: {
     scrollPage
   },
@@ -25,10 +26,6 @@ export default {
     }
   },
   mounted () {
-    window.addEventListener('scroll', () => {
-
-    })
-
     for (let i = 0; i < 100; i++) {
       this.list.push(['这是测试'])
     }

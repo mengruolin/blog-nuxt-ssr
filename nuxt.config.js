@@ -30,7 +30,7 @@ module.exports = {
   */
   css: [
     'element-ui/lib/theme-chalk/index.css',
-    './assets/scss/main.scss'
+    '@/assets/scss/main.scss',
   ],
   /*
   ** Plugins to load before mounting the App
@@ -50,8 +50,14 @@ module.exports = {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    scss: [
+        '~assets/scss/global.scss',
+    ]
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
@@ -94,7 +100,7 @@ module.exports = {
             loader: 'eslint-loader',
             exclude: /(node_modules)/,
             options: {
-                fix: false
+                fix: true
             }
         })
       }

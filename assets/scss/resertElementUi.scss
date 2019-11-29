@@ -1,6 +1,6 @@
+@import './config.scss';
+
 .el-backtop {
-    color: black;
+  color: black;
 }
-.el-header {
-    background: red;
-}
+.el-header { background-color: $headerBgColor; height: 50px !important;}

@@ -39,6 +39,9 @@ export default {
       if (scrollBottom < 300) {
         this.$emit('scroll')
       }
+    },
+    beforeDestroy () {
+      window.removeEventListener('scroll')
     }
   }
 }
