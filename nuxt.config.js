@@ -30,7 +30,7 @@ module.exports = {
   */
   css: [
     'element-ui/lib/theme-chalk/index.css',
-    './assets/scss/normalize.scss'
+    './assets/scss/main.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -94,7 +94,7 @@ module.exports = {
             loader: 'eslint-loader',
             exclude: /(node_modules)/,
             options: {
-                fix: true
+                fix: false
             }
         })
       }

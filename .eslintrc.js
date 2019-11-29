@@ -14,6 +14,7 @@ module.exports = {
   // add your custom rules here
   rules: {
     'nuxt/no-cjs-in-config': 'off',
-    "camelcase": ["error", {"allow": ["aa_bb"]}]
+    "camelcase": ["error", {"allow": ["aa_bb"]}],
+    "no-console": "off",
   }
 }

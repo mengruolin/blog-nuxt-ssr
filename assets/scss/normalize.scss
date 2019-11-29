@@ -348,29 +348,3 @@
   [hidden] {
     display: none;
   }
-
-
-  // public global css
-
-  .c-ml20 {
-    margin-left: 20px;
-  }
-
-  .rotate-x{
-    position: absolute;
-      transition: transform 2s;
-      &:hover{
-        transform: rotate(130deg);
-      }
-  }
-
-  .media-pc {
-    @media (max-width: 980px) {
-      display: none;
-    }
-  }
-  .media-iphone {
-    @media (min-width: 980px) {
-      display: none;
-    }
-  }
