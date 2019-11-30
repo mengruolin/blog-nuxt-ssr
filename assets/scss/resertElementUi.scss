@@ -3,4 +3,4 @@
 .el-backtop {
   color: black;
 }
-.el-header { background-color: $headerBgColor; height: 50px !important;}
+.el-header { background-color: $headerBgColor; height: 50px !important; z-index: 3;}
