@@ -4,3 +4,6 @@
 @import './config.scss';
 
 div {box-sizing: border-box;}
+a {color: $globalLinkColor; text-decoration: none; font-weight: 200;}
+
+.c-w200 {width: 200px;}

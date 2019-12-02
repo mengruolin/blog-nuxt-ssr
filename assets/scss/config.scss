@@ -1,9 +1,21 @@
+
 /*
  *
 */
 
-$headerBgColor: #409EFF; 
-$mainBgColor: #FFFFFF;
-
+// header config
+$headerBgColor: #e25822; 
+$headerFontColor: #a35638;
 $headerWidth: 1002px;
+$headerNavColor: #FFFFFF;
+$headerNavHoverColor: #272343;
+
+// content config
+$mainBgColor: #FFFFFF;
 $contentWidth: 1002px;
+
+// global config
+$globalFontColor: #000000;
+$globalLinkColor: #0080ff;
+$globalNavColor: #2c7873;
+$globalLinkHoverColor: #004445;
