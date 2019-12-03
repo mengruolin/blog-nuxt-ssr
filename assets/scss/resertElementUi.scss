@@ -3,7 +3,7 @@
 .el-backtop {
   color: black;
 }
-.el-header { background-color: $headerBgColor; height: 50px; z-index: 3;}
+.el-header { background-color: $headerBgColor; height: 50px !important; z-index: 3;}
 .el-input { 
   //height: 35px;
   .el-input__inner {
