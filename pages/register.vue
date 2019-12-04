@@ -29,36 +29,21 @@
           <el-input v-model="email" class="input-w200" placeholder="这是邮箱" />
         </el-form-item>
 
-        <el-form-item v-if="loginType === 0" :prop="authCode">
+        <el-form-item :prop="password">
+          <el-input v-model="password" show-password class="input-w200" placeholder="这是密码" />
+        </el-form-item>
+
+        <el-form-item :prop="authCode">
           <el-input v-model="authCode" class="input-w80" placeholder="快输验证码" />
           <el-button class="send-btn" type="success" disabled>
             发送验证码
           </el-button>
         </el-form-item>
 
-        <el-form-item v-if="loginType === 1" :prop="password">
-          <el-input v-model="password" show-password class="input-w200" placeholder="这是密码" />
-        </el-form-item>
-
-        <el-form-item class="swith-login-type c-h30">
-          <el-button v-if="loginType === 0" type="text" @click="handleChangeLogin(1)">
-            &lt;密码登录
-          </el-button>
-          <el-button v-if="loginType === 1" type="text" @click="handleChangeLogin(0)">
-            &lt;验证码登录
-          </el-button>
-        </el-form-item>
-
         <el-form-item class="btn-group shake-crazy shake-freeze">
           <el-button type="primary" :disabled="loginDisabled" class="input-w200" @click="handleSubmit">
-            login
+            register
           </el-button>
-        </el-form-item>
-
-        <el-form-item label="快捷登录">
-          <span><i class="iconfont">&#xe6a4;</i></span>
-          <span><i class="iconfont">&#xe699;</i></span>
-          <span><i class="iconfont">&#xe723;</i></span>
         </el-form-item>
       </el-form>
     </div>
@@ -70,11 +55,9 @@ export default {
   layout: 'empty',
   data () {
     return {
-      loginType: 0, // 登陆方式  =》》 0. 验证码 1 . 密码
       email: '',
       password: '',
-      authCode: '',
-      labelWidth: '70px'
+      authCode: ''
     }
   },
   computed: {
@@ -159,21 +142,21 @@ export default {
 
 @keyframes _title {
   0% {
-    color: $logoColor;
+    color: #46b5d1;
     letter-spacing: 2px;
   }
 
-  79% {
-    color: $logoColor;
+  89% {
+    color: #46b5d1;
     letter-spacing: 2px;
   }
-  80% {
+  90% {
     color: #2d132c;
     letter-spacing: 3px;
   }
 
-  100% {
-    color: $logoColor;
+  to {
+    color: #46b5d1;
     letter-spacing: 10px;
   }
 }

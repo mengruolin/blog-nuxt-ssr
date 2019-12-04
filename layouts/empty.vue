@@ -11,3 +11,16 @@
     <nuxt />
   </div>
 </template>
+
+<script>
+export default {
+  head () {
+    return {
+      link: [
+        // https://elrumordelaluz.github.io/csshake/
+        { rel: 'stylesheet', href: 'https://csshake.surge.sh/csshake.min.css' }
+      ]
+    }
+  }
+}
+</script>

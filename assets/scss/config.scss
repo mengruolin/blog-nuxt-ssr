@@ -3,6 +3,9 @@
  *
 */
 
+//logio color
+$logoColor: #46b3e6;
+
 // header config
 $headerBgColor: #e25822; 
 $headerFontColor: #a35638;
@@ -19,3 +22,41 @@ $globalFontColor: #000000;
 $globalLinkColor: #0080ff;
 $globalNavColor: #2c7873;
 $globalLinkHoverColor: #004445;
+
+
+// media mixin
+@mixin unShow-900 {
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+}
+
+@mixin unShow-630 {
+  @media screen and (max-width: 630px) {
+    display: none;
+  }
+}
+
+@mixin unShow-500 {
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+}
+
+@mixin show-900 {
+  @media screen and (min-width: 900px) {
+    display: none;
+  }
+}
+
+@mixin show-630 {
+  @media screen and (min-width: 630px) {
+    display: none;
+  }
+}
+
+@mixin show-500 {
+  @media screen and (min-width: 900px) {
+    display: none;
+  }
+}
