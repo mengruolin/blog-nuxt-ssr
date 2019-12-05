@@ -24,13 +24,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: {
-    color: '#1E90FF',
-    failedColor: '#B22222',
-    duration: 10000,
-    continuous: true,
-    height: '2px'
-  },
+  loading: '@/components/loading.vue',
   /*
   ** Global CSS
   */
@@ -42,7 +36,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    // {src:'@/plugins/loading', ssr:false },
   ],
   /*
   ** Nuxt.js dev-modules

@@ -23,6 +23,17 @@ $globalLinkColor: #0080ff;
 $globalNavColor: #2c7873;
 $globalLinkHoverColor: #004445;
 
+//menu-left
+
+$leftMenuBorder: #bbbbbb solid 1px;
+
+// nav List
+
+$navListColor: #f88020;
+
+// 渐变
+$defaultBoxBG: linear-gradient(to right, #00b4db, #0083b0);
+
 
 // media mixin
 @mixin unShow-900 {
@@ -60,3 +71,11 @@ $globalLinkHoverColor: #004445;
     display: none;
   }
 }
+
+//text mixin
+@mixin nobr {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+

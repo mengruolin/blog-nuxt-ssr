@@ -9,11 +9,8 @@ export default {
   layout: 'blog',
   mounted () {
     this.$nextTick(() => {
-      this.$loading()
-
       this.$nuxt.$loading.start()
-
-      setTimeout(() => this.$loading().close(), 5000)
+      // setTimeout(() => this.$nuxt.$loading.finish(), 5000)
     })
   }
 }

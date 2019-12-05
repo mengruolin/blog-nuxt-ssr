@@ -69,9 +69,20 @@
         </nuxt-link>
       </template>
       <template v-else>
+        <div class="user-release">
+          <el-dropdown trigger="click" class="release-dropdown">
+            <span class="el-dropdown-link">
+              发布<i class="el-icon-edit-outline" />
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>文章</el-dropdown-item>
+              <el-dropdown-item>专栏</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
         <div class="user-info">
           <el-dropdown trigger="click" class="avatar-swiper">
-            <el-image class="avatar" src="https://b-ssl.duitang.com/uploads/item/201408/13/20140813003439_yivKL.jpeg">
+            <el-image class="avatar" src="/img/avator.jpeg">
               <div slot="error" class="image-slot">
                 <i class="el-icon-picture-outline" />
               </div>
@@ -128,10 +139,20 @@ export default {
     font-size: 24px;
   }
   .user {
-    width: 100px;
-    text-align: center;
+    width: 130px;
+    display: flex;
+    .user-release {
+      width: 80px;
+      .release-dropdown {
+        .el-dropdown-link {
+          color: $headerNavColor;
+          cursor: pointer;
+        }
+      }
+    }
     .user-info {
-      padding-right: 20px;
+     // padding-right: 20px;
+      width: 50px;
       font-size: 16px;
       text-align: right;
       line-height: 50px;
@@ -160,7 +181,7 @@ export default {
       flex: 1;
       @include unShow-900;
       .nav-list {
-        max-width: 200px;
+        max-width: 300px;
       }
     }
     .nav-small {

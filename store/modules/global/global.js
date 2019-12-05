@@ -1,8 +1,10 @@
 import actions from './actions.js'
 import getters from './getters.js'
+import consts from './consts.js'
 
 const state = () => ({
-  disableLoad: false
+  disableLoad: false,
+  ...consts
 })
 
 const mutations = {
