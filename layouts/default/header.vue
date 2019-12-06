@@ -70,13 +70,17 @@
       </template>
       <template v-else>
         <div class="user-release">
-          <el-dropdown trigger="click" class="release-dropdown">
+          <el-dropdown trigger="click" class="release-dropdown" @command="handleEdit">
             <span class="el-dropdown-link">
               发布<i class="el-icon-edit-outline" />
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>文章</el-dropdown-item>
-              <el-dropdown-item>专栏</el-dropdown-item>
+              <el-dropdown-item command="/edit">
+                问题
+              </el-dropdown-item>
+              <el-dropdown-item command="/edit">
+                博客
+              </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -109,6 +113,9 @@ export default {
   },
   methods: {
     handleCommand (url) {
+      this.$router.push(url)
+    },
+    handleEdit (url) {
       this.$router.push(url)
     }
   }

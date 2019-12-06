@@ -1,7 +1,7 @@
 <template>
   <div class="_loginMenu">
     <p>登录之后可以提问题，写文章</p>
-    <el-button class="c-w200">
+    <el-button class="c-w200" @click="handleLogin">
       login
     </el-button>
   </div>
@@ -9,7 +9,15 @@
 
 <script>
 export default {
-
+  methods: {
+    handleLogin () {
+      const nowUrl = this.$route.path
+      this.$router.push({
+        path: '/login',
+        query: { jumpAddres: nowUrl }
+      })
+    }
+  }
 }
 </script>
 

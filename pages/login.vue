@@ -90,7 +90,11 @@ export default {
   },
   methods: {
     handleSubmit () {
-
+      let jumpAddres = '/'
+      if (this.$route.query.jumpAddres) {
+        jumpAddres = this.$route.query.jumpAddres
+      }
+      this.$router.push(jumpAddres)
     },
     handleChangeLogin (type) {
       this.loginType = type
