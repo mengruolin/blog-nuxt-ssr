@@ -37,7 +37,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
-    // {src:'@/plugins/loading', ssr:false },
+    {src:'@/plugins/loading', ssr: false },
     { src: '@/plugins/vue-mavon-editor', srr: false },
   ],
   /*

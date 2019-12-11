@@ -9,11 +9,13 @@ NProgress.configure({ easing: 'ease', speed: 500, showSpinner: false })
 export default ({ app }) => {
   app.router.beforeEach((to, from, next) => {
     NProgress.start()
-
+    setTimeout(() => {
+      NProgress.done()
+    }, 5000)
     next()
   })
 
-  app.router.afterEach(() => {
-    NProgress.done()
-  })
+  // app.router.afterEach(() => {
+  //   NProgress.done()
+  // })
 }

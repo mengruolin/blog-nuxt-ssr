@@ -11,7 +11,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 
 axios.interceptors.request.use((config) => {
   // Do something before request is sent
-  console.log(config)
+  // console.log(config)
   return config
 }, (error) => {
   // Do something with request error
@@ -28,22 +28,22 @@ axios.interceptors.response.use((response) => {
   return Promise.reject(error)
 })
 
-const get = (url, parmase) => {
-  return axios.get(url, { parmase })
+const get = (url, params) => {
+  return axios.get(url, { params })
 }
 
-const getl = (url, parmase) => {
+const getl = (url, params) => {
   loadingInstance = Loading.service({ fullscreen: true })
-  return axios.get(url, { parmase })
+  return axios.get(url, { params })
 }
 
-const post = (url, parmase) => {
-  return axios.post(url, parmase)
+const post = (url, params) => {
+  return axios.post(url, params)
 }
 
-const postl = (url, parmase) => {
+const postl = (url, params) => {
   loadingInstance = Loading.service({ fullscreen: true })
-  return axios.post(url, parmase)
+  return axios.post(url, params)
 }
 
 export default {

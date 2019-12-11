@@ -95,6 +95,7 @@ const bbsNavList = [
 
 const bbsListData = [{
   id: 0,
+  seq: 1,
   title: '梦想去远方，然而梦想只是梦想，希望不负韶华。',
   authorName: '孟若林',
   authorAvatar: '1556206625518.png',
@@ -106,6 +107,7 @@ const bbsListData = [{
 },
 {
   id: 0,
+  seq: 2,
   title: '梦想去远方，然而梦想只是梦想，希望不负韶华。',
   authorName: '孟若林',
   authorAvatar: '1556206625518.png',
@@ -117,6 +119,7 @@ const bbsListData = [{
 },
 {
   id: 0,
+  seq: 3,
   title: '梦想去远方，然而梦想只是梦想，希望不负韶华。',
   authorName: '孟若林',
   authorAvatar: '1556206625518.png',
@@ -128,6 +131,7 @@ const bbsListData = [{
 },
 {
   id: 0,
+  seq: 4,
   title: '心有猛虎，细嗅蔷薇。',
   authorName: '孟若林',
   authorAvatar: '1556206625518.png',
@@ -138,6 +142,7 @@ const bbsListData = [{
   updataTime: '2018-11-2'
 }, {
   id: 0,
+  seq: 5,
   title: '梦想去远方，然而梦想只是梦想，希望不负韶华。',
   authorName: '孟若林',
   authorAvatar: '1556206625518.png',
@@ -149,6 +154,7 @@ const bbsListData = [{
 },
 {
   id: 0,
+  seq: 6,
   title: '梦想去远方，然而梦想只是梦想，希望不负韶华。',
   authorName: '孟若林',
   authorAvatar: '1556206625518.png',
@@ -160,6 +166,7 @@ const bbsListData = [{
 },
 {
   id: 0,
+  seq: 7,
   title: '梦想去远方，然而梦想只是梦想，希望不负韶华。',
   authorName: '孟若林',
   authorAvatar: '1556206625518.png',
@@ -171,6 +178,7 @@ const bbsListData = [{
 },
 {
   id: 0,
+  seq: 8,
   title: '心有猛虎，细嗅蔷薇。',
   authorName: '孟若林',
   authorAvatar: '1556206625518.png',
@@ -181,6 +189,7 @@ const bbsListData = [{
   updataTime: '2018-11-2'
 }, {
   id: 0,
+  seq: 9,
   title: '梦想去远方，然而梦想只是梦想，希望不负韶华。',
   authorName: '孟若林',
   authorAvatar: '1556206625518.png',
@@ -192,6 +201,7 @@ const bbsListData = [{
 },
 {
   id: 0,
+  seq: 10,
   title: '梦想去远方，然而梦想只是梦想，希望不负韶华。',
   authorName: '孟若林',
   authorAvatar: '1556206625518.png',
@@ -203,6 +213,7 @@ const bbsListData = [{
 },
 {
   id: 0,
+  seq: 11,
   title: '梦想去远方，然而梦想只是梦想，希望不负韶华。',
   authorName: '孟若林',
   authorAvatar: '1556206625518.png',
@@ -214,6 +225,7 @@ const bbsListData = [{
 },
 {
   id: 0,
+  seq: 12,
   title: '心有猛虎，细嗅蔷薇。',
   authorName: '孟若林',
   authorAvatar: '1556206625518.png',

@@ -12,11 +12,11 @@
                 {{ item.label }}
               </el-tag>
             </nuxt-link>
-            <nuxt-link v-else :key="k" :to="item.url">
+            <a v-else :key="k" :href="item.url">
               <el-tag>
                 {{ item.label }}
               </el-tag>
-            </nuxt-link>
+            </a>
           </template>
           <el-button v-if="openNavList" type="text" class="close-list" @click="handleSwitchNavList(false)">
             收起<i class="el-icon-arrow-up" />
@@ -67,7 +67,7 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
-      this.$nuxt.$loading.start()
+      // this.$nuxt.$loading.start()
       setTimeout(() => this.$nuxt.$loading.finish(), 5000)
     })
   },

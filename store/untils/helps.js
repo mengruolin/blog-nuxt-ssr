@@ -5,8 +5,9 @@ import http from './http'
 
 export default function createActions (methods, url, mutations, init) {
   // url = `/test`
-  return function (parmase) {
-    // console.log()
-    return http[methods](url, parmase)
+  return async function ({ commit }, params) {
+    // console.log(params)
+    const res = await http.getl(url, params)
+    return res.data
   }
 }

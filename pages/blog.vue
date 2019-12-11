@@ -14,9 +14,12 @@ export default {
   components: {
     loginMenu
   },
+  asyncData (context) {
+    console.log(context)
+  },
   mounted () {
     this.$nextTick(() => {
-      this.$nuxt.$loading.start()
+      // this.$nuxt.$loading.start()
       setTimeout(() => this.$nuxt.$loading.finish(), 2000)
     })
   }

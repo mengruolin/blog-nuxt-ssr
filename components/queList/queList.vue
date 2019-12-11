@@ -25,7 +25,7 @@
           </span>
         </div>
         <div class="q-title">
-          <nuxt-link to="/">
+          <nuxt-link :to="'bbs?seq=' + item.seq">
             {{ item.title }}
           </nuxt-link>
         </div>
