@@ -5,9 +5,9 @@
     height: 50px;
   }
   .lay-main {
-    width: $contentWidth;
+    max-width: $contentWidth;
     background-color: $mainBgColor;
-    border: $headerBgColor solid 1px;
+    // border: $headerBgColor solid 1px;
     box-sizing: border-box;
     overflow: hidden;
     padding: 70px 0 0 0;

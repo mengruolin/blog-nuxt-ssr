@@ -15,7 +15,7 @@ export default {
     loginMenu
   },
   asyncData (context) {
-    console.log(context)
+    // console.log(context)
   },
   mounted () {
     this.$nextTick(() => {

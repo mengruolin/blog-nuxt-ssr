@@ -12,7 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 .page-view {
-  width: $contentWidth;
+  max-width: $contentWidth;
   position: relative;
   margin: 0 auto;
 }

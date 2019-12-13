@@ -1,8 +1,15 @@
 <template>
   <page-view>
     <el-row class="_index">
-      <el-col :span="16">
-        <div class="nav-swieper" :style="openNavList ? 'height: 100%' : 'height: 50px'">
+      <el-col
+        :span="16"
+        :xs="24"
+        :sm="24"
+        :md="16"
+        :lg="16"
+        :xl="16"
+      >
+        <div class="nav-swieper" :style="openNavList ? 'height: 100%; padding-right: 10px;' : 'height: 50px; padding-right: 60px;'">
           <el-button v-if="!openNavList" type="text" class="open-list" @click="handleSwitchNavList(true)">
             展开更多<i class="el-icon-arrow-down" />
           </el-button>
@@ -31,7 +38,7 @@
           </template>
         </scroll-page>
       </el-col>
-      <el-col :span="7" :offset="1" class="right-menu">
+      <el-col :span="7" :offset="1" class="right-menu hidden-sm-and-down">
         <login-menu />
         <hotQuestions />
       </el-col>
@@ -84,12 +91,14 @@ export default {
 
 <style lang="scss" scoped>
 ._index {
+  padding: 10px 10px;
+  padding-top: 0px;
   .nav-swieper {
     overflow: hidden;
     position: relative;
     width: 100%;
     //border: salmon solid 1px;
-    padding: 10px 60px 10px 0;
+    padding: 10px 10px;
     .open-list {
       position: absolute;
       right: 0px;
