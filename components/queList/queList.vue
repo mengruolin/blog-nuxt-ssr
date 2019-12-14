@@ -113,9 +113,9 @@ export default {
           width: 150px;
           overflow: hidden;
           right: 30px;
-          .time {
-          //margin-left: 0px;
-        }
+          // .time {
+          // //margin-left: 0px;
+          // }
           .iview {
             margin-left: 10px;
           }

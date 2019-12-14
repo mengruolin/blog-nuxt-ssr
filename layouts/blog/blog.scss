@@ -1,21 +1,10 @@
 ._blog {
-  .blog-header-height {
-    background-color: $blogHeaderColor;
-    .header-content {
-      width: 100%;
-      height: $blogHeaderHeight;
-      // line-height: $blogHeaderHeight;
-      .el-col {
-        line-height: $blogHeaderHeight;
-      }
-      padding: 0 0px;
-      ._logo {
-        font-size: 20px;
-      }
-      .menu-user {
-        text-align: right;
-        color: $blogHeaderFnotColor;
-      }
-    }
+  .el-header {
+    background: $blogHeaderColor;
+    box-shadow: 0 2px 2px $blogHeaderColor;
+  }
+  .lay-main {
+    max-width: $blogHeaderWidth;
+    padding: 10px 0;
   }
 }

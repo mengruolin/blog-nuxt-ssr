@@ -1,49 +1,22 @@
 <template>
   <div class="_blog">
-    <el-header class="blog-header-height">
-      <el-row class="header-content">
-        <el-col class="_logo" :span="4">
-          <nuxt-link to="/">
-            query
-          </nuxt-link>
-        </el-col>
-        <el-col :span="16">
-          &nbsp;<el-autocomplete />
-        </el-col>
-        <el-col :span="4" class="menu-user">
-          <i v-if="!menuType" class="iconfont c-click-icon" @click="handleChangeMenu">&#xe652;</i>
-          <i v-else class="iconfont c-click-icon" @click="handleChangeMenu">&#xeb9b;</i>
-        </el-col>
-      </el-row>
+    <el-header class="lay-height">
+      <c-header />
     </el-header>
-    <el-main class="blog-main">
+    <el-main class="lay-main">
       <nuxt />
+      <back-top />
     </el-main>
-    <el-drawer
-      title="我是标题"
-      :visible.sync="menuType"
-      :with-header="false"
-      size="70%"
-    >
-      <span>我来啦!</span>
-    </el-drawer>
   </div>
 </template>
 
 <script>
+import CHeader from './blog/header'
+import backTop from '@/components/backTop.vue'
 export default {
   components: {
-  },
-  data () {
-    return {
-      menuType: false
-    }
-  },
-  methods: {
-    handleChangeMenu () {
-      this.menuType = !this.menuType
-    }
-
+    CHeader,
+    backTop
   }
 }
 </script>
