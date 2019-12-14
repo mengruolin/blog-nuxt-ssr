@@ -3,10 +3,16 @@
 .el-backtop {
   color: black;
 }
-.el-header { background-color: $headerBgColor; height: 50px !important; z-index: 3;}
+.el-header { background-color: $headerBgColor; height: 50px !important; z-index: 3; box-shadow: 0 2px 2px $headerBgColor;}
 .el-input { 
   //height: 35px;
   .el-input__inner {
     height: 35px;
+  }
+}
+.el-backtop {
+  background: $headerBgColor;
+  &:hover {
+    background: cadetblue;
   }
 }

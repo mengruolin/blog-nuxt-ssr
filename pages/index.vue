@@ -9,20 +9,20 @@
         :lg="16"
         :xl="16"
       >
-        <div class="nav-swieper" :style="openNavList ? 'height: 100%; padding-right: 10px;' : 'height: 50px; padding-right: 60px;'">
-          <el-button v-if="!openNavList" type="text" class="open-list" @click="handleSwitchNavList(true)">
+        <div class="nav-swieper" :style="openNavList ? 'height: 100%; padding-right: 10px;' : 'height: 50px; padding-right: 80px;'">
+          <el-button v-if="!openNavList" type="text" class="open-list c-ml10" @click="handleSwitchNavList(true)">
             展开更多<i class="el-icon-arrow-down" />
           </el-button>
           <template v-for="(item, k) of bbsNavList">
             <nuxt-link v-if="item.urlLevel >= 1" :key="k" :to="item.baseUrl + item.url">
-              <el-tag>
+              <span>
                 {{ item.label }}
-              </el-tag>
+              </span>
             </nuxt-link>
             <a v-else :key="k" :href="item.url">
-              <el-tag>
+              <span>
                 {{ item.label }}
-              </el-tag>
+              </span>
             </a>
           </template>
           <el-button v-if="openNavList" type="text" class="close-list" @click="handleSwitchNavList(false)">
@@ -98,19 +98,23 @@ export default {
     position: relative;
     width: 100%;
     //border: salmon solid 1px;
-    padding: 10px 10px;
+    padding: 10px 10px 10px 0;
     .open-list {
       position: absolute;
       right: 0px;
       top: 50%;
       transform: translate(0, -50%)
     }
-    .el-tag {
+    span {
+      display: inline-block;
       margin-right: 10px;
       margin-bottom: 10px;
-      border-radius: 20px;
+      border-radius: 1.2em;
       background: #ffffff;
       color: $navListColor;
+      font-weight: 500;
+      border: solid 1px;
+      padding: 8px 8px;
       border-color: $navListColor;
       border-spacing: 1px;
     }

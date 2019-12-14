@@ -4,7 +4,9 @@
 @import './config.scss';
 
 div {box-sizing: border-box;}
-a {color: $globalLinkColor; text-decoration: none; font-weight: 200;}
+a {color: $globalLinkColor; text-decoration: none; font-weight: 300; transition: .2s ease all;
+  &:hover {color: $globalLinkHoverColor;}
+}
 
 .clear-flot {
   ::after, ::before {
@@ -16,6 +18,7 @@ a {color: $globalLinkColor; text-decoration: none; font-weight: 200;}
 .input-w80 { width: 125px;}
 .input-w200 {width: 260px;}
 
+.c-w100 {width: 100px;}
 .c-w200 {width: 200px;}
 .c-w300 {width: 300px;}
 
