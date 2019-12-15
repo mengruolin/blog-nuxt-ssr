@@ -75,7 +75,7 @@ export default {
 .header {
   height: 50px;
   line-height: 50px;
-  background: #6807f9;
+  background: #46b3e6;
 }
 ._content {
   font-size: 20px;

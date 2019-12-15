@@ -378,8 +378,32 @@ const bbsListData = [{
   updataTime: '2018-11-2'
 }]
 
+const blogNavList = [
+  {
+    label: 'tuijian',
+    name: '推荐'
+  },
+  {
+    label: 'qianduan',
+    name: '前端'
+  },
+  {
+    label: 'java',
+    name: 'java'
+  },
+  {
+    label: 'nodeJs',
+    name: 'node.js'
+  },
+  {
+    label: 'webgl',
+    name: 'webgl'
+  }
+]
+
 const consts = {
   bbsNavList,
-  bbsListData
+  bbsListData,
+  blogNavList
 }
 export default consts

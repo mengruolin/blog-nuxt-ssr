@@ -1,5 +1,6 @@
 <template>
   <div class="scrollList">
+    <slot />
     <slot name="list" />
   </div>
 </template>

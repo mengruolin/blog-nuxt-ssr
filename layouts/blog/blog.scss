@@ -1,10 +1,20 @@
 ._blog {
   .el-header {
+    // position: fixed;
+    // width: 100vw;
+    // box-sizing: border-box;
+    position: fixed;
+    width: 100%;
+    padding: 0 20px;
     background: $blogHeaderColor;
     box-shadow: 0 2px 2px $blogHeaderColor;
   }
-  .lay-main {
+  .blog-main {
     max-width: $blogHeaderWidth;
-    padding: 10px 0;
+    padding: 90px 10px 10px 10px;
+    margin: 0 auto;
+    .blog-notice {
+      margin-top: 55px;
+    }
   }
 }
