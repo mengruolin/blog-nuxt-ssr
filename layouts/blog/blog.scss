@@ -1,13 +1,13 @@
 ._blog {
   .el-header {
-    // position: fixed;
-    // width: 100vw;
-    // box-sizing: border-box;
-    position: fixed;
     width: 100%;
     padding: 0 20px;
     background: $blogHeaderColor;
     box-shadow: 0 2px 2px $blogHeaderColor;
+    transition: .2s ease all;
+    height: 50px !important;
+    z-index: 3;
+    position: fixed;
   }
   .blog-main {
     max-width: $blogHeaderWidth;

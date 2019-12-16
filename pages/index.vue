@@ -40,7 +40,7 @@
       </el-col>
       <el-col :span="7" :offset="1" class="right-menu hidden-sm-and-down">
         <login-menu />
-        <hotQuestions />
+        <hotQuestions :hot-list="hotList" />
       </el-col>
     </el-row>
   </page-view>
@@ -53,6 +53,7 @@ import pageView from '@/components/pageView.vue'
 import queList from '@/components/queList/queList.vue'
 import loginMenu from '@/components/globalMenu/loginMenu.vue'
 import hotQuestions from '@/components/globalMenu/hotQuestions.vue'
+import { getTest } from '@/store/api/global.js'
 
 export default {
   layout: 'default',
@@ -71,6 +72,12 @@ export default {
   },
   computed: {
     ...mapGetters(['bbsNavList', 'bbsListData'])
+  },
+  async asyncData () {
+    const res = await getTest()
+    return {
+      hotList: res
+    }
   },
   mounted () {
     this.$nextTick(() => {

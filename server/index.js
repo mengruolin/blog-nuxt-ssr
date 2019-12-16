@@ -1,9 +1,13 @@
 const express = require('express')
 const consola = require('consola')
+const mongoose = require('mongoose')
+const redis = require('redis')
 const { Nuxt, Builder } = require('nuxt')
 const router = require('./router/index.js')
 const app = express()
 
+
+mongoose.connect('mongodb://localhost/blog', {keepAlive: 120});
 router(app)
 
 // Import and Set Nuxt.js options

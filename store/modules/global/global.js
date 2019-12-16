@@ -4,12 +4,16 @@ import consts from './consts.js'
 
 const state = () => ({
   disableLoad: false,
+  hiddenHeader: true,
   ...consts
 })
 
 const mutations = {
   changeDisableLoad (state, type) {
     state.disableLoad = type
+  },
+  handleHiddenHeader (state, type) {
+    state.hiddenHeader = type
   }
 }
 
