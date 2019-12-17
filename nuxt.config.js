@@ -74,6 +74,10 @@ module.exports = {
   build: {
     transpile: [/^element-ui/],
 
+    cache: true,
+
+    parallel: true,
+
     postcss: {
       // Add plugin names as key and arguments as value
       // Install them before as dependencies with npm or yarn

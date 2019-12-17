@@ -25,8 +25,8 @@
           <h1>Query</h1>
         </el-form-item>
 
-        <el-form-item :prop="email">
-          <el-input v-model="email" class="input-w200" placeholder="这是邮箱" />
+        <el-form-item :prop="userName">
+          <el-input v-model="userName" class="input-w200" placeholder="这是邮箱" />
         </el-form-item>
 
         <el-form-item v-if="loginType === 0" :prop="authCode">
@@ -66,12 +66,15 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import md5 from 'md5'
+
 export default {
   layout: 'empty',
   data () {
     return {
       loginType: 0, // 登陆方式  =》》 0. 验证码 1 . 密码
-      email: '',
+      userName: '',
       password: '',
       authCode: '',
       labelWidth: '70px'
@@ -79,17 +82,37 @@ export default {
   },
   computed: {
     loginDisabled () {
-      if (this.email !== '' && (this.password !== '' || this.authCode !== '')) {
+      if (this.userName !== '' && (this.password !== '' || this.authCode !== '')) {
         return false
       }
       return true
+    },
+    loginInfo () {
+      const password = md5(md5(this.password))
+      return {
+        loginType: this.loginType,
+        userName: this.userName,
+        password,
+        authCode: this.authCode
+      }
     }
   },
   mounted () {
+
     // this.$loading.start()
   },
   methods: {
-    handleSubmit () {
+    ...mapActions(['login']),
+    async handleSubmit () {
+      const res = await this.login(this.loginInfo)
+      if (res.code === '0') {
+        this.$message.success(res.message)
+        this.loginSuccess()
+      } else {
+        this.$message.error(res.message)
+      }
+    },
+    loginSuccess () {
       let jumpAddres = '/'
       if (this.$route.query.jumpAddres) {
         jumpAddres = this.$route.query.jumpAddres
@@ -98,6 +121,8 @@ export default {
     },
     handleChangeLogin (type) {
       this.loginType = type
+      this.password = ''
+      this.authCode = ''
     }
   }
 }

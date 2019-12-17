@@ -14,7 +14,7 @@ export const createActions = (methods, url, mutations, init) => {
   // url = `/test`
   return async function ({ commit }, params) {
     // console.log(params)
-    const res = await http.getl(url, params)
+    const res = await http[methods](url, params)
     return res.data
   }
 }
