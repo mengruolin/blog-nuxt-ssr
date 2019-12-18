@@ -63,7 +63,7 @@
       </div>
     </div>
     <div class="user">
-      <template v-if="!isLogin">
+      <template v-if="!userInfo">
         <div class="login">
           <nuxt-link to="/login">
             登录
@@ -91,7 +91,7 @@
         </div>
         <div class="user-info c-ml10">
           <el-dropdown trigger="click" class="avatar-swiper">
-            <el-image class="avatar" src="/img/avator.jpeg">
+            <el-image class="avatar" :src="userInfo.imgTitle + userInfo.avatarUrl">
               <div slot="error" class="image-slot">
                 <i class="el-icon-picture-outline" />
               </div>
@@ -100,7 +100,9 @@
               <el-dropdown-item>个人中心</el-dropdown-item>
               <el-dropdown-item>消息</el-dropdown-item>
               <el-dropdown-item>日志</el-dropdown-item>
-              <el-dropdown-item>退出</el-dropdown-item>
+              <el-dropdown-item @click.native="handleLogOut">
+                退出
+              </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -110,15 +112,28 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      isLogin: true
+      // isLogin: true
     }
   },
+  computed: {
+    ...mapGetters(['userInfo'])
+  },
   methods: {
+    ...mapActions(['logOut']),
     handleCommand (url) {
       this.$router.push(url)
+    },
+    async handleLogOut () {
+      const res = await this.logOut()
+      if (res.code) {
+        window.location.reload()
+      } else {
+        this.$message.error(res.message)
+      }
     },
     handleEdit (url) {
       this.$router.push(url)

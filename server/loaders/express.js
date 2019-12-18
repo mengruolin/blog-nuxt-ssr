@@ -14,15 +14,14 @@ export default async ({ app }) => {
   app.use(bodyParser.json())
 
   app.use(session({
-    name: 'token',
     secret: 'cat',
-    resave: true,
-    saveUninitialized: true,
     store: new RedisStore({
       client: client,
-      prefix: 'hgk',
+      // prefix: 'hgk',
     }),
-    cookie: { maxAge: 1 * 60 * 60 * 1000 }
+    resave: false,
+    saveUninitialized: false,
+    // cookie: { maxAge: 1 * 60 * 60 * 1000 }
   }))
 
   app.use((req, res, next) => {

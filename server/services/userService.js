@@ -1,6 +1,5 @@
 const user = require('../dbs/models/user')
 
-
 const verifySuccess = (message) => {
   return {
     code: '0',
@@ -14,36 +13,39 @@ const verifyFail = (message) => {
   }
 }
 export default class UserService {
-  
-  login(req, res) {
+  /**
+   * 
+   * @param {*} req 
+   * @param {*} res 
+   */
+  async login (req, res) {
     if (req.session.token) {
 
     } else {
       const { loginType, userName, password } = req.body
       if (loginType === 1) {
-        user.findOne({userName}).select('password').exec((err, doc) => {
-          if (err) {
-          }
-          
-          let logInfo = verifyFail('用户名不存在')
-          return {
-            code: '999',
-            message: '用户名不存在'
-          }
-          // if (!doc) {
-          //   return verifyFail('用户名不存在')
-          // } else {
-          //   if (doc.password === password) {
-          //     req.session.token = userName
-          //     return verifySuccess('登陆成功')
-          //   } else {
-          //     return verifyFail('密码错误')
-          //   }
-          // }
-          
-        })
+        let userInfo = await user.findOne({ userName }).exec()
+        userInfo = userInfo.toObject()
+
+        if (!userInfo) {
+          return verifyFail('用户名不存在')
+        } else if (userInfo.password === password) {
+          req.session.userInfo = userInfo
+          return verifySuccess('登陆成功')
+        } else {
+          return verifyFail('密码错误')
+        }
       }
-      
     }
+  }
+
+  /**
+   * 
+   * @param {*} req 
+   * @param {*} res 
+   */
+  async logOut (req, res) {
+    req.session.userInfo && req.session.destroy()
+    return verifySuccess('退出成功')
   }
 }

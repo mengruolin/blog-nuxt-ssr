@@ -1,23 +1,21 @@
 <template>
-  <div>------->{{ r }}</div>
+  <div>
+    ------->{{ r }}
+    {{ userInfo }}
+  </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+import { getTest } from '@/store/api/global.js'
 export default {
-  // data () {
-  //   return {
-  //     // r: ''
-  //   }
-  // },
+  computed: {
+    ...mapGetters(['userInfo'])
+  },
   async asyncData ({ app, params }) {
-    // context.app.$axios.get('/api/cheshi', { name: 'java' }, context.params)
-
-    const r = await app.$axios.$get('/api/cheshi', { params })
-    // console.log(r.message)
-
+    const res = await getTest()
     return {
-      r: r.message
+      r: res
     }
   },
   async mounted () {

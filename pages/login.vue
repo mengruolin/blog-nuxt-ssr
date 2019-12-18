@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import md5 from 'md5'
 
 export default {
@@ -81,6 +81,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['userInfo']),
     loginDisabled () {
       if (this.userName !== '' && (this.password !== '' || this.authCode !== '')) {
         return false
@@ -98,11 +99,14 @@ export default {
     }
   },
   mounted () {
-
+    //
     // this.$loading.start()
+    if (this.userInfo) {
+      this.$router.go(-1)
+    }
   },
   methods: {
-    ...mapActions(['login']),
+    ...mapActions(['login', 'nuxtServerInit']),
     async handleSubmit () {
       const res = await this.login(this.loginInfo)
       if (res.code === '0') {
@@ -117,7 +121,9 @@ export default {
       if (this.$route.query.jumpAddres) {
         jumpAddres = this.$route.query.jumpAddres
       }
-      this.$router.push(jumpAddres)
+      //
+      // 原生跳转
+      window.location.replace(jumpAddres)
     },
     handleChangeLogin (type) {
       this.loginType = type

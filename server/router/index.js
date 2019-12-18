@@ -5,23 +5,25 @@ const router = express.Router()
 
 router.get('/api/cheshi', (req, res) => {
 
-    console.log(req.session.token);
-    
-    res.json({
-        code: 0,
-        data: [],
-        message: `hh`,
-    })
+  res.json({
+    code: 0,
+    data: [],
+    message: `hh`
+  })
 })
 
 router.post('/api/login', async (req, res) => {
-    const user = new UserService()
-    let logInfo = await user.login(req, res)
-    console.log(logInfo);
-    
-    res.json(logInfo)
+  const user = new UserService()
+  const logInfo = await user.login(req, res)
+  res.json(logInfo)
 })
 
-export default function(app) {
-    app.use(router)
+router.get('/api/logOut', async (req, res) => {
+    const user = new UserService()
+    const logOutInfo = await user.logOut(req, res)
+    res.json(logOutInfo)
+})
+
+export default function (app) {
+  app.use(router)
 }

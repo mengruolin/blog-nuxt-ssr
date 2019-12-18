@@ -1,7 +1,9 @@
 import getters from './getters'
 import actions from './actions'
 
-const state = () => ({})
+const state = () => ({
+  userInfo: {}
+})
 
 const mutations = {}
 

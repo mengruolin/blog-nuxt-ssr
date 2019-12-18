@@ -5,9 +5,10 @@
   "author": "mengruolin",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development HOST=0.0.0.0 PORT=3000 nodemon server/index.js --watch server --exec babel-node",
+    "dev": "cross-env NODE_ENV=development HOST=0.0.0.0 PORT=9002 nodemon server/index.js --watch server --exec babel-node",
+    "localtest": "cross-env NODE_ENV=development  PATH_TYPE=test HOST=0.0.0.0 PORT=9002 nodemon server/index.js --watch server --exec babel-node",
     "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production HOST=0.0.0.0 PORT=3000 node server/index.js",
+    "start": "cross-env NODE_ENV=production HOST=0.0.0.0 PORT=9002 nodemon server/index.js --exec babel-node",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest"

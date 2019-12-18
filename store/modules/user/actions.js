@@ -1,10 +1,12 @@
 import { createActions } from '../../untils/helps'
 import {
-  apiLogin
+  apiLogin,
+  apiLogOut
 } from './mutation-types'
 
 const actions = {
-  login: createActions('postl', apiLogin)
+  login: createActions('postl', apiLogin),
+  logOut: createActions('getl', apiLogOut)
 }
 
 export default actions
