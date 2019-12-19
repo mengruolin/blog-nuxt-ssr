@@ -21,7 +21,7 @@ export default async ({ app }) => {
     }),
     resave: false,
     saveUninitialized: false,
-    // cookie: { maxAge: 1 * 60 * 60 * 1000 }
+    cookie: { maxAge: 1 * 60 * 60 * 1000 }
   }))
 
   app.use((req, res, next) => {

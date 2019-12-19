@@ -6,6 +6,9 @@ module.exports = {
   */
   head: {
     title: process.env.npm_package_name || '',
+    env: {
+      PATH_TYPE: process.env.PATH_TYPE
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

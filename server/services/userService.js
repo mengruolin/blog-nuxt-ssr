@@ -25,11 +25,10 @@ export default class UserService {
       const { loginType, userName, password } = req.body
       if (loginType === 1) {
         let userInfo = await user.findOne({ userName }).exec()
-        userInfo = userInfo.toObject()
 
         if (!userInfo) {
           return verifyFail('用户名不存在')
-        } else if (userInfo.password === password) {
+        } else if (userInfo.toObject().password === password) {
           req.session.userInfo = userInfo
           return verifySuccess('登陆成功')
         } else {
