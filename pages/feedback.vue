@@ -75,7 +75,11 @@ export default {
 .header {
   height: 50px;
   line-height: 50px;
-  background: #46b3e6;
+  background: #39a9dd;
+  color: aliceblue;
+  & /deep/ .el-page-header__content {
+    color: aliceblue;
+  }
 }
 ._content {
   font-size: 20px;

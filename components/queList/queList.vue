@@ -59,8 +59,8 @@ export default {
   // height: 40px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   .list-items {
-    height: 60px;
-    padding: 5px 5px;
+    height: 70px;
+    padding: 10px 5px;
     display: flex;
     //border-top: springgreen solid 1px;
     border-bottom: rgb(189, 199, 194) solid 1px;
@@ -123,8 +123,8 @@ export default {
       }
       .q-title {
         font-size: 17px;
-        line-height: 30px;
-        height: 30px;
+        line-height: 35px;
+        height: 35px;
         width: 100%;
         padding-right: 20px;
         @include nobr;

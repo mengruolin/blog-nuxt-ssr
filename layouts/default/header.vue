@@ -97,7 +97,9 @@
               </div>
             </el-avatar>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>个人中心</el-dropdown-item>
+              <el-dropdown-item @click.native="$router.push('/user')">
+                个人中心
+              </el-dropdown-item>
               <el-dropdown-item>消息</el-dropdown-item>
               <el-dropdown-item>日志</el-dropdown-item>
               <el-dropdown-item @click.native="handleLogOut">

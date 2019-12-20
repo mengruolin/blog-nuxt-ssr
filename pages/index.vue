@@ -39,7 +39,7 @@
         </scroll-page>
       </el-col>
       <el-col :span="7" :offset="1" class="right-menu hidden-sm-and-down">
-        <login-menu />
+        <login-menu :is-login="userInfo" />
         <hotQuestions :hot-list="hotList" />
       </el-col>
     </el-row>
@@ -71,7 +71,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['bbsNavList', 'bbsListData'])
+    ...mapGetters(['bbsNavList', 'bbsListData', 'userInfo'])
   },
   async asyncData () {
     const res = await getTest()

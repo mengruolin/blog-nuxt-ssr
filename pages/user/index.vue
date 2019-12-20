@@ -1,11 +1,12 @@
 <template>
-  <div>index</div>
+  <dynamic />
 </template>
 
 <script>
+import dynamic from './dynamic.vue'
 export default {
-  data () {
-    return {}
+  components: {
+    dynamic
   }
 }
 </script>
