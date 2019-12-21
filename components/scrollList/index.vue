@@ -28,7 +28,13 @@ export default {
     ...mapGetters(['hiddenHeader'])
   },
   mounted () {
+    console.log(1)
+
     window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy () {
+    console.log(1)
+    window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     ...mapMutations(['handleHiddenHeader']),
@@ -63,9 +69,6 @@ export default {
       if (scrollBottom < 300) {
         this.$emit('scroll')
       }
-    },
-    beforeDestroy () {
-      window.removeEventListener('scroll')
     }
   }
 }
