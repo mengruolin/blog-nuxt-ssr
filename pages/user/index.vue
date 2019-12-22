@@ -1,12 +1,3 @@
 <template>
-  <dynamic />
+  <div>404</div>
 </template>
-
-<script>
-import dynamic from './dynamic.vue'
-export default {
-  components: {
-    dynamic
-  }
-}
-</script>

@@ -28,12 +28,10 @@ export default {
     ...mapGetters(['hiddenHeader'])
   },
   mounted () {
-    console.log(1)
-
     window.addEventListener('scroll', this.handleScroll)
   },
   beforeDestroy () {
-    console.log(1)
+    this.handleHiddenHeader(true)
     window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
@@ -45,7 +43,7 @@ export default {
       }
 
       const t = event.target.scrollingElement.scrollTop
-      if (t > this.scrollTop) {
+      if (t > this.scrollTop && t > 100) {
         this.hiddenHeader && this.handleHiddenHeader(false)
       } else {
         !this.hiddenHeader && this.handleHiddenHeader(true)
