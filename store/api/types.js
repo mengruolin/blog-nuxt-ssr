@@ -1,2 +1,2 @@
 // 测试api
-export const apiCheshi = `/cheshi`
+export const apiCheshi = `/user/cheshi`

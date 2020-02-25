@@ -1,9 +1,17 @@
 import { createActions } from '../../untils/helps.js'
 
 const actions = {
-  nuxtServerInit ({ commit }, { req }) {
-    if (req.session.userInfo) {
-      commit('setUserInfo', req.session.userInfo)
+  async nuxtServerInit ({ dispatch, commit }, { req }) {
+    const token = req.session.token
+    if (token) {
+      try {
+        const res = await dispatch('login', token)
+        if (res.code === '0') {
+          commit('SET_USERINFO', res)
+        }
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   test: createActions('getl', '/cheshi')

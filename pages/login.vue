@@ -123,7 +123,8 @@ export default {
       }
       //
       // 原生跳转
-      window.location.replace(jumpAddres)
+      // window.location.replace(jumpAddres)
+      this.$router.push(jumpAddres)
     },
     handleChangeLogin (type) {
       this.loginType = type

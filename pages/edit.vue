@@ -1,7 +1,7 @@
 <template>
   <div class="_edit">
     <div class="header">
-      <el-input placeholder="标题以句号结尾" />
+      <el-input placeholder="这里是标题" />
     </div>
 
     <div class="tag-swiper">
@@ -11,12 +11,14 @@
     </div>
     <div class="mavonEditor">
       <client-only>
-        <mavon-editor v-model="handbook" :toolbars="markdownOption" />
+        <mavon-editor ref="md" v-model="handbook" :toolbars="markdownOption" @imgAdd="handleAddImg" />
       </client-only>
     </div>
   </div>
 </template>
 <script>
+import Cos from '@/store/untils/cos'
+
 export default {
   layout: 'edit',
   data () {
@@ -59,8 +61,30 @@ export default {
       handbook: '#### 点击帮助快速浏览makedow语法↗'
     }
   },
+  mounted () {
+    Object.freeze(this.markdownOption)
+  },
   methods: {
-    handleAddTag () {}
+    handleAddTag () {},
+    async handleAddImg (pos, $file) {
+      console.log(pos, $file)
+      const res = await Cos.putObj({
+        Bucket: 'blog-sso-1254604265',
+        Region: 'ap-chengdu',
+        Dir: 'image/',
+        Body: $file
+      })
+
+      if (res.statusCode === 200) {
+        console.log(res)
+
+        const imageUrl = `//${res.Location}`
+
+        this.$refs.md.$img2Url(pos, imageUrl)
+      } else {
+        this.$message.error('上传失败')
+      }
+    }
   }
 }
 </script>

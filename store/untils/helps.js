@@ -12,10 +12,18 @@ import http from './http'
 */
 export const createActions = (methods, url, mutations, init) => {
   // url = `/test`
-  return async function ({ commit }, params) {
-    // console.log(params)
-    const res = await http[methods](url, params)
-    return res.data
+  if (mutations) {
+    return async function ({ commit }, params) {
+      const res = await http[methods](url, params)
+
+      res.data && commit(mutations, res.data)
+      return res.data
+    }
+  } else {
+    return async function ({ commit }, params) {
+      const res = await http[methods](url, params)
+      return res.data
+    }
   }
 }
 

@@ -1,12 +1,12 @@
 import axios from 'axios'
 // import QS from 'qs'
 import { Loading } from 'element-ui'
-import env from './env'
+// import env from './env'
 
 let loadingInstance = null
 
 axios.defaults.timeout = 10000
-axios.defaults.baseURL = env.baseURL || '/api'
+axios.defaults.baseURL = process.env.BASE_URL || '/api'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 
 axios.interceptors.request.use((config) => {

@@ -1,29 +1,11 @@
-import express from 'express'
-import UserService from '../services/userService'
-
-const router = express.Router()
-
-router.get('/api/cheshi', (req, res) => {
-
-  res.json({
-    code: 0,
-    data: [],
-    message: `hh`
-  })
-})
-
-router.post('/api/login', async (req, res) => {
-  const user = new UserService()
-  const logInfo = await user.login(req, res)
-  res.json(logInfo)
-})
-
-router.get('/api/logOut', async (req, res) => {
-    const user = new UserService()
-    const logOutInfo = await user.logOut(req, res)
-    res.json(logOutInfo)
-})
+import { scanDirModules } from '../untils'
 
 export default function (app) {
-  app.use(router)
+  const scanResult = scanDirModules(__dirname, __filename)
+
+  for (const prefix in scanResult) {
+    if (scanResult.hasOwnProperty(prefix)) {
+      app.use(prefix, scanResult[prefix])
+    }
+  }
 }

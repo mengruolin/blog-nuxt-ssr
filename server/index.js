@@ -22,8 +22,10 @@ async function startServer() {
   app.use(nuxt.render)
   app.listen(port, host)
 
+  var ip = require('ip');
+
   consola.ready({
-    message: `Server listening on http://${host}:${port}`,
+    message: `Server listening on http://127.0.0.1:${port}, \n public address on http://${ip.address()}:${port}`,
     badge: true
   })
 

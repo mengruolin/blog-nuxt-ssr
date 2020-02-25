@@ -3,8 +3,6 @@ import {
   apiCheshi
 } from './types.js'
 
-const getTest = createAjax('get', apiCheshi)
+export const getTest = createAjax('get', apiCheshi)
 
-export {
-  getTest
-}
+export const getOssKey = createAjax('get', '/updata/getToken')

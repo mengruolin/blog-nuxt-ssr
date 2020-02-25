@@ -1,6 +1,9 @@
 import actions from './actions.js'
 import getters from './getters.js'
 import consts from './consts.js'
+import {
+  SET_USERINFO
+} from './mutation-types'
 
 const state = () => ({
   disableLoad: false,
@@ -10,8 +13,8 @@ const state = () => ({
 })
 
 const mutations = {
-  setUserInfo (state, data) {
-    state.userInfo = data
+  [SET_USERINFO] (state, res) {
+    state.userInfo = res.data
   },
   changeDisableLoad (state, type) {
     state.disableLoad = type

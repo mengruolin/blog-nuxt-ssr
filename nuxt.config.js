@@ -1,3 +1,5 @@
+// 
+require('./config');
 
 module.exports = {
   mode: 'universal',
@@ -42,6 +44,7 @@ module.exports = {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/svgIcon',
+    { src: '~/static/js/cos-js-sdk-v5.js', mode: 'client' },
     {src:'@/plugins/loading', ssr: false },
     { src: '@/plugins/vue-mavon-editor', srr: false },
   ],
@@ -70,6 +73,15 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+  },
+
+  /**
+   * server
+   * 
+   */
+  server: {
+    port: process.env.PROT || 3000, // default: 3000
+    host: process.env.HOST || 'localhost' // default: localhost,
   },
   /*
   ** Build configuration

@@ -16,5 +16,9 @@ module.exports = {
     'nuxt/no-cjs-in-config': 'off',
     "camelcase": ["error", {"allow": ["aa_bb"]}],
     "no-console": "off",
+    "no-undef": "off",
+    "no-var": "off",
+    "standard/no-callback-literal": "off",
+
   }
 }

@@ -1,2 +1,2 @@
-export const apiLogin = `/login`
-export const apiLogOut = `/logOut`
+export const apiLogin = `/user/login`
+export const apiLogOut = `/user/logOut`
