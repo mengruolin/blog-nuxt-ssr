@@ -1,10 +1,13 @@
 <template>
   <div class="scrollList">
+    <slot />
     <slot name="list" />
   </div>
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex'
+
 export default {
   props: {
     timer: {
@@ -16,19 +19,44 @@ export default {
   data () {
     return {
       flag: true,
-      timerId: null
+      timerId: null,
+      scrollTop: 0,
+      singLeton: true
     }
+  },
+  computed: {
+    ...mapGetters(['hiddenHeader'])
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
   },
+  beforeDestroy () {
+    this.handleHiddenHeader(true)
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
+    ...mapMutations(['handleHiddenHeader']),
     handleScroll (event) {
+      if (this.singLeton) {
+        this.scrollTop = event.target.scrollingElement.scrollTop
+        this.singLeton = false
+      }
+
+      const t = event.target.scrollingElement.scrollTop
+      if (t > this.scrollTop && t > 100) {
+        this.hiddenHeader && this.handleHiddenHeader(false)
+      } else {
+        !this.hiddenHeader && this.handleHiddenHeader(true)
+      }
+
+      // 节流函数 执行触底检测
+
       if (this.timerId) {
         return false
       }
 
       this.timerId = setTimeout(() => {
+        this.scrollTop = event.target.scrollingElement.scrollTop
         this.scrollEvent(event)
         this.timerId = null
       }, this.timer)
@@ -39,9 +67,6 @@ export default {
       if (scrollBottom < 300) {
         this.$emit('scroll')
       }
-    },
-    beforeDestroy () {
-      window.removeEventListener('scroll')
     }
   }
 }

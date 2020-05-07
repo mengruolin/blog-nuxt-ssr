@@ -1,49 +1,44 @@
 <template>
   <div class="_blog">
-    <el-header class="blog-header-height">
-      <el-row class="header-content">
-        <el-col class="_logo" :span="4">
-          <nuxt-link to="/">
-            query
-          </nuxt-link>
-        </el-col>
-        <el-col :span="16">
-          &nbsp;<el-autocomplete />
-        </el-col>
-        <el-col :span="4" class="menu-user">
-          <i v-if="!menuType" class="iconfont c-click-icon" @click="handleChangeMenu">&#xe652;</i>
-          <i v-else class="iconfont c-click-icon" @click="handleChangeMenu">&#xeb9b;</i>
-        </el-col>
-      </el-row>
+    <el-header :style="hiddenHeader ? 'opacity: 1;' : 'opacity: 0;' " class="lay-height">
+      <c-header />
     </el-header>
     <el-main class="blog-main">
-      <nuxt />
+      <el-row>
+        <el-col
+          :span="16"
+          :xs="24"
+          :sm="24"
+          :md="16"
+          :lg="16"
+          :xl="16"
+        >
+          <nuxt />
+        </el-col>
+        <el-col :span="6" :offset="2" class="hidden-sm-and-down blog-notice">
+          <login-menu />
+        </el-col>
+      </el-row>
+
+      <back-top />
     </el-main>
-    <el-drawer
-      title="我是标题"
-      :visible.sync="menuType"
-      :with-header="false"
-      size="70%"
-    >
-      <span>我来啦!</span>
-    </el-drawer>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import CHeader from './blog/header'
+import backTop from '@/components/backTop.vue'
+import loginMenu from '@/components/globalMenu/loginMenu.vue'
+
 export default {
   components: {
+    CHeader,
+    backTop,
+    loginMenu
   },
-  data () {
-    return {
-      menuType: false
-    }
-  },
-  methods: {
-    handleChangeMenu () {
-      this.menuType = !this.menuType
-    }
-
+  computed: {
+    ...mapGetters(['hiddenHeader'])
   }
 }
 </script>

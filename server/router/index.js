@@ -1,18 +1,11 @@
-const express = require('express')
-const router = express.Router()
-let num = 0
+import { scanDirModules } from '../untils'
 
-router.get('/api/cheshi', (req, res) => {
-    let name = req.query.name;
+export default function (app) {
+  const scanResult = scanDirModules(__dirname, __filename)
 
-    res.json({
-        code: 0,
-        data: [],
-        message: `这是${name}页${num}`,
-    })
-})
-
-
-module.exports = function(app) {
-    app.use(router)
+  for (const prefix in scanResult) {
+    if (scanResult.hasOwnProperty(prefix)) {
+      app.use(prefix, scanResult[prefix])
+    }
+  }
 }

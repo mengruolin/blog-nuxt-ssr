@@ -1,5 +1,5 @@
 <template>
-  <div class="_loginMenu">
+  <div v-if="!isLogin" class="_loginMenu">
     <p>登录之后可以提问题，写文章</p>
     <el-button class="c-w200" @click="handleLogin">
       login
@@ -9,6 +9,12 @@
 
 <script>
 export default {
+  props: {
+    isLogin: {
+      type: Object,
+      default: null
+    }
+  },
   methods: {
     handleLogin () {
       const nowUrl = this.$route.path

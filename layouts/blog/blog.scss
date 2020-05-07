@@ -1,21 +1,20 @@
 ._blog {
-  .blog-header-height {
-    background-color: $blogHeaderColor;
-    .header-content {
-      width: 100%;
-      height: $blogHeaderHeight;
-      // line-height: $blogHeaderHeight;
-      .el-col {
-        line-height: $blogHeaderHeight;
-      }
-      padding: 0 0px;
-      ._logo {
-        font-size: 20px;
-      }
-      .menu-user {
-        text-align: right;
-        color: $blogHeaderFnotColor;
-      }
+  .el-header {
+    width: 100%;
+    padding: 0 20px;
+    background: $blogHeaderColor;
+    box-shadow: 0 2px 2px $blogHeaderColor;
+    transition: .2s ease all;
+    height: 50px !important;
+    z-index: 3;
+    position: fixed;
+  }
+  .blog-main {
+    max-width: $blogHeaderWidth;
+    padding: 90px 10px 10px 10px;
+    margin: 0 auto;
+    .blog-notice {
+      margin-top: 55px;
     }
   }
 }

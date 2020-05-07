@@ -9,25 +9,25 @@
         :lg="16"
         :xl="16"
       >
-        <div class="nav-swieper" :style="openNavList ? 'height: 100%; padding-right: 10px;' : 'height: 50px; padding-right: 60px;'">
-          <el-button v-if="!openNavList" type="text" class="open-list" @click="handleSwitchNavList(true)">
+        <div class="nav-swieper" :style="openNavList ? 'height: 100%; padding-right: 10px;' : 'height: 50px; padding-right: 80px;'">
+          <el-button v-if="bbsTabs.length > 9 && !openNavList" type="text" class="open-list c-ml10" @click="handleSwitchNavList(true)">
             展开更多<i class="el-icon-arrow-down" />
           </el-button>
-          <template v-for="(item, k) of bbsNavList">
-            <nuxt-link v-if="item.urlLevel >= 1" :key="k" :to="item.baseUrl + item.url">
-              <el-tag>
-                {{ item.label }}
-              </el-tag>
-            </nuxt-link>
-            <a v-else :key="k" :href="item.url">
-              <el-tag>
-                {{ item.label }}
-              </el-tag>
-            </a>
-          </template>
-          <el-button v-if="openNavList" type="text" class="close-list" @click="handleSwitchNavList(false)">
-            收起<i class="el-icon-arrow-up" />
-          </el-button>
+          <nuxt-link key="all" :to="`/`">
+            <span>
+              全部
+            </span>
+            <template v-for="item of bbsTabs">
+              <nuxt-link :key="item.value" :to="`/bbs/${item.value}`">
+                <span>
+                  {{ item.label }}
+                </span>
+              </nuxt-link>
+            </template>
+            <el-button v-if="openNavList" type="text" class="close-list" @click="handleSwitchNavList(false)">
+              收起<i class="el-icon-arrow-up" />
+            </el-button>
+          </nuxt-link>
         </div>
         <scroll-page
           class="context"
@@ -39,20 +39,21 @@
         </scroll-page>
       </el-col>
       <el-col :span="7" :offset="1" class="right-menu hidden-sm-and-down">
-        <login-menu />
-        <hotQuestions />
+        <login-menu :is-login="userInfo" />
+        <hotQuestions :hot-list="hotList" />
       </el-col>
     </el-row>
   </page-view>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import scrollPage from '@/components/scrollList/index.vue'
 import pageView from '@/components/pageView.vue'
 import queList from '@/components/queList/queList.vue'
 import loginMenu from '@/components/globalMenu/loginMenu.vue'
 import hotQuestions from '@/components/globalMenu/hotQuestions.vue'
+import { getBbsTopics } from '@/store/api/global.js'
 
 export default {
   layout: 'default',
@@ -65,25 +66,35 @@ export default {
   },
   data () {
     return {
-      // bbsListData: [],
-      openNavList: false
+      openNavList: false,
+      hotList: []
     }
   },
   computed: {
-    ...mapGetters(['bbsNavList', 'bbsListData'])
+    ...mapGetters(['bbsTabs', 'userInfo'])
   },
-  mounted () {
-    this.$nextTick(() => {
-      // this.$nuxt.$loading.start()
-      setTimeout(() => this.$nuxt.$loading.finish(), 5000)
-    })
+  async asyncData () {
+    const res = await getBbsTopics()
+
+    return {
+      bbsListData: res.data || []
+    }
+  },
+  async mounted () {
+    !this.bbsTabs[0] && await this.getBbsTabs()
+    this.$nuxt.$loading.finish()
   },
   methods: {
+    ...mapActions(['getBbsTabs']),
     handleGetList () {
 
     },
     handleSwitchNavList (type) {
       this.openNavList = type
+    },
+    async cheshi () {
+      const res = await getBbsTopics()
+      console.log(res)
     }
   }
 }
@@ -98,19 +109,23 @@ export default {
     position: relative;
     width: 100%;
     //border: salmon solid 1px;
-    padding: 10px 10px;
+    padding: 10px 10px 10px 0;
     .open-list {
       position: absolute;
       right: 0px;
       top: 50%;
       transform: translate(0, -50%)
     }
-    .el-tag {
+    span {
+      display: inline-block;
       margin-right: 10px;
       margin-bottom: 10px;
-      border-radius: 20px;
+      border-radius: 1.2em;
       background: #ffffff;
       color: $navListColor;
+      font-weight: 500;
+      border: solid 1px;
+      padding: 8px 8px;
       border-color: $navListColor;
       border-spacing: 1px;
     }

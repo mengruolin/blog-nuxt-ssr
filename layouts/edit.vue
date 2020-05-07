@@ -8,11 +8,11 @@
           </nuxt-link>
         </div>
         <div class="_btn">
-          <el-button type="text">
+          <el-button type="text" @click="handleRelease">
             发布&nbsp;<i class="el-icon-position" />
           </el-button>
           <el-dropdown trigger="click" class="avatar-swiper">
-            <el-image class="avatar" src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg">
+            <el-image class="avatar" :src="userInfo.avatarUrl">
               <div slot="error" class="image-slot">
                 <i class="el-icon-picture-outline" />
               </div>
@@ -28,23 +28,49 @@
       </div>
     </div>
     <div class="_main">
-      <nuxt />
+      <nuxt ref="nuxt" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { createTopic } from '@/store/api/global'
+
 export default {
 
+  computed: {
+    ...mapGetters(['userInfo'])
+  },
+  methods: {
+    async handleRelease () {
+      const { tab, content, title } = this.$refs.nuxt.$children[0]
+
+      const res = await createTopic({ tab, content, title, 'author_id': this.userInfo._id })
+
+      if (res.code === '0') {
+        this.$message.success('发布成功，3s后跳转...')
+        setTimeout(() => {
+          this.$router.push(`/bbs?_id=${res.data._id}`)
+        }, 3000)
+      } else {
+        this.$message.error(res.message)
+      }
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 ._edit {
+  padding-top: 50px;
   ._header {
+    position: fixed;
+    top: 0;
     width: 100vw;
     height: 50px;
     background: $editBgColor;
+    z-index: 3;
     ._main {
       max-width: $headerWidth;
       margin: 0 auto;

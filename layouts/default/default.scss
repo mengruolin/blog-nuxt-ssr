@@ -2,7 +2,11 @@
   .lay-height {
     position: fixed;
     width: 100%;
-    height: 50px;
+    height: 50px !important;
+    transition: .2s ease all;
+    background-color: $headerBgColor;
+    z-index: 3;
+    box-shadow: 0 2px 2px $headerBgColor;
   }
   .lay-main {
     max-width: $contentWidth;
@@ -10,7 +14,7 @@
     // border: $headerBgColor solid 1px;
     box-sizing: border-box;
     overflow: hidden;
-    padding: 70px 0 0 0;
+    padding: 55px 0 0 0;
     margin: 0 auto;
   }
 }

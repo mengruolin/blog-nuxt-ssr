@@ -4,7 +4,9 @@
 @import './config.scss';
 
 div {box-sizing: border-box;}
-a {color: $globalLinkColor; text-decoration: none; font-weight: 200;}
+a {color: $globalLinkColor; text-decoration: none; font-weight: 300; transition: .2s ease all;
+  &:hover {color: $globalLinkHoverColor;}
+}
 
 .clear-flot {
   ::after, ::before {
@@ -16,13 +18,28 @@ a {color: $globalLinkColor; text-decoration: none; font-weight: 200;}
 .input-w80 { width: 125px;}
 .input-w200 {width: 260px;}
 
+.c-w100 {width: 100px;}
 .c-w200 {width: 200px;}
 .c-w300 {width: 300px;}
+
+.c-w1-200 {min-width: 100px; max-width: 200px;}
 
 .c-h30 {height: 30px !important;}
 
 .c-ml10 {margin-left: 10px;}
 .c-ml20 {margin-left: 20px;}
+
+.c-mr10 {margin-right: 10px;}
+.c-mr20 {margin-right: 20px;}
+
+.c-ft12 {font-size: 12px; margin-right: 2px;}
+
+
+.ta-r {text-align: right;}
+
+.ta-l {text-align: left;}
+
+.ta-c {text-align: center;}
 
 .c-click-icon {
   cursor: pointer;

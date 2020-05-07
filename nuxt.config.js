@@ -1,3 +1,5 @@
+// 
+require('./config');
 
 module.exports = {
   mode: 'universal',
@@ -6,6 +8,9 @@ module.exports = {
   */
   head: {
     title: process.env.npm_package_name || '',
+    env: {
+      PATH_TYPE: process.env.PATH_TYPE
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -38,6 +43,9 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
+    '@/plugins/svgIcon',
+    '@/plugins/filters',
+    { src: '~/static/js/cos-js-sdk-v5.js', mode: 'client' },
     {src:'@/plugins/loading', ssr: false },
     { src: '@/plugins/vue-mavon-editor', srr: false },
   ],
@@ -67,11 +75,24 @@ module.exports = {
   */
   axios: {
   },
+
+  /**
+   * server
+   * 
+   */
+  server: {
+    port: process.env.PROT || 3000, // default: 3000
+    host: process.env.HOST || 'localhost' // default: localhost,
+  },
   /*
   ** Build configuration
   */
   build: {
     transpile: [/^element-ui/],
+
+    cache: true,
+
+    parallel: true,
 
     postcss: {
       // Add plugin names as key and arguments as value
@@ -96,6 +117,17 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      // const 
+      const path = require('path');
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+
+      function resolve(dir) {
+        return path.join(__dirname, dir)
+      }
+      
+      svgRule.exclude = [resolve('assets/svg')]
+
+      // esLint 配置
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
             enforce: 'pre',
@@ -107,6 +139,16 @@ module.exports = {
             }
         })
       }
+
+      // 处理SVG
+      config.module.rules.push({
+        test: /\.svg/,
+        include: [resolve('assets/svg/')],
+        loader: 'svg-sprite-loader',
+        options: {
+          symbolId: 'icon-[name]',
+        },
+      })
     }
   }
 }

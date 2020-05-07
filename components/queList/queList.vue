@@ -2,30 +2,44 @@
   <div class="_listSwiper">
     <div v-for="(item, k) of lsitData" :key="k" class="list-items">
       <div class="operate-box">
-        up
+        <div class="icon">
+          <svg-icon :icon-class="item.is_solved ? 'fit' : 'qMark'" class-name="icon-svg" />
+        </div>
+        <div class="text">
+          {{ item.is_solved ? '已解决' : '待解决' }}
+        </div>
       </div>
       <div class="item-context">
         <div class="user-box">
           <span class="user-avatar">
-            <el-image :src="item.showImageTitle + item.authorAvatar" lazy />
+            <el-image :src="item.author_id.avatarUrl" lazy @click="handleShowUserInfo(item.author_id._id)" />
           </span>
-          <span class="user-name">
+          <span class="user-name" @click="handleShowUserInfo(item.author_id._id)">
             <nuxt-link to="/">
-              {{ item.authorName }}
+              {{ item.author_id.nickName }}
             </nuxt-link>
           </span>
           <span class="q-info">
             <span class="time">
-              {{ item.createTime }}
+              {{ item.create_at | dateFromNow }}
             </span>
             <span class="iview">
               <i class="el-icon-view" />
-              {{ item.hits }}
+              {{ item.visit_count }}
             </span>
           </span>
         </div>
         <div class="q-title">
-          <nuxt-link :to="'bbs?seq=' + item.seq">
+          <nuxt-link :to="'/bbs?_id=' + item._id">
+            <el-tag v-if="item.top" type="success">
+              置顶
+            </el-tag>
+            <el-tag v-if="item.good" type="info">
+              精品
+            </el-tag>
+            <el-tag v-if="item.hot" type="warning">
+              热门
+            </el-tag>
             {{ item.title }}
           </nuxt-link>
         </div>
@@ -45,6 +59,11 @@ export default {
   },
   data () {
     return {}
+  },
+  methods: {
+    handleShowUserInfo (_id) {
+      this.$router.push(`/user/${_id}`)
+    }
   }
 }
 </script>
@@ -54,44 +73,66 @@ export default {
   // height: 40px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   .list-items {
-    height: 60px;
-    padding: 5px 5px;
+    height: 70px;
+    padding: 10px 5px;
     display: flex;
     //border-top: springgreen solid 1px;
     border-bottom: rgb(189, 199, 194) solid 1px;
     .operate-box {
       width: 50px;
-      background: #f8f8f8;
+      height: 100%;
+      overflow: hidden;
+      .icon {
+        height: 35px;
+        .icon-svg {
+          //box-sizing: border-box;
+          padding: 0 0 4px 0;
+        }
+      }
+      .text {
+        font-size: 12px;
+        text-align: center;
+        height: 15px;
+      }
+      // background: #f8f8f8;
     }
     .item-context {
       flex: 1;
+      overflow: hidden;
       padding-left: 10px;
       .user-box {
         width: 100%;
         height: 20px;
-        //line-height: 20px;
+        display: flex;
+        align-items: center;
         overflow: hidden;
-        span {display: inline-block;}
         .user-avatar {
           height: 20px;
           width: 20px;
+          &:hover {
+            cursor: pointer;
+          }
         }
         .user-name {
           //color: aqua;
-          width: 200px;
-          text-decoration: underline;
+          // width: 200px;
+          flex: 1;
+          //text-decoration: underline;
           font-size: 14px;
-          //vertical-align: sub;
-          overflow: hidden;
+          display: block;
+          height: 100%;
           margin-left: 10px;
+          line-height: 20px;
+          @include nobr;
         }
         .q-info {
-          float: right;
+          // position: absolute;
+          width: 150px;
           overflow: hidden;
-          padding-right: 20px;
-          .time {
-          //margin-left: 0px;
-        }
+          right: 30px;
+          // .time {
+          // //margin-left: 0px;
+          // }
           .iview {
             margin-left: 10px;
           }
@@ -99,14 +140,11 @@ export default {
       }
       .q-title {
         font-size: 17px;
-        line-height: 30px;
-        height: 30px;
+        line-height: 35px;
+        height: 35px;
         width: 100%;
         padding-right: 20px;
-        overflow: hidden;
-        .nuxt-link {
-          @include nobr;
-        }
+        @include nobr;
       }
     }
   }

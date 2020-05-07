@@ -9,8 +9,9 @@
 <template>
   <div class="c-header">
     <div class="logo">
+      <!-- <svg-icon icon-class="logoB" /> -->
       <nuxt-link to="/">
-        query
+        Q
       </nuxt-link>
     </div>
     <div class="header-main">
@@ -28,45 +29,49 @@
           </el-col>
           <el-col :span="8">
             <nuxt-link to="/other">
-              有趣的东西
+              其它
             </nuxt-link>
           </el-col>
         </el-row>
       </div>
-      <!-- <div class="nav-small">
-        <el-dropdown trigger="click" @command="handleCommand">
+      <div class="nav-small">
+        <el-dropdown trigger="click" placement="bottom-start" @command="handleCommand">
           <span class="el-dropdown-link">
             主页<i class="el-icon-arrow-down el-icon--right" />
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="/">
+            <!-- <el-dropdown-item command="/">
               主页
-            </el-dropdown-item>
+            </el-dropdown-item> -->
             <el-dropdown-item command="/blog">
               博客
             </el-dropdown-item>
             <el-dropdown-item command="/other">
-              有趣的东西
+              其它
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-      </div> -->
+      </div>
 
       <div class="search-big">
-        <el-input class="input-w200" />
+        <el-input class="input-w200" placeholder="搜问题，搜博客" />
       </div>
-      <!-- <div class="search-small">
-        <el-button size="small" type="info" icon="el-icon-search" circle />
-      </div> -->
+
+      <div class="search-small">
+        <span>搜文章，搜博客</span>
+        <!-- <el-input class="c-w100" placeholder="搜问题，搜博客" /> -->
+      </div>
     </div>
     <div class="user">
-      <template v-if="!isLogin">
-        <nuxt-link to="/login">
-          登录
-        </nuxt-link>|
-        <nuxt-link to="/register">
-          注册
-        </nuxt-link>
+      <template v-if="!userInfo">
+        <div class="login">
+          <nuxt-link to="/login">
+            登录
+          </nuxt-link>|
+          <nuxt-link to="/register">
+            注册
+          </nuxt-link>
+        </div>
       </template>
       <template v-else>
         <div class="user-release">
@@ -84,18 +89,22 @@
             </el-dropdown-menu>
           </el-dropdown>
         </div>
-        <div class="user-info">
+        <div class="user-info c-ml10">
           <el-dropdown trigger="click" class="avatar-swiper">
-            <el-image class="avatar" src="/img/avator.jpeg">
+            <el-avatar class="avatar" :src="userInfo.avatarUrl">
               <div slot="error" class="image-slot">
                 <i class="el-icon-picture-outline" />
               </div>
-            </el-image>
+            </el-avatar>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>个人中心</el-dropdown-item>
+              <el-dropdown-item @click.native="$router.push('/user')">
+                个人中心
+              </el-dropdown-item>
               <el-dropdown-item>消息</el-dropdown-item>
               <el-dropdown-item>日志</el-dropdown-item>
-              <el-dropdown-item>退出</el-dropdown-item>
+              <el-dropdown-item @click.native="handleLogOut">
+                退出
+              </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -105,15 +114,28 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      isLogin: true
+      // isLogin: true
     }
   },
+  computed: {
+    ...mapGetters(['userInfo'])
+  },
   methods: {
+    ...mapActions(['logOut']),
     handleCommand (url) {
       this.$router.push(url)
+    },
+    async handleLogOut () {
+      const res = await this.logOut()
+      if (res.code) {
+        window.location.reload()
+      } else {
+        this.$message.error(res.message)
+      }
     },
     handleEdit (url) {
       this.$router.push(url)
@@ -141,15 +163,28 @@ export default {
     }
   }
   .logo {
-    width: 120px;
+    width: 40px;
     text-align: left;
-    font-size: 24px;
+
+    a {
+      font-weight: 900;
+      font-size: 24px;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
   .user {
     width: 130px;
     display: flex;
+    .login {
+      width: 100%;
+      text-align: right;
+      color: #cccccc;
+    }
     .user-release {
       width: 80px;
+      text-align: right;
       .release-dropdown {
         .el-dropdown-link {
           color: $headerNavColor;
@@ -164,8 +199,8 @@ export default {
       text-align: right;
       line-height: 50px;
       .avatar-swiper {
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         margin-top: 7px;
         overflow: hidden;
         cursor: pointer;
@@ -185,14 +220,17 @@ export default {
     flex: 1;
     display: flex;
     .nav-big {
-      flex: 1;
+      // flex: 1;
+      width: 400px;
       @include unShow-900;
       .nav-list {
-        max-width: 300px;
+        margin-left: 30px;
+        max-width: 200px;
       }
     }
     .nav-small {
-      flex: 1;
+      // flex: 1;
+      width: 70px;
       @include show-900;
       .el-dropdown-link {
         color: $headerNavColor;
@@ -201,12 +239,29 @@ export default {
     .search-big {
       text-align: right;
       padding-right: 30px;
-      width: 300px;
+      // width: 300px;
+      flex: 1;
       @include unShow-630;
     }
     .search-small {
-      width: 50px;
+      flex: 1;
+      line-height: 100%;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
       @include show-630;
+      cursor: text;
+      span {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+        background: #ffffff;
+        // padding: 2px 2px;
+        text-indent: 5px;
+        color: $headerBgColor;
+        border: #dbdbdb solid 1px;
+      }
     }
   }
 }

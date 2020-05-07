@@ -1,22 +1,17 @@
-const express = require('express')
-const consola = require('consola')
-const { Nuxt, Builder } = require('nuxt')
-const router = require('./router/index.js')
-const app = express()
+import express from 'express'
+import { Nuxt, Builder } from 'nuxt'
 
-router(app)
+async function startServer() {
+  const config = require('../nuxt.config.js')
+  config.dev = process.env.NODE_ENV !== 'production'
 
-// Import and Set Nuxt.js options
-const config = require('../nuxt.config.js')
-config.dev = process.env.NODE_ENV !== 'production'
+  const app = express()
 
-async function start () {
-  // Init Nuxt.js
+  await require('./loaders').default({ expressApp: app })
+
   const nuxt = new Nuxt(config)
-
   const { host, port } = nuxt.options.server
 
-  // Build only in dev mode
   if (config.dev) {
     const builder = new Builder(nuxt)
     await builder.build()
@@ -24,14 +19,17 @@ async function start () {
     await nuxt.ready()
   }
 
-  // Give nuxt middleware to express
   app.use(nuxt.render)
-
-  // Listen the server
   app.listen(port, host)
+
+  var ip = require('ip');
+
   consola.ready({
-    message: `Server listening on http://${host}:${port}`,
+    message: `Server listening on http://127.0.0.1:${port}, \n public address on http://${ip.address()}:${port}`,
     badge: true
   })
+
 }
-start()
+
+startServer()
+

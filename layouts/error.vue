@@ -14,7 +14,12 @@
 
 <script>
 export default {
-  // props: ['error']
+  props: {
+    error: {
+      type: Object,
+      default: () => {}
+    }
+  }
   // layout: 'blog' // you can set a custom layout for the error page
 }
 </script>
