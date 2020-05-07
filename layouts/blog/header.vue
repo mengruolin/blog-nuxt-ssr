@@ -91,7 +91,7 @@
         </div>
         <div class="user-info c-ml10">
           <el-dropdown trigger="click" class="avatar-swiper">
-            <el-avatar class="avatar" :src="userInfo.imgTitle + userInfo.avatarUrl">
+            <el-avatar class="avatar" :src="userInfo.avatarUrl">
               <div slot="error" class="image-slot">
                 <i class="el-icon-picture-outline" />
               </div>

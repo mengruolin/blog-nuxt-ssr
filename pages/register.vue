@@ -25,8 +25,8 @@
           <h1>Query</h1>
         </el-form-item>
 
-        <el-form-item :prop="email">
-          <el-input v-model="email" class="input-w200" placeholder="这是邮箱" />
+        <el-form-item :prop="userName">
+          <el-input v-model="userName" class="input-w200" placeholder="用户名" />
         </el-form-item>
 
         <el-form-item :prop="password">
@@ -51,11 +51,14 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import md5 from 'md5'
+
 export default {
   layout: 'empty',
   data () {
     return {
-      email: '',
+      userName: '',
       password: '',
       authCode: ''
     }
@@ -66,17 +69,41 @@ export default {
         return false
       }
       return true
+    },
+    registerParams () {
+      const password = md5(md5(this.password))
+      return {
+        loginType: 1,
+        userName: this.userName,
+        password,
+        authCode: this.authCode
+      }
     }
   },
   mounted () {
     // this.$loading.start()
   },
   methods: {
-    handleSubmit () {
+    ...mapActions(['register']),
+    async handleSubmit () {
+      const res = await this.register(this.registerParams)
 
+      if (res.code === '0') {
+        this.$message.success(res.message)
+        this.loginSuccess()
+      } else {
+        this.$message.error(res.message)
+      }
     },
-    handleChangeLogin (type) {
-      this.loginType = type
+    loginSuccess () {
+      let jumpAddres = '/'
+      if (this.$route.query.jumpAddres) {
+        jumpAddres = this.$route.query.jumpAddres
+      }
+      //
+      // 原生跳转
+      // window.location.replace(jumpAddres)
+      this.$router.push(jumpAddres)
     }
   }
 }

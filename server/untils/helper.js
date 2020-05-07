@@ -3,6 +3,7 @@
 // helper.js
 import fs from 'fs'
 import path from 'path'
+import moment from 'moment'
 
 /**
  * 将文件名修正为前缀
@@ -58,4 +59,20 @@ export const scanDirModules = function scanDirModules (rootDir, excludeFile) {
     }
   }
   return modules
+}
+
+
+/**
+ * 
+ */
+
+export const formatDate = (date, friendly) => {
+  moment.locale('zh-cn')
+  date = moment(date);
+
+  if (friendly) {
+    return date.fromNow();
+  } else {
+    return date.format('YYYY-MM-DD HH:mm');
+  }
 }

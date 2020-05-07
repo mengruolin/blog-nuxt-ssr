@@ -1,10 +1,10 @@
 <template>
-  <div class="_user">
+  <div v-if="userInfo" class="_user">
     <div class="_user-bg-wall" />
     <div class="_content-swiper">
       <div class="_user-bg-box" @mouseenter="editUser = true" @mouseleave="editUser = false">
         <div class="_avatar-box">
-          <el-image fit="fit" :preview-src-list="[userInfo.imgTitle + userInfo.avatarUrl]" :src="userInfo.imgTitle + userInfo.avatarUrl" />
+          <el-image fit="fit" :preview-src-list="[userInfo.avatarUrl]" :src="userInfo.avatarUrl" />
         </div>
         <div v-if="editUser" class="_user-config" @click="handleGoEdit">
           <span><i class="iconfont">&#xe65c;</i>编辑</span>
@@ -63,20 +63,28 @@
       </div>
     </div>
   </div>
+  <div v-else>
+    该用户不存在
+  </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
+import { getUserInfo } from '@/store/api/global.js'
 export default {
-  middleware: 'noLogin',
-  layout: 'default',
   data () {
     return {
       editUser: false
     }
   },
+  // middleware: 'noLogin',
+  layout: 'default',
   computed: {
-    ...mapGetters(['userInfo'])
+    // ...mapGetters(['userInfo'])
+  },
+  async asyncData ({ params }) {
+    const res = await getUserInfo({ userName: params.id })
+    return res ? { userInfo: res.data } : { userInfo: null }
   },
 
   methods: {

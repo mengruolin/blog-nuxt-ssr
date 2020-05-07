@@ -3,34 +3,43 @@
     <div v-for="(item, k) of lsitData" :key="k" class="list-items">
       <div class="operate-box">
         <div class="icon">
-          <svg-icon :icon-class="item.status === 1 ? 'qMark' : 'fit' " class-name="icon-svg" />
+          <svg-icon :icon-class="item.is_solved ? 'fit' : 'qMark'" class-name="icon-svg" />
         </div>
         <div class="text">
-          {{ item.status === 1 ? '待回答' : '已采纳' }}
+          {{ item.is_solved ? '已解决' : '待解决' }}
         </div>
       </div>
       <div class="item-context">
         <div class="user-box">
           <span class="user-avatar">
-            <el-image :src="item.showImageTitle + item.authorAvatar" lazy />
+            <el-image :src="item.author_id.avatarUrl" lazy @click="handleShowUserInfo(item.author_id._id)" />
           </span>
-          <span class="user-name">
+          <span class="user-name" @click="handleShowUserInfo(item.author_id._id)">
             <nuxt-link to="/">
-              {{ item.authorName }}
+              {{ item.author_id.nickName }}
             </nuxt-link>
           </span>
           <span class="q-info">
             <span class="time">
-              {{ item.createTime }}
+              {{ item.create_at | dateFromNow }}
             </span>
             <span class="iview">
               <i class="el-icon-view" />
-              {{ item.hits }}
+              {{ item.visit_count }}
             </span>
           </span>
         </div>
         <div class="q-title">
-          <nuxt-link :to="'bbs?seq=' + item.seq">
+          <nuxt-link :to="'/bbs?_id=' + item._id">
+            <el-tag v-if="item.top" type="success">
+              置顶
+            </el-tag>
+            <el-tag v-if="item.good" type="info">
+              精品
+            </el-tag>
+            <el-tag v-if="item.hot" type="warning">
+              热门
+            </el-tag>
             {{ item.title }}
           </nuxt-link>
         </div>
@@ -50,6 +59,11 @@ export default {
   },
   data () {
     return {}
+  },
+  methods: {
+    handleShowUserInfo (_id) {
+      this.$router.push(`/user/${_id}`)
+    }
   }
 }
 </script>
@@ -95,12 +109,15 @@ export default {
         .user-avatar {
           height: 20px;
           width: 20px;
+          &:hover {
+            cursor: pointer;
+          }
         }
         .user-name {
           //color: aqua;
           // width: 200px;
           flex: 1;
-          text-decoration: underline;
+          //text-decoration: underline;
           font-size: 14px;
           display: block;
           height: 100%;

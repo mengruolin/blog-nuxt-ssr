@@ -13,15 +13,21 @@ router.get('/cheshi', (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-  const user = new UserService()
-  const logInfo = await user.login(req, res)
+  //const user = new UserService()
+  const logInfo = await UserService.login(req, res)
   res.json(logInfo)
 })
 
+router.post('/register', async (req, res) => {
+
+  const data = await UserService.register(req)
+  res.json(data)
+})
+
 router.get('/logOut', async (req, res) => {
-    const user = new UserService()
-    const logOutInfo = await user.logOut(req, res)
-    res.json(logOutInfo)
+  //const user = new UserService()
+  const logOutInfo = await UserService.logOut(req, res)
+  res.json(logOutInfo)
 })
 
 module.exports = router

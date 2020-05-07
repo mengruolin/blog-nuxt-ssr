@@ -44,6 +44,7 @@ module.exports = {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/svgIcon',
+    '@/plugins/filters',
     { src: '~/static/js/cos-js-sdk-v5.js', mode: 'client' },
     {src:'@/plugins/loading', ssr: false },
     { src: '@/plugins/vue-mavon-editor', srr: false },

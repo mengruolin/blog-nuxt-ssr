@@ -1,25 +1,44 @@
 <template>
   <div class="_edit">
     <div class="header">
-      <el-input placeholder="这里是标题" />
+      <el-input
+        v-model="title"
+        placeholder="这里是标题"
+        maxlength="60"
+      />
     </div>
 
     <div class="tag-swiper">
-      <el-button class="button-new-tag" size="small" @click="handleAddTag">
-        <i class="el-icon-plus" />添加标签
-      </el-button>
+      <!-- <el-button class="button-new-tag" size="small" @click="handleAddTag">
+        <i class="el-icon-plus" />选择标签
+      </el-button> -->
+      <el-select v-model="tab" placeholder="选择分区">
+        <el-option
+          key="all"
+          label="全部"
+          value="null"
+        />
+        <el-option
+          v-for="item in bbsTabs"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
     </div>
     <div class="mavonEditor">
       <client-only>
-        <mavon-editor ref="md" v-model="handbook" :toolbars="markdownOption" @imgAdd="handleAddImg" />
+        <mavon-editor ref="md" v-model="content" :toolbars="markdownOption" @imgAdd="handleAddImg" />
       </client-only>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import Cos from '@/store/untils/cos'
 
 export default {
+  middleware: 'noLogin',
   layout: 'edit',
   data () {
     return {
@@ -58,13 +77,21 @@ export default {
         subfield: true // 单双栏模式
         // preview: true // 预览
       },
-      handbook: '#### 点击帮助快速浏览makedow语法↗'
+      content: '#### 点击帮助快速浏览makedow语法↗',
+      tab: null,
+      title: ''
     }
   },
+  computed: {
+    ...mapGetters(['bbsTabs'])
+  },
   mounted () {
+    !this.bbsTabs[0] && this.getBbsTabs()
     Object.freeze(this.markdownOption)
   },
+
   methods: {
+    ...mapActions(['getBbsTabs']),
     handleAddTag () {},
     async handleAddImg (pos, $file) {
       console.log(pos, $file)

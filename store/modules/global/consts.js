@@ -103,7 +103,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -115,7 +116,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -127,7 +129,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -139,7 +142,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 }, {
   id: 0,
   seq: 5,
@@ -150,7 +154,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -162,7 +167,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -174,7 +180,8 @@ const bbsListData = [{
   hits: 100000,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -186,7 +193,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 }, {
   id: 0,
   seq: 9,
@@ -197,7 +205,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -209,7 +218,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -221,7 +231,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -233,7 +244,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -245,7 +257,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -257,7 +270,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -269,7 +283,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -281,7 +296,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 }, {
   id: 0,
   seq: 5,
@@ -292,7 +308,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -304,7 +321,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -316,7 +334,8 @@ const bbsListData = [{
   hits: 100000,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -339,7 +358,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -351,7 +371,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -363,7 +384,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -375,7 +397,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -387,7 +410,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -399,7 +423,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -411,7 +436,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -423,7 +449,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 }, {
   id: 0,
   seq: 5,
@@ -434,7 +461,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -446,7 +474,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -458,7 +487,8 @@ const bbsListData = [{
   hits: 100000,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -470,7 +500,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 }, {
   id: 0,
   seq: 9,
@@ -481,7 +512,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -493,7 +525,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -505,7 +538,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -517,7 +551,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -529,7 +564,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -541,7 +577,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -553,7 +590,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -565,7 +603,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 }, {
   id: 0,
   seq: 5,
@@ -576,7 +615,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -588,7 +628,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -600,7 +641,8 @@ const bbsListData = [{
   hits: 100000,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -612,7 +654,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 }, {
   id: 0,
   seq: 9,
@@ -623,7 +666,8 @@ const bbsListData = [{
   hits: 100,
   status: 2, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -635,7 +679,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -647,7 +692,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 },
 {
   id: 0,
@@ -659,7 +705,8 @@ const bbsListData = [{
   hits: 100,
   status: 1, // 0 -》 关闭 1 -》 进行中 2-》 已采纳答案 3 -》
   createTime: '2019-11-1',
-  updataTime: '2018-11-2'
+  updataTime: '2018-11-2',
+  userName: 'admin'
 }]
 
 const blogNavList = [
