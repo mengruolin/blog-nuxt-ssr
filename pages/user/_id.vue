@@ -83,7 +83,7 @@ export default {
     // ...mapGetters(['userInfo'])
   },
   async asyncData ({ params }) {
-    const res = await getUserInfo({ userName: params.id })
+    const res = await getUserInfo({ _id: params.id })
     return res ? { userInfo: res.data } : { userInfo: null }
   },
 

@@ -10,7 +10,7 @@
         :xl="16"
       >
         <div class="nav-swieper" :style="openNavList ? 'height: 100%; padding-right: 10px;' : 'height: 50px; padding-right: 80px;'">
-          <el-button v-if="bbsTabs.length > 9 && !openNavList" type="text" class="open-list c-ml10" @click="handleSwitchNavList(true)">
+          <el-button v-if="!openNavList" type="text" class="open-list c-ml10" @click="handleSwitchNavList(true)">
             展开更多<i class="el-icon-arrow-down" />
           </el-button>
           <nuxt-link key="all" :to="`/`">

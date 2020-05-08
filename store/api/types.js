@@ -9,3 +9,7 @@ export const apiBbsTopics = `/bbs/getTopics`
 export const apiOneBbsTopics = `/bbs/getOneTopics`
 
 export const apiCreateTopic = `/bbs/createTopic`
+
+export const apiCreateBbsReply = `/bbs/createReply`
+
+export const apiGetBbsReply = `/bbs/getReply`
