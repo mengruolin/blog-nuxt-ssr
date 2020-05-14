@@ -53,7 +53,7 @@ import pageView from '@/components/pageView.vue'
 import queList from '@/components/queList/queList.vue'
 import loginMenu from '@/components/globalMenu/loginMenu.vue'
 import hotQuestions from '@/components/globalMenu/hotQuestions.vue'
-import { getBbsTopics } from '@/store/api/global.js'
+import { getBbsTopics, getBrowseListTopics } from '@/store/api/global.js'
 
 export default {
   layout: 'default',
@@ -83,6 +83,7 @@ export default {
   async mounted () {
     !this.bbsTabs[0] && await this.getBbsTabs()
     this.$nuxt.$loading.finish()
+    this.getBrowseListTopics()
   },
   methods: {
     ...mapActions(['getBbsTabs']),
@@ -95,6 +96,12 @@ export default {
     async cheshi () {
       const res = await getBbsTopics()
       console.log(res)
+    },
+    async getBrowseListTopics () {
+      const res = await getBrowseListTopics()
+      if (res.code === '0') {
+        this.hotList = res.data
+      }
     }
   }
 }

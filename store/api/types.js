@@ -13,3 +13,5 @@ export const apiCreateTopic = `/bbs/createTopic`
 export const apiCreateBbsReply = `/bbs/createReply`
 
 export const apiGetBbsReply = `/bbs/getReply`
+
+export const apiGetBrowseListTopics = `/bbs/getBrowseListTopics`

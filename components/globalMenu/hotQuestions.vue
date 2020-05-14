@@ -8,11 +8,11 @@
         更多...
       </el-col>
     </el-row>
-    <div class="_list">
-      <div class="_items">
-        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
-        <nuxt-link to="ttt">
-          梦想去远方，然而梦想只是梦想，希望不负韶华
+    <div v-if="hotList[0]" class="_list">
+      <div v-for="item of hotList" :key="item._id" class="_items">
+        <el-avatar size="small" shape="square" :src="item.author_id.avatarUrl" />
+        <nuxt-link :to="'/bbs?_id=' + item._id">
+          {{ item.title }}
         </nuxt-link>
       </div>
     </div>
@@ -21,6 +21,12 @@
 
 <script>
 export default {
+  props: {
+    hotList: {
+      type: Array,
+      default: () => []
+    }
+  },
   data () {
     return {
       active: 'first'
@@ -58,6 +64,7 @@ $listHeight: $globalheight - $titleHight - 20px;
        line-height: $listHeight / 6;
        overflow: hidden;
        display: flex;
+       align-items: center;
        a {
          flex: 1;
          display: inline-block;

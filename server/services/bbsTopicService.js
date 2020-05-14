@@ -17,8 +17,8 @@ export default new (class {
   }
 
   /**
-   * 
-   * 
+   * 获取bbs标题列表
+   * @param { string tab, number index, number pages } params 
    */
 
   async getTopics (params) {
@@ -56,6 +56,24 @@ export default new (class {
       topic.save()
       
       return topic ? R.send('0', topic) : R.send('999', '获取失败')
+    } catch (error) {
+      
+    }
+  }
+
+  /**
+   * 热帖 前10
+   */
+  async getBrowseListTopics () {
+    try {
+      let res = await bbsTopic.find()
+      .sort({visit_count: -1, update_at: -1})
+      .skip(0)
+      .limit(10)
+      .populate({path: 'author_id', select: ['_id', 'avatarUrl', 'nickName']})
+      .exec()
+      
+      return res ? R.send('0', res) : R.send('999', '获取失败')
     } catch (error) {
       
     }

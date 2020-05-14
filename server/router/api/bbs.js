@@ -49,6 +49,13 @@ router.get('/getReply', async (req, res) => {
   let data = await bbsReplyService.getReply(req.query)
   res.json(data)
 })
+/**
+ * 
+ */
+router.get('/getBrowseListTopics', async (req, res) => {
+  let data = await bbsTopicService.getBrowseListTopics()
+  res.json(data)
+})
 
 
 module.exports = router

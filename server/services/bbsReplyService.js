@@ -39,7 +39,7 @@ export default new (class {
 
     try {
       let res = await bbsReply.find({topic_id})
-      .sort({create_at: -1})
+      .sort({create_at: 1})
       .skip(parseInt(indexPage))
       .limit(parseInt(pages))
       .populate({path: 'author_id', select: ['_id', 'avatarUrl', 'nickName']})

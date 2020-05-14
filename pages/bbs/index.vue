@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        <div class="editor-box">
+        <div v-if="userInfo" class="editor-box">
           <mavonEditor v-model="content" />
           <el-col class="btn-group">
             <el-button
@@ -52,9 +52,12 @@
             </el-button>
           </el-col>
         </div>
+        <div v-else>
+          <isLoginEditor />
+        </div>
       </el-col>
       <el-col :span="7" :offset="1" class="right-menu hidden-sm-and-down">
-        2
+        <div class="userInfo-box" />
       </el-col>
     </el-row>
   </div>
@@ -65,6 +68,7 @@ import { mapGetters } from 'vuex'
 import { getOneBbsTopics, createBbsReply, getBbsReply } from '@/store/api/global'
 import mavonEditorShow from '@/components/editor/mavonEditorShow'
 import mavonEditor from '@/components/editor/mavonEditor'
+import isLoginEditor from '@/components/isLoginEditor'
 
 export default {
   header: {
@@ -72,7 +76,8 @@ export default {
   },
   components: {
     mavonEditorShow,
-    mavonEditor
+    mavonEditor,
+    isLoginEditor
   },
   data () {
     return {
@@ -179,6 +184,9 @@ export default {
       margin-top: 15px;
       text-align: right;
     }
+  }
+  .userInfo-box {
+
   }
 }
 </style>

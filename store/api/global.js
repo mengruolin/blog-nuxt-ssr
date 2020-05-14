@@ -6,7 +6,8 @@ import {
   apiOneBbsTopics,
   apiCreateTopic,
   apiCreateBbsReply,
-  apiGetBbsReply
+  apiGetBbsReply,
+  apiGetBrowseListTopics
 } from './types.js'
 
 export const getTest = createAjax('get', apiCheshi)
@@ -26,3 +27,6 @@ export const createBbsReply = createAjax('postl', apiCreateBbsReply)
 
 // 获取bbs 回复
 export const getBbsReply = createAjax('get', apiGetBbsReply)
+
+//
+export const getBrowseListTopics = createAjax('get', apiGetBrowseListTopics)

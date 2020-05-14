@@ -66,7 +66,9 @@ export default new ( class {
    * @param {*} res 
    */
   async logOut (req, res) {
-    req.session.userInfo && req.session.destroy()
+    //console.log(res.session);
+    req.session.destroy()
+    //req.session.userInfo && req.session.destroy()
     return R.send('0', null, '退出成功')
   }
 
