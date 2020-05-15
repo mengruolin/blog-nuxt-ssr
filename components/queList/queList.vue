@@ -30,16 +30,19 @@
           </span>
         </div>
         <div class="q-title">
-          <nuxt-link :to="'/bbs?_id=' + item._id">
-            <el-tag v-if="item.top" type="success">
-              置顶
-            </el-tag>
-            <el-tag v-if="item.good" type="info">
-              精品
-            </el-tag>
-            <el-tag v-if="item.hot" type="warning">
-              热门
-            </el-tag>
+          <nuxt-link :to="'/bbs?_id=' + item._id" class="title-link">
+            <div v-if="item.top" class="text-svg-box">
+              <svg-icon icon-class="topTab" class="text-svg" style="padding: 3px 3px; margin-top: 3px;" />
+            </div>
+
+            <div v-if="item.hot" class="text-svg-box">
+              <svg-icon icon-class="hotTab" class="text-svg" style="padding: 3px 3px; margin-top: 3px;" />
+            </div>
+
+            <div v-if="item.good" class="text-svg-box">
+              <svg-icon icon-class="goodTab" class="text-svg" style="padding: 3px 3px; margin-top: 3px;" />
+            </div>
+
             {{ item.title }}
           </nuxt-link>
         </div>
@@ -145,6 +148,14 @@ export default {
         width: 100%;
         padding-right: 20px;
         @include nobr;
+        .title-link {
+          display: flex;
+          align-content: center;
+          .text-svg-box {
+            width: 25px;
+            height: 30px;
+          }
+        }
       }
     }
   }

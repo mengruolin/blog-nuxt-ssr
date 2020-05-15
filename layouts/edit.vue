@@ -35,7 +35,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { createTopic } from '@/store/api/global'
 
 export default {
 
@@ -43,19 +42,22 @@ export default {
     ...mapGetters(['userInfo'])
   },
   methods: {
-    async handleRelease () {
-      const { tab, content, title } = this.$refs.nuxt.$children[0]
+    handleRelease () {
+      console.log(this.$refs.nuxt)
 
-      const res = await createTopic({ tab, content, title, 'author_id': this.userInfo._id })
+      this.$refs.nuxt.$children[0].$children[0].$children[0].handleRelease()
+      // const { tab, content, title } = this.$refs.nuxt.$children[0]
 
-      if (res.code === '0') {
-        this.$message.success('发布成功，3s后跳转...')
-        setTimeout(() => {
-          this.$router.push(`/bbs?_id=${res.data._id}`)
-        }, 3000)
-      } else {
-        this.$message.error(res.message)
-      }
+      // const res = await createTopic({ tab, content, title, 'author_id': this.userInfo._id })
+
+      // if (res.code === '0') {
+      //   this.$message.success('发布成功，3s后跳转...')
+      //   setTimeout(() => {
+      //     this.$router.push(`/bbs?_id=${res.data._id}`)
+      //   }, 3000)
+      // } else {
+      //   this.$message.error(res.message)
+      // }
     }
   }
 }

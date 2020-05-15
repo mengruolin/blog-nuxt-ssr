@@ -80,10 +80,10 @@
               发布<i class="el-icon-edit-outline" />
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="/edit">
+              <el-dropdown-item command="/edit/bbs">
                 问题
               </el-dropdown-item>
-              <el-dropdown-item command="/edit">
+              <el-dropdown-item command="/edit/blog">
                 博客
               </el-dropdown-item>
             </el-dropdown-menu>

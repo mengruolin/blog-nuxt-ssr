@@ -55,7 +55,7 @@ import { mapActions } from 'vuex'
 import md5 from 'md5'
 
 export default {
-  layout: 'empty',
+  layout: 'loginEmpty',
   data () {
     return {
       userName: '',

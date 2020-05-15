@@ -67,7 +67,10 @@ export default {
   data () {
     return {
       openNavList: false,
-      hotList: []
+      hotList: [],
+      pages: 30,
+      index: 1,
+      isNoPage: false
     }
   },
   computed: {
@@ -87,8 +90,21 @@ export default {
   },
   methods: {
     ...mapActions(['getBbsTabs']),
-    handleGetList () {
+    async handleGetList () {
+      if (this.isNoPage) { return false }
 
+      const index = this.index + 1
+      this.index = index
+      console.log(1)
+
+      const res = await getBbsTopics({ index, pages: this.pages })
+      if (res.code === '0') {
+        if (res.data[0]) {
+          this.bbsListData.push(...res.data)
+        } else {
+          this.isNoPage = true
+        }
+      }
     },
     handleSwitchNavList (type) {
       this.openNavList = type

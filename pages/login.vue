@@ -70,7 +70,7 @@ import { mapActions, mapGetters } from 'vuex'
 import md5 from 'md5'
 
 export default {
-  layout: 'empty',
+  layout: 'loginEmpty',
   data () {
     return {
       loginType: 0, // 登陆方式  =》》 0. 验证码 1 . 密码
