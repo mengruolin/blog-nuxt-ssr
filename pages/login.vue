@@ -73,7 +73,7 @@ export default {
   layout: 'loginEmpty',
   data () {
     return {
-      loginType: 0, // 登陆方式  =》》 0. 验证码 1 . 密码
+      loginType: 1, // 登陆方式  =》》 0. 验证码 1 . 密码
       userName: '',
       password: '',
       authCode: '',

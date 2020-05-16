@@ -51,11 +51,19 @@ router.get('/getBlogTabs', async (req, res) => {
 //   res.json(data)
 // })
 // /**
-//  * 
+//  * 查询浏览榜blog列表
 //  */
 // router.get('/getBrowseListTopics', async (req, res) => {
 //   let data = await blogTopicService.getBrowseListTopics()
 //   res.json(data)
 // })
+
+/**
+ * 
+ */
+router.get('/getGoodListTopics', async (req, res) => {
+  let data = await blogTopicService.getGoodListTopics()
+  res.json(data)
+})
 
 module.exports = router

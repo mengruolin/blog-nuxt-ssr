@@ -14,8 +14,6 @@ export const apiCreateBbsReply = `/bbs/createReply`
 
 export const apiGetBbsReply = `/bbs/getReply`
 
-export const apiGetBrowseListTopics = `/bbs/getBrowseListTopics`
-
 //  blog
 export const apiCreateBlogTopic = `/blog/createTopic`
 

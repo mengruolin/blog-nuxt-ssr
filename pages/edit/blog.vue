@@ -24,7 +24,6 @@
       </el-select>
     </div>
     <div>
-      上传封面图片
       <el-upload
         class="avatar-uploader"
         action
@@ -130,27 +129,28 @@ export default {
     }
   }
 
-    .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
+    .avatar-uploader /deep/ .el-upload {
+    border: 1px solid #e2e2e2;
     border-radius: 6px;
     cursor: pointer;
     position: relative;
+    margin-top: 30px;
     overflow: hidden;
   }
   .avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
+    border-color: #000;
   }
   .avatar-uploader-icon {
     font-size: 28px;
     color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
     text-align: center;
   }
   .avatar {
-    width: 178px;
-    height: 178px;
+    width: 200px;
+    height: 200px;
     display: block;
   }
 }

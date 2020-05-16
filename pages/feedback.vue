@@ -44,7 +44,7 @@ const rules = {
 }
 
 export default {
-  layout: 'empty',
+  layout: 'loginEmpty',
   data () {
     return {
       editform: {

@@ -40,7 +40,13 @@
       </el-col>
       <el-col :span="7" :offset="1" class="right-menu hidden-sm-and-down">
         <login-menu :is-login="userInfo" />
-        <hotQuestions :hot-list="hotList" />
+        <hotQuestions
+          :hot-list="bbsBrowseListTopicsList"
+          header-font-color="#fff"
+          header-bg-color="#e41749"
+          header-title="问答浏览榜"
+          item-jump-link="/bbs?_id="
+        />
       </el-col>
     </el-row>
   </page-view>
@@ -53,7 +59,7 @@ import pageView from '@/components/pageView.vue'
 import queList from '@/components/queList/queList.vue'
 import loginMenu from '@/components/globalMenu/loginMenu.vue'
 import hotQuestions from '@/components/globalMenu/hotQuestions.vue'
-import { getBbsTopics, getBrowseListTopics } from '@/store/api/global.js'
+import { getBbsTopics } from '@/store/api/global.js'
 
 export default {
   layout: 'default',
@@ -74,7 +80,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['bbsTabs', 'userInfo'])
+    ...mapGetters(['bbsTabs', 'userInfo', 'bbsBrowseListTopicsList'])
   },
   async asyncData () {
     const res = await getBbsTopics()
@@ -86,10 +92,10 @@ export default {
   async mounted () {
     !this.bbsTabs[0] && await this.getBbsTabs()
     this.$nuxt.$loading.finish()
-    this.getBrowseListTopics()
+    this.getBbsBrowseListTopics()
   },
   methods: {
-    ...mapActions(['getBbsTabs']),
+    ...mapActions(['getBbsTabs', 'getBbsBrowseListTopics']),
     async handleGetList () {
       if (this.isNoPage) { return false }
 
@@ -112,12 +118,6 @@ export default {
     async cheshi () {
       const res = await getBbsTopics()
       console.log(res)
-    },
-    async getBrowseListTopics () {
-      const res = await getBrowseListTopics()
-      if (res.code === '0') {
-        this.hotList = res.data
-      }
     }
   }
 }

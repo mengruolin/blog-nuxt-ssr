@@ -11,9 +11,9 @@
     <div class="logo">
       <!-- <svg-icon icon-class="logoB" /> -->
       <!-- <nuxt-link to=""> -->
-      <span>
+      <nuxt-link to="/blog">
         B
-      </span>
+      </nuxt-link>
 
       <!-- </nuxt-link> -->
     </div>
@@ -166,13 +166,16 @@ export default {
     width: 40px;
     text-align: left;
 
-    span {
+    a {
       font-weight: 900;
       font-size: 24px;
       display: block;
       width: 100%;
       height: 100%;
       color: #ffffff;
+      &:hover {
+        color: #f0f0f0;
+      }
     }
   }
   .user {
@@ -182,6 +185,11 @@ export default {
       width: 100%;
       text-align: right;
       color: #cccccc;
+      a {
+        &:hover {
+          color: #f0f0f0;;
+        }
+      }
     }
     .user-release {
       width: 80px;
@@ -227,6 +235,11 @@ export default {
       .nav-list {
         margin-left: 30px;
         max-width: 200px;
+        a {
+          &:hover {
+            color: #f0f0f0;;
+          }
+        }
       }
     }
     .nav-small {

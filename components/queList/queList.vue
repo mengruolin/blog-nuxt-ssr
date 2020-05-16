@@ -1,5 +1,11 @@
 <template>
   <div class="_listSwiper">
+    <div v-if="!lsitData[0]" class="noDate">
+      还没有人发布问题，快去<nuxt-link to="/edit/bbs">
+        发表
+      </nuxt-link>吧！
+      😊
+    </div>
     <div v-for="(item, k) of lsitData" :key="k" class="list-items">
       <div class="operate-box">
         <div class="icon">
@@ -27,23 +33,28 @@
               <i class="el-icon-view" />
               {{ item.visit_count }}
             </span>
+            <span class="iview">
+              <i class="el-icon-chat-line-round" />
+              {{ item.reply_count }}
+            </span>
           </span>
         </div>
         <div class="q-title">
           <nuxt-link :to="'/bbs?_id=' + item._id" class="title-link">
             <div v-if="item.top" class="text-svg-box">
-              <svg-icon icon-class="topTab" class="text-svg" style="padding: 3px 3px; margin-top: 3px;" />
+              <img src="/img/topTab.png" alt="">
             </div>
 
             <div v-if="item.hot" class="text-svg-box">
-              <svg-icon icon-class="hotTab" class="text-svg" style="padding: 3px 3px; margin-top: 3px;" />
+              <img src="/img/hotTab.png" alt="">
             </div>
 
             <div v-if="item.good" class="text-svg-box">
-              <svg-icon icon-class="goodTab" class="text-svg" style="padding: 3px 3px; margin-top: 3px;" />
+              <img src="/img/goodTab.png" alt="">
             </div>
-
-            {{ item.title }}
+            <span class="title_content">
+              {{ item.title }}
+            </span>
           </nuxt-link>
         </div>
       </div>
@@ -73,14 +84,25 @@ export default {
 
 <style lang="scss" scoped>
 ._listSwiper {
+  min-height: 100vh;
+  position: relative;
   // height: 40px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  padding: 10px 10px;
+  .noDate {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $headerBgColor;
+    font-size: 20px;
+  }
   .list-items {
     height: 70px;
     padding: 10px 5px;
     display: flex;
     //border-top: springgreen solid 1px;
-    border-bottom: rgb(189, 199, 194) solid 1px;
+    border-bottom: #e2e2e2 solid 1px;
     .operate-box {
       width: 50px;
       height: 100%;
@@ -147,13 +169,25 @@ export default {
         height: 35px;
         width: 100%;
         padding-right: 20px;
-        @include nobr;
         .title-link {
           display: flex;
+          width: 100%;
           align-content: center;
+          @include nobr;
           .text-svg-box {
             width: 25px;
-            height: 30px;
+            height: 25px;
+            margin-top: 5px;
+            overflow: hidden;
+            margin-right: 2px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .title_content {
+            flex: 1;
+            width: 200px;
           }
         }
       }

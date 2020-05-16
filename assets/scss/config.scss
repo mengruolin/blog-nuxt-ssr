@@ -87,3 +87,12 @@ $defaultBoxBG: linear-gradient(to right, #00b4db, #0083b0);
   overflow: hidden;
 }
 
+$bgRotate: bgRotate .4s linear 1s infinite normal none;
+@keyframes bgRotate {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}

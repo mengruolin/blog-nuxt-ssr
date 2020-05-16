@@ -29,9 +29,6 @@
             </el-button>
           </nuxt-link>
         </div>
-        <div v-if="!bbsListData[0]">
-          还没有人发表问题，快发表吧！
-        </div>
         <scroll-page
           class="context"
           @scroll="handleGetList"
@@ -43,7 +40,13 @@
       </el-col>
       <el-col :span="7" :offset="1" class="right-menu hidden-sm-and-down">
         <login-menu :is-login="userInfo" />
-        <hotQuestions :hot-list="hotList" />
+        <hotQuestions
+          :hot-list="bbsBrowseListTopicsList"
+          header-font-color="#fff"
+          header-bg-color="#e41749"
+          header-title="问答浏览榜"
+          item-jump-link="/bbs?_id="
+        />
       </el-col>
     </el-row>
   </page-view>
@@ -68,12 +71,11 @@ export default {
   },
   data () {
     return {
-      openNavList: false,
-      hotList: []
+      openNavList: false
     }
   },
   computed: {
-    ...mapGetters(['bbsTabs', 'userInfo'])
+    ...mapGetters(['bbsTabs', 'userInfo', 'bbsBrowseListTopicsList'])
   },
   async asyncData ({ app, params }) {
     const res = await getBbsTopics({ tab: params.name })
@@ -85,9 +87,10 @@ export default {
   async mounted () {
     !this.bbsTabs[0] && await this.getBbsTabs()
     this.$nuxt.$loading.finish()
+    this.getBbsBrowseListTopics()
   },
   methods: {
-    ...mapActions(['getBbsTabs']),
+    ...mapActions(['getBbsTabs', 'getBbsBrowseListTopics']),
     handleGetList () {
 
     },

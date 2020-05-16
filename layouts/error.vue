@@ -1,19 +1,21 @@
 <template>
   <div class="container">
-    <h1 v-if="error.statusCode === 404">
-      Page not found 404
-    </h1>
-    <h1 v-else>
+    <template v-if="error.statusCode === 404">
+      <not-found-page />
+    </template>
+    <template v-else>
       An error occurred
-    </h1>
-    <nuxt-link to="/">
-      Home page
-    </nuxt-link>
+    </template>
   </div>
 </template>
 
 <script>
+import notFoundPage from '@/components/errPage/notFoundPage'
+
 export default {
+  components: {
+    notFoundPage
+  },
   props: {
     error: {
       type: Object,

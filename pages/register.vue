@@ -14,8 +14,8 @@
           首页
         </nuxt-link>
         <span>|</span>
-        <nuxt-link to="/register">
-          注册
+        <nuxt-link to="/login">
+          登录
         </nuxt-link>
       </el-row>
     </div>

@@ -3,9 +3,10 @@
     <div class="_header">
       <div class="_main">
         <div class="_logo">
-          <nuxt-link to="/">
-            query
-          </nuxt-link>
+          <span @click="handleGoBack">
+            <i class="iconfont">&#xe65f;</i>
+            返回
+          </span>
         </div>
         <div class="_btn">
           <el-button type="text" @click="handleRelease">
@@ -43,21 +44,10 @@ export default {
   },
   methods: {
     handleRelease () {
-      console.log(this.$refs.nuxt)
-
       this.$refs.nuxt.$children[0].$children[0].$children[0].handleRelease()
-      // const { tab, content, title } = this.$refs.nuxt.$children[0]
-
-      // const res = await createTopic({ tab, content, title, 'author_id': this.userInfo._id })
-
-      // if (res.code === '0') {
-      //   this.$message.success('发布成功，3s后跳转...')
-      //   setTimeout(() => {
-      //     this.$router.push(`/bbs?_id=${res.data._id}`)
-      //   }, 3000)
-      // } else {
-      //   this.$message.error(res.message)
-      // }
+    },
+    handleGoBack () {
+      this.$router.go(-1)
     }
   }
 }
@@ -82,8 +72,9 @@ export default {
         width: 100px;
         font-size: 20px;
         display: inline-block;
-        a {
+        span {
           color: antiquewhite;
+          cursor: pointer;
         }
       }
       ._btn {

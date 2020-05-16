@@ -47,8 +47,8 @@ export default new (class {
   }
 
   /**
-   * 
-   * 
+   * 获取单个 blog 详情
+   * @param {id: string} _id 
    */
   async getOneTopics (_id) {
     try {
@@ -60,6 +60,24 @@ export default new (class {
       topic.save()
       
       return topic ? R.send('0', topic) : R.send('999', '获取失败')
+    } catch (error) {
+      
+    }
+  }
+
+  /**
+   * 精品贴 前10
+   */
+  async getGoodListTopics () {
+    try {
+      let res = await blogTopic.find()
+      .sort({good: -1, visit_count: -1, update_at: -1})
+      .skip(0)
+      .limit(10)
+      .populate({path: 'author_id', select: ['_id', 'avatarUrl', 'nickName']})
+      .exec()
+      
+      return res ? R.send('0', res) : R.send('999', '获取失败')
     } catch (error) {
       
     }

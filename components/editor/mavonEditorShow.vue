@@ -29,9 +29,12 @@ export default {
   .md {
     z-index: 0;
     box-shadow: none;
-    background-color: #ffffff;
+
     min-height: auto;
     min-width: auto;
+    & /deep/ .v-show-content {
+      background-color: #ffffff !important;
+    }
   }
 }
 </style>

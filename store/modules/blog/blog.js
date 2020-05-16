@@ -1,16 +1,21 @@
 import getters from './getters'
 import actions from './actions'
 import {
-  SET_BLOGTABS
+  SET_BLOGTABS,
+  SET_BLOGGOODLISTTOPICS
 } from './mutation-types'
 
 const state = () => ({
-  blogTabs: []
+  blogTabs: [],
+  blogGoodListTopics: []
 })
 
 const mutations = {
   [SET_BLOGTABS] (state, res) {
     state.blogTabs = res.data
+  },
+  [SET_BLOGGOODLISTTOPICS] (state, res) {
+    state.blogGoodListTopics = res.data
   }
 }
 

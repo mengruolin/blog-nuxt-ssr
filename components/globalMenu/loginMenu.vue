@@ -1,7 +1,7 @@
 <template>
   <div v-if="!isLogin" class="_loginMenu">
-    <p>登录之后可以提问题，写文章</p>
-    <el-button class="c-w200" @click="handleLogin">
+    <p>登录之后可以提问题，写文章噢&nbsp;&nbsp;👴👴👴</p>
+    <el-button type="info" class="c-w200" @click="handleLogin">
       login
     </el-button>
   </div>
@@ -32,7 +32,9 @@ export default {
   // border: $leftMenuBorder;
   // border-top-style: none;
   // border-bottom-style: none;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px #e2e2e2;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
   text-align: center;
   height: 120px;
   padding: 20px 5px;

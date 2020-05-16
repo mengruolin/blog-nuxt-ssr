@@ -57,18 +57,27 @@
         </div>
       </el-col>
       <el-col :span="7" :offset="1" class="right-menu hidden-sm-and-down">
-        <div class="userInfo-box" />
+        <login-menu :is-login="userInfo" class="c-mb20" />
+        <hotQuestions
+          :hot-list="bbsBrowseListTopicsList"
+          header-font-color="#fff"
+          header-bg-color="#e41749"
+          header-title="问答浏览榜"
+          item-jump-link="/bbs?_id="
+        />
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { getOneBbsTopics, createBbsReply, getBbsReply } from '@/store/api/global'
 import mavonEditorShow from '@/components/editor/mavonEditorShow'
 import mavonEditor from '@/components/editor/mavonEditor'
 import isLoginEditor from '@/components/isLoginEditor'
+import loginMenu from '@/components/globalMenu/loginMenu.vue'
+import hotQuestions from '@/components/globalMenu/hotQuestions.vue'
 
 export default {
   header: {
@@ -77,7 +86,9 @@ export default {
   components: {
     mavonEditorShow,
     mavonEditor,
-    isLoginEditor
+    isLoginEditor,
+    loginMenu,
+    hotQuestions
   },
   data () {
     return {
@@ -86,7 +97,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['userInfo']),
+    ...mapGetters(['userInfo', 'bbsBrowseListTopicsList']),
     createReplayParams () {
       return {
         'author_id': this.userInfo._id,
@@ -103,14 +114,19 @@ export default {
   async asyncData ({ query }) {
     const res = await getOneBbsTopics(query)
 
-    return {
-      topicData: res.data || []
+    if (res.code === '0') {
+      return {
+        topicData: res.data || []
+      }
     }
   },
   mounted () {
     this.handleGetReply()
+    this.$nuxt.$loading.finish && this.$nuxt.$loading.finish()
+    this.getBbsBrowseListTopics()
   },
   methods: {
+    ...mapActions(['getBbsBrowseListTopics']),
     async handleSubmit () {
       const res = await createBbsReply(this.createReplayParams)
       if (res.code === '0') {

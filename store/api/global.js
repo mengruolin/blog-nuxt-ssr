@@ -7,7 +7,6 @@ import {
   apiCreateBbsTopic,
   apiCreateBbsReply,
   apiGetBbsReply,
-  apiGetBrowseListTopics,
   apiCreateBlogTopic,
   apiOneBlogTopics,
   apiGetBlogTopics
@@ -33,9 +32,6 @@ export const createBbsReply = createAjax('postl', apiCreateBbsReply)
 
 // 获取bbs 回复
 export const getBbsReply = createAjax('get', apiGetBbsReply)
-
-// 获取浏览排行前10 bss 帖子
-export const getBrowseListTopics = createAjax('get', apiGetBrowseListTopics)
 
 // 创建 blog topic
 export const createBlogTopic = createAjax('postl', apiCreateBlogTopic)

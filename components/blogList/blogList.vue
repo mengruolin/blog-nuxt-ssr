@@ -1,5 +1,11 @@
 <template>
   <div class="list_swiper">
+    <div v-if="!lsitData[0]" class="noDate">
+      还没有人发表博客，快去<nuxt-link to="/edit/blog">
+        发表
+      </nuxt-link>吧！
+      😊
+    </div>
     <div v-for="item of lsitData" :key="item._id" class="_blog">
       <div class="_user-info">
         <span class="avatar-swiper">
@@ -31,9 +37,39 @@
 
       <div class="_content">
         <div class="_title">
-          <nuxt-link :to="`/blog/${item._id}`">
-            {{ item.title }}
+          <nuxt-link :to="`/blog/${item._id}`" class="title_link">
+            <div v-if="item.top" class="text-svg-box">
+              <img src="/img/topTab.png" alt="">
+            </div>
+
+            <div v-if="item.hot" class="text-svg-box">
+              <img src="/img/hotTab.png" alt="">
+            </div>
+
+            <div v-if="item.good" class="text-svg-box">
+              <img src="/img/goodTab.png" alt="">
+            </div>
+            <span>{{ item.title }}</span>
           </nuxt-link>
+
+          <el-row class="_article-info">
+            <span class="_comment">
+              <i class="el-icon-chat-line-round" />
+              {{ item.reply_count }}
+            </span>
+            <span class="_view c-mr10">
+              <i class="el-icon-view" />
+              {{ item.visit_count }}
+            </span>
+            <span class="_negnative c-mr10">
+              <i class="iconfont c-ft12">&#xe690;</i>
+              {{ item.against_count }}
+            </span>
+            <span class="_agree c-mr10">
+              <i class="iconfont c-ft12">&#xe702;</i>
+              {{ item.agree_count }}
+            </span>
+          </el-row>
         </div>
         <div class="_photo-swiper">
           <el-image
@@ -42,25 +78,6 @@
           />
         </div>
       </div>
-
-      <el-row class="_article-info">
-        <span class="_comment">
-          <i class="el-icon-chat-line-round" />
-          {{ item.agree_count }}
-        </span>
-        <span class="_view c-mr10">
-          <i class="el-icon-view" />
-          {{ item.against_count }}
-        </span>
-        <span class="_negnative c-mr10">
-          <i class="iconfont c-ft12">&#xe690;</i>
-          {{ item.visit_count }}
-        </span>
-        <span class="_agree c-mr10">
-          <i class="iconfont c-ft12">&#xe702;</i>
-          {{ item.reply_count }}
-        </span>
-      </el-row>
     </div>
   </div>
 </template>
@@ -79,14 +96,25 @@ export default {
 
 <style lang="scss" scoped>
 .list_swiper {
+  position: relative;
+  min-height: 100vh;
+  padding: 10px 10px;
+  .noDate {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $blogHeaderColor;
+    font-size: 20px;
+  }
   ._blog {
-    height: 170px;
+    height: 140px;
     width: 100%;
     border-bottom: rgb(209, 205, 205) solid 1px;
     padding: 5px 10px 10px 10px;
     &:hover {
-      cursor: pointer;
-      background: #c5c3c327;
+      // cursor: pointer;
+      // background: #c5c3c327;
     }
     ._user-info {
       height: 30px;
@@ -132,12 +160,35 @@ export default {
       overflow: hidden;
       display: flex;
       ._title {
-        font-size: 16px;
-        font-weight: 800;
         overflow: hidden;
         flex: 1;
-        line-height: 20px;
         padding-right: 10px;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        .title_link {
+          display: block;
+          width: 100%;
+          font-size: 16px;
+          font-weight: 800;
+          color: #000000;
+          height: 100%;
+          line-height: 40px;
+          @include nobr;
+          .text-svg-box {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            line-height: 40px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          span {
+            vertical-align: super;
+          }
+        }
       }
       ._photo-swiper {
         width: 80px;
