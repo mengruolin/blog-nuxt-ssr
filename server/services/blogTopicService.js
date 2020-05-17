@@ -53,7 +53,7 @@ export default new (class {
   async getOneTopics (_id) {
     try {
       let topic = await blogTopic.findById(_id)
-      .populate({path: 'author_id', select: ['_id', 'avatarUrl', 'nickName']})
+      .populate({path: 'author_id', select: ['_id', 'avatarUrl', 'nickName', 'createTime']})
       .exec()
 
       topic.visit_count += 1

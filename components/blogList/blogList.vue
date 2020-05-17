@@ -1,12 +1,12 @@
 <template>
   <div class="list_swiper">
-    <div v-if="!lsitData[0]" class="noDate">
+    <div v-if="!listData[0]" class="noDate">
       还没有人发表博客，快去<nuxt-link to="/edit/blog">
         发表
       </nuxt-link>吧！
       😊
     </div>
-    <div v-for="item of lsitData" :key="item._id" class="_blog">
+    <div v-for="item of listData" :key="item._id" class="_blog">
       <div class="_user-info">
         <span class="avatar-swiper">
           <nuxt-link :to="`/user/${item.author_id._id}`">
@@ -85,7 +85,7 @@
 <script>
 export default {
   props: {
-    lsitData: {
+    listData: {
       type: Array,
       required: true,
       default: () => []

@@ -10,7 +10,12 @@
     </el-row>
     <div v-if="hotList[0]" class="_list">
       <div v-for="item of hotList.slice(0, 6)" :key="item._id" class="_items">
-        <el-avatar size="small" shape="square" :src="item.author_id.avatarUrl" />
+        <el-avatar
+          size="small"
+          shape="square"
+          :src="item.author_id.avatarUrl"
+          :title="item.author_id.nickName"
+        />
         <nuxt-link :to="itemJumpLink + item._id">
           {{ item.title }}
         </nuxt-link>
@@ -51,6 +56,8 @@ export default {
     return {
       active: 'first'
     }
+  },
+  methods: {
   }
 }
 </script>

@@ -1,12 +1,12 @@
 <template>
   <div class="_listSwiper">
-    <div v-if="!lsitData[0]" class="noDate">
+    <div v-if="!listData[0]" class="noDate">
       还没有人发布问题，快去<nuxt-link to="/edit/bbs">
         发表
       </nuxt-link>吧！
       😊
     </div>
-    <div v-for="(item, k) of lsitData" :key="k" class="list-items">
+    <div v-for="(item, k) of listData" :key="k" class="list-items">
       <div class="operate-box">
         <div class="icon">
           <svg-icon :icon-class="item.is_solved ? 'fit' : 'qMark'" class-name="icon-svg" />
@@ -65,7 +65,7 @@
 <script>
 export default {
   props: {
-    lsitData: {
+    listData: {
       type: Array,
       required: true,
       default: () => []
@@ -96,6 +96,9 @@ export default {
     transform: translate(-50%, -50%);
     color: $headerBgColor;
     font-size: 20px;
+  }
+  & .list-items:last-child {
+    border: none;
   }
   .list-items {
     height: 70px;

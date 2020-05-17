@@ -1,64 +1,64 @@
 <template>
-  <div v-if="userInfo" class="_user">
+  <div v-if="theUserInfo" class="_user">
     <div class="_user-bg-wall" />
     <div class="_content-swiper">
-      <div class="_user-bg-box" @mouseenter="editUser = true" @mouseleave="editUser = false">
+      <div class="_user-bg-box">
         <div class="_avatar-box">
-          <el-image fit="fit" :preview-src-list="[userInfo.avatarUrl]" :src="userInfo.avatarUrl" />
+          <el-image fit="fit" :preview-src-list="[theUserInfo.avatarUrl]" :src="theUserInfo.avatarUrl" />
         </div>
-        <div v-if="editUser" class="_user-config" @click="handleGoEdit">
+        <div v-if="isMyself" class="_user-config" @click="handleGoEdit">
           <span><i class="iconfont">&#xe65c;</i>编辑</span>
         </div>
         <div class="_user-info">
           <el-row>
-            <span class="_user-name">{{ userInfo.nickName }}</span>
-            <span class="_user-sex"><svg-icon icon-class="woman" /></span>
+            <span class="_user-name">{{ theUserInfo.nickName }}</span>
+            <span class="_user-sex"><svg-icon :icon-class="theUserInfo.sex" /></span>
           </el-row>
-          <el-row class="_user-slogan">
-            <el-col :span="12">
-              <span>
-                <i class="iconfont">&#xe60d;</i>
-                我的口号是：xxxx！！
-              </span>
-            </el-col>
-            <el-col :span="12">
+          <el-row class="user_detail_info">
+            <div>
+              <i class="iconfont">&#xe60d;</i>
+              <span class="c-ml5">{{ theUserInfo.sign }}</span>
+            </div>
+            <div>
+              <i class="iconfont">&#xe74f;</i>
+              <span class="c-ml5">{{ theUserInfo.email }}</span>
+            </div>
+            <div>
+              <i class="iconfont">&#xe69f;</i>
+              <span class="c-ml5">{{ theUserInfo.website }}</span>
+            </div>
+            <div>
               <i class="iconfont">&#xe679;</i>
-              <span>现居地：xx</span>
-            </el-col>
-          </el-row>
-          <el-row class="_user-job">
-            <el-col :span="12">
-              <span>
-                <i class="iconfont">&#xe623;</i>
-                我这这里工作：xx
-              </span>
-            </el-col>
-            <el-col :span="12">
-              <span>
-                <i class="iconfont">&#xe608;</i>
-                我的职业是：xxxx
-              </span>
-            </el-col>
+              <span class="c-ml5">{{ theUserInfo.address }}</span>
+            </div>
+            <div>
+              <i class="iconfont">&#xe608;</i>
+              <span class="c-ml5">{{ theUserInfo.job }}</span>
+            </div>
+            <div>
+              <i class="iconfont">&#xe623;</i>
+              <span class="c-ml5">{{ theUserInfo.company }}</span>
+            </div>
           </el-row>
         </div>
       </div>
       <div class="_main">
-        <el-menu mode="horizontal" class="_main-nav" default-active="dynamic" @select="handleSelectNav">
-          <el-menu-item index="dynamic">
-            <span class="lightNav">我</span>的动态
+        <el-menu mode="horizontal" class="_main-nav" :default-active="menuType" @select="handleSelectNav">
+          <!-- <el-menu-item index="dynamic">
+            <span class="lightNav">{{ isMyself ? '我' : '他' }}</span>的动态
           </el-menu-item>
           <el-menu-item index="focus">
-            <span class="lightNav">我</span>的关注
-          </el-menu-item>
+            <span class="lightNav">{{ isMyself ? '我' : '他' }}</span>的关注
+          </el-menu-item> -->
           <el-menu-item index="quiz">
-            <span class="lightNav">我</span>的提问
+            <span class="lightNav">{{ isMyself ? '我' : '他' }}</span>的提问
           </el-menu-item>
           <el-menu-item index="article">
-            <span class="lightNav">我</span>的博客
+            <span class="lightNav">{{ isMyself ? '我' : '他' }}</span>的博客
           </el-menu-item>
         </el-menu>
         <div class="_main-content">
-          <nuxt :user-info="userInfo" />
+          <nuxt-child :the-user-info="theUserInfo" @tabType="emitTabType" />
         </div>
       </div>
     </div>
@@ -69,32 +69,43 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import { getUserInfo } from '@/store/api/global.js'
 export default {
   data () {
     return {
-      editUser: false
+      menuType: 'quiz'
     }
   },
   // middleware: 'noLogin',
   layout: 'default',
   computed: {
-    // ...mapGetters(['userInfo'])
+    ...mapGetters(['userInfo']),
+    isMyself () {
+      if (!this.userInfo) { return false }
+      return this.userInfo._id === this.userId
+    }
   },
-  async asyncData ({ params }) {
+  async asyncData ({ params, error }) {
     const res = await getUserInfo({ _id: params.id })
-    return res ? { userInfo: res.data } : { userInfo: null }
+
+    if (res.code !== '0') { error({ statusCode: 404, message: '页面消失了' }) }
+    return {
+      theUserInfo: res.data,
+      userId: params.id }
   },
 
   methods: {
     handleSelectNav (index) {
       console.log(index)
 
-      this.$router.push(`/user/asas/${index}`)
+      this.$router.push(`/user/${this.userId}/${index}`)
     },
     handleGoEdit () {
-      this.$router.push('/my/config')
+      this.$router.push('/user/setting')
+    },
+    emitTabType (type) {
+      this.menuType = type
     }
   }
 }
@@ -129,10 +140,10 @@ $paddTopHeight: 100px;
     max-width: $headerWidth;
     padding: 120px 10px 120px 10px;
     margin: 0 auto;
-    overflow: hidden;
+    //overflow: hidden;
     ._user-bg-box {
       width: 100%;
-      height: $userBgWallHeight - 40px;
+      //height: $userBgWallHeight - 40px;
       top: 0;
       // border: #cccccc solid 1px;
       border-radius: 3px;
@@ -145,7 +156,7 @@ $paddTopHeight: 100px;
       ._avatar-box {
         position: absolute;
         top: -35px;
-        left: 30px;
+        left: 10px;
         width: 150px;
         height: 150px;
         overflow: hidden;
@@ -166,7 +177,6 @@ $paddTopHeight: 100px;
         text-align: center;
         line-height: 30px;
         background: rgba(0,0,0,.2);
-        // border: salmon solid 1px;
         border-radius: 12px;
         cursor: pointer;
         z-index: 1;
@@ -177,15 +187,14 @@ $paddTopHeight: 100px;
         }
       }
       ._user-info {
-        padding: 30px 40px  30px 210px;
+        padding: 10px 10px 10px 180px;
         box-sizing: border-box;
-        width: 100%;
-        height: 100%;
         overflow: hidden;
         ._user-name {
           line-height: 40px;
-          font-size: 24px;
-          font-weight: 500;
+          font-size: 18px;
+          font-weight: 600;
+          color: #162447;
         }
         ._user-sex {
           display: inline-block;
@@ -194,19 +203,18 @@ $paddTopHeight: 100px;
           overflow: hidden;
           vertical-align: bottom;
         }
-        ._user-slogan {
-          line-height: 60px;
-          span {
-            color: rgb(48, 128, 32);
-            font-size: 16px;
+        .user_detail_info {
+          line-height: 25px;
+          font-size: 12px;
+          @include nobr;
+          color: #1b1b2f;
+          i {
+            font-size: 14px;
           }
-        }
-        ._user-job {
-          line-height: 60px;
-          span {
-            color: rgb(96, 160, 244);
-            font-size: 16px;
-          }
+          // span {
+          //   color: rgb(48, 128, 32);
+          //   font-size: 16px;
+          //}
         }
       }
     }

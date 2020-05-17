@@ -75,9 +75,9 @@ export default {
 
       if (res.code === '0') {
         this.$message.success('发布成功，3s后跳转...')
-        // setTimeout(() => {
-        //   this.$router.push(`/bbs?_id=${res.data._id}`)
-        // }, 3000)
+        setTimeout(() => {
+          this.$router.push(`/blog/${res.data._id}`)
+        }, 3000)
       } else {
         this.$message.error(res.message)
       }

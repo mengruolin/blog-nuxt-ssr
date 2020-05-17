@@ -3,27 +3,13 @@
     <el-page-header class="header" title="返回" content="用户反馈" @back="goBack" />
     <div class="_content">
       <el-form ref="form" :model="editform" :rules="rules">
-        <el-form-item label="选择标签" prop="labelList">
-          <br>
-          <el-checkbox-group v-model="editform.labelList">
-            <el-checkbox label="A" />
-            <el-checkbox label="B" />
-            <el-checkbox label="A" />
-            <el-checkbox label="B" />
-            <el-checkbox label="A" />
-            <el-checkbox label="B" />
-            <el-checkbox label="A" />
-            <el-checkbox label="B" />
-          </el-checkbox-group>
-        </el-form-item>
-
         <el-form-item label="反馈内容：" prop="content">
           <el-input
             v-model="editform.content"
             type="textarea"
             :rows="10"
             show-word-limit
-            maxlength="180"
+            maxlength="300"
           />
         </el-form-item>
 
@@ -38,30 +24,48 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { createFeedBack } from '@/store/api/global'
+
 const rules = {
-  labelList: { required: true, message: '请选择标签', trigger: 'change' },
-  content: { required: true, message: '请输入内容', trigger: ['change', 'blur'] }
+  content: { required: true, message: '请输入反馈内容', trigger: ['change', 'blur'] }
 }
 
 export default {
+  middleware: 'noLogin',
   layout: 'loginEmpty',
   data () {
     return {
       editform: {
-        labelList: [],
         content: ''
       },
       rules
     }
+  },
+  computed: {
+    ...mapGetters(['userInfo'])
   },
   methods: {
     goBack () {
       this.$router.go(-1)
     },
     handleSubmit () {
-      this.$refs.form.validate((validate) => {
+      this.$refs.form.validate(async (validate) => {
         if (validate) {
+          const res = await createFeedBack({
+            'author_id': this.userInfo._id,
+            content: this.editform.content
+          })
 
+          if (res.code === '0') {
+            this.$message.success('反馈成功，3s后跳转首页...')
+
+            setTimeout(() => {
+              this.$router.push('/')
+            }, 3000)
+          } else {
+            this.$message.error(`反馈失败，${res.message}`)
+          }
         } else {
           return false
         }
@@ -73,6 +77,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
+  padding: 0 40px;
   height: 50px;
   line-height: 50px;
   background: #39a9dd;

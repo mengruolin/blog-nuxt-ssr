@@ -12,6 +12,8 @@ export default new (class {
    * }
    */
   async createReply (params) {
+    if (!params.author_id || !params.content || !params.topic_id) return R.send('999', null, '缺少数据')
+    
     let newBbsReply = new bbsReply(params)
     try {
       let res = await newBbsReply.save()

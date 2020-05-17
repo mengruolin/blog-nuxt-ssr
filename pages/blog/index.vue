@@ -21,19 +21,21 @@
         </div>
         <scroll-list>
           <el-card slot="list" class="content-list">
-            <blog-list :lsit-data="blogListData" />
+            <blog-list :list-data="blogListData" />
           </el-card>
         </scroll-list>
       </el-col>
       <el-col :span="6" :offset="2" class="hidden-sm-and-down blog-notice">
         <login-menu v-if="!userInfo" class="c-mb20" />
         <hotQuestions
+          class="c-mb20"
           :hot-list="blogGoodListTopics"
           header-font-color="#e6f8f9"
           header-bg-color="#2a1a5e"
-          header-title="精品榜"
+          header-title="博客精品榜"
           item-jump-link="/blog/"
         />
+        <web-site-info />
       </el-col>
     </el-row>
   </page-view>
@@ -46,6 +48,7 @@ import pageView from '@/components/pageView'
 import scrollList from '@/components/scrollList/index.vue'
 import blogList from '@/components/blogList/blogList.vue'
 import hotQuestions from '@/components/globalMenu/hotQuestions.vue'
+import webSiteInfo from '@/components/globalMenu/webSiteInfo.vue'
 import { getBlogTopics } from '@/store/api/global'
 
 export default {
@@ -54,7 +57,8 @@ export default {
     blogList,
     loginMenu,
     pageView,
-    hotQuestions
+    hotQuestions,
+    webSiteInfo
   },
   data () {
     return {
@@ -64,9 +68,10 @@ export default {
   computed: {
     ...mapGetters(['blogTabs', 'userInfo', 'blogGoodListTopics'])
   },
-  async asyncData () {
+  async asyncData ({ error }) {
     const res = await getBlogTopics()
 
+    if (res.code !== '0') { error({ statusCode: 404, message: '页面消失了' }) }
     return {
       blogListData: res.data || []
     }
@@ -97,7 +102,7 @@ export default {
     & /deep/ .el-radio-button {
 
       & /deep/ .el-radio-button__inner {
-        border: none;
+        border: none !important;
         border-radius: 5px;
       }
       & /deep/ .el-radio-button__orig-radio:checked+.el-radio-button__inner {

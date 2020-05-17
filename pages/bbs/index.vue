@@ -15,7 +15,9 @@
               <span class="topic-title">{{ topicData.title }}</span>
             </div>
             <div class="topic-info-Box">
-              <span>作者：{{ topicData.author_id.nickName }}</span>
+              <nuxt-link :to="`/user/${topicData.author_id._id}`">
+                作者：{{ topicData.author_id.nickName }}
+              </nuxt-link>
               <span class="c-ml20">发布时间：{{ topicData.create_at | DateFormat }}</span>
               <span class="c-ml20">更新时间：{{ topicData.update_at | dateFromNow }}</span>
               <span class="c-ml20">回复数：{{ topicData.reply_count }}</span>
@@ -32,7 +34,11 @@
               <el-avatar shape="square" :src="item.author_id.avatarUrl" />
               <div class="user-info">
                 <div>{{ item.create_at | DateFormat }}</div>
-                <div>{{ item.author_id.nickName }}</div>
+                <div>
+                  <nuxt-link :to="`/user/${item.author_id._id}`">
+                    {{ item.author_id.nickName }}
+                  </nuxt-link>
+                </div>
               </div>
             </div>
             <div class="reply-content">
@@ -53,7 +59,7 @@
           </el-col>
         </div>
         <div v-else>
-          <isLoginEditor />
+          <is-loginEditor />
         </div>
       </el-col>
       <el-col :span="7" :offset="1" class="right-menu hidden-sm-and-down">
@@ -111,13 +117,12 @@ export default {
       }
     }
   },
-  async asyncData ({ query }) {
+  async asyncData ({ query, error }) {
     const res = await getOneBbsTopics(query)
 
-    if (res.code === '0') {
-      return {
-        topicData: res.data || []
-      }
+    if (res.code !== '0') { error({ statusCode: 404, message: '页面消失了' }) }
+    return {
+      topicData: res.data || []
     }
   },
   mounted () {
@@ -147,7 +152,7 @@ export default {
 ._index {
   padding: 10px 10px;
   padding-top: 40px;
-  padding-bottom: 200px;
+  padding-bottom: 30px;
   .topic-box {
 
     padding: 15px 15px;

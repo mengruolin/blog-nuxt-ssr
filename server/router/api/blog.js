@@ -36,20 +36,20 @@ router.get('/getBlogTabs', async (req, res) => {
     data: serverConfig.blogTabs
   })
 })
-// /**
-//  * 创建blog回复
-//  */
-// router.post('/createReply', async (req, res) => {
-//   let data = await blogReplyService.createReply(req.body)
-//   res.json(data)
-// })
-// /**
-//  * 查询blog回复
-//  */
-// router.get('/getReply', async (req, res) => {
-//   let data = await blogReplyService.getReply(req.query)
-//   res.json(data)
-// })
+/**
+ * 创建blog回复
+ */
+router.post('/createReply', async (req, res) => {
+  let data = await blogReplyService.createReply(req.body)
+  res.json(data)
+})
+/**
+ * 查询blog回复
+ */
+router.get('/getReply', async (req, res) => {
+  let data = await blogReplyService.getReply(req.query)
+  res.json(data)
+})
 // /**
 //  * 查询浏览榜blog列表
 //  */

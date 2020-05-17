@@ -34,19 +34,21 @@
           @scroll="handleGetList"
         >
           <template slot="list">
-            <que-list :lsit-data="bbsListData" />
+            <que-list :list-data="bbsListData" />
           </template>
         </scroll-page>
       </el-col>
       <el-col :span="7" :offset="1" class="right-menu hidden-sm-and-down">
         <login-menu :is-login="userInfo" />
         <hotQuestions
+          class="c-mb20"
           :hot-list="bbsBrowseListTopicsList"
           header-font-color="#fff"
           header-bg-color="#e41749"
           header-title="问答浏览榜"
           item-jump-link="/bbs?_id="
         />
+        <web-site-info />
       </el-col>
     </el-row>
   </page-view>
@@ -59,6 +61,7 @@ import pageView from '@/components/pageView.vue'
 import queList from '@/components/queList/queList.vue'
 import loginMenu from '@/components/globalMenu/loginMenu.vue'
 import hotQuestions from '@/components/globalMenu/hotQuestions.vue'
+import webSiteInfo from '@/components/globalMenu/webSiteInfo.vue'
 import { getBbsTopics } from '@/store/api/global.js'
 
 export default {
@@ -67,7 +70,8 @@ export default {
     pageView,
     queList,
     loginMenu,
-    hotQuestions
+    hotQuestions,
+    webSiteInfo
   },
   data () {
     return {
@@ -77,9 +81,10 @@ export default {
   computed: {
     ...mapGetters(['bbsTabs', 'userInfo', 'bbsBrowseListTopicsList'])
   },
-  async asyncData ({ app, params }) {
+  async asyncData ({ app, params, error }) {
     const res = await getBbsTopics({ tab: params.name })
 
+    if (res.code !== '0') { error({ statusCode: 404, message: '页面消失了' }) }
     return {
       bbsListData: res.data || []
     }

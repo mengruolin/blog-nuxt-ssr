@@ -9,7 +9,13 @@ import {
   apiGetBbsReply,
   apiCreateBlogTopic,
   apiOneBlogTopics,
-  apiGetBlogTopics
+  apiGetBlogTopics,
+  apiGetSearchInfo,
+  apiCreateBlogReply,
+  apiGetBlogReply,
+  apiCreateFeedBack,
+  apiGetSearchUserBlog,
+  apiGetSearchUserBbs
 } from './types.js'
 
 export const getTest = createAjax('get', apiCheshi)
@@ -41,3 +47,21 @@ export const getOneBlogTopics = createAjax('get', apiOneBlogTopics)
 
 // 获取 bbs topic 列表
 export const getBlogTopics = createAjax('getl', apiGetBlogTopics)
+
+// 创建blog回复
+export const createBlogReply = createAjax('postl', apiCreateBlogReply)
+
+// 查询blog回复
+export const getBlogReply = createAjax('get', apiGetBlogReply)
+
+// search
+export const getSearchInfo = createAjax('getl', apiGetSearchInfo)
+
+// 查询用户发布的问答
+export const getSearchUserBbs = createAjax('getl', apiGetSearchUserBbs)
+
+// 查询用户发布的问答
+export const getSearchUserBlog = createAjax('getl', apiGetSearchUserBlog)
+
+// feedback
+export const createFeedBack = createAjax('postl', apiCreateFeedBack)
