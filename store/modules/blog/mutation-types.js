@@ -1,3 +1,6 @@
-export const apiLogin = `/user/login`
-export const apiLogOut = `/user/logOut`
-export const apiRegister = `/user/register`
+export const apiBlogTabs = `/blog/getBlogTabs`
+
+export const SET_BLOGTABS = `SET_BLOGTABS`
+
+export const apiGetGoodListTopics = `/blog/getGoodListTopics`
+export const SET_BLOGGOODLISTTOPICS = `SET_BLOGGOODLISTTOPICS`

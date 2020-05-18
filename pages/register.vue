@@ -14,8 +14,8 @@
           首页
         </nuxt-link>
         <span>|</span>
-        <nuxt-link to="/register">
-          注册
+        <nuxt-link to="/login">
+          登录
         </nuxt-link>
       </el-row>
     </div>
@@ -55,7 +55,8 @@ import { mapActions } from 'vuex'
 import md5 from 'md5'
 
 export default {
-  layout: 'empty',
+  middleware: 'isLogin',
+  layout: 'loginEmpty',
   data () {
     return {
       userName: '',

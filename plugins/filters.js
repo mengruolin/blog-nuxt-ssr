@@ -7,5 +7,9 @@ Vue.filter('dateFromNow', function (date) {
 })
 
 Vue.filter('DateFormat', function (date) {
-  return moment(date).format('YYYY-MM-DD DD:mm')
+  return moment(date).format('YYYY-MM-DD HH:mm')
+})
+
+Vue.filter('DateZnFormat', function (date) {
+  return moment(date).format('YYYY年MM月DD日')
 })

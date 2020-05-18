@@ -10,7 +10,7 @@
         :xl="16"
       >
         <div class="nav-swieper" :style="openNavList ? 'height: 100%; padding-right: 10px;' : 'height: 50px; padding-right: 80px;'">
-          <el-button v-if="bbsTabs.length > 9 && !openNavList" type="text" class="open-list c-ml10" @click="handleSwitchNavList(true)">
+          <el-button v-if="!openNavList" type="text" class="open-list c-ml10" @click="handleSwitchNavList(true)">
             展开更多<i class="el-icon-arrow-down" />
           </el-button>
           <nuxt-link key="all" :to="`/`">
@@ -34,13 +34,21 @@
           @scroll="handleGetList"
         >
           <template slot="list">
-            <que-list :lsit-data="bbsListData" />
+            <que-list :list-data="bbsListData" />
           </template>
         </scroll-page>
       </el-col>
       <el-col :span="7" :offset="1" class="right-menu hidden-sm-and-down">
         <login-menu :is-login="userInfo" />
-        <hotQuestions :hot-list="hotList" />
+        <hotQuestions
+          class="c-mb20"
+          :hot-list="bbsBrowseListTopicsList"
+          header-font-color="#fff"
+          header-bg-color="#e41749"
+          header-title="问答浏览榜"
+          item-jump-link="/bbs?_id="
+        />
+        <web-site-info />
       </el-col>
     </el-row>
   </page-view>
@@ -53,6 +61,7 @@ import pageView from '@/components/pageView.vue'
 import queList from '@/components/queList/queList.vue'
 import loginMenu from '@/components/globalMenu/loginMenu.vue'
 import hotQuestions from '@/components/globalMenu/hotQuestions.vue'
+import webSiteInfo from '@/components/globalMenu/webSiteInfo.vue'
 import { getBbsTopics } from '@/store/api/global.js'
 
 export default {
@@ -62,20 +71,25 @@ export default {
     pageView,
     queList,
     loginMenu,
-    hotQuestions
+    hotQuestions,
+    webSiteInfo
   },
   data () {
     return {
       openNavList: false,
-      hotList: []
+      hotList: [],
+      pages: 30,
+      index: 1,
+      isNoPage: false
     }
   },
   computed: {
-    ...mapGetters(['bbsTabs', 'userInfo'])
+    ...mapGetters(['bbsTabs', 'userInfo', 'bbsBrowseListTopicsList'])
   },
-  async asyncData () {
+  async asyncData ({ error }) {
     const res = await getBbsTopics()
 
+    if (res.code !== '0') { error({ statusCode: 404, message: '页面消失了' }) }
     return {
       bbsListData: res.data || []
     }
@@ -83,11 +97,27 @@ export default {
   async mounted () {
     !this.bbsTabs[0] && await this.getBbsTabs()
     this.$nuxt.$loading.finish()
+    this.getBbsBrowseListTopics()
   },
   methods: {
-    ...mapActions(['getBbsTabs']),
-    handleGetList () {
+    ...mapActions(['getBbsTabs', 'getBbsBrowseListTopics']),
+    async handleGetList () {
+      if (this.isNoPage) { return false }
 
+      this.$nuxt.$loading.start()
+      const index = this.index + 1
+      this.index = index
+      console.log(1)
+
+      const res = await getBbsTopics({ index, pages: this.pages })
+      if (res.code === '0') {
+        this.$nuxt.$loading.finish()
+        if (res.data[0]) {
+          this.bbsListData.push(...res.data)
+        } else {
+          this.isNoPage = true
+        }
+      }
     },
     handleSwitchNavList (type) {
       this.openNavList = type

@@ -11,9 +11,9 @@
     <div class="logo">
       <!-- <svg-icon icon-class="logoB" /> -->
       <!-- <nuxt-link to=""> -->
-      <span>
+      <nuxt-link to="/blog">
         B
-      </span>
+      </nuxt-link>
 
       <!-- </nuxt-link> -->
     </div>
@@ -54,10 +54,15 @@
       </div>
 
       <div class="search-big">
-        <el-input class="input-w200" placeholder="搜问题，搜博客" />
+        <el-input
+          v-model="searchContent"
+          class="input-w200"
+          placeholder="搜问题，搜博客"
+          @keyup.enter.native="handleJumpSearchPage(true)"
+        />
       </div>
 
-      <div class="search-small">
+      <div class="search-small" @click="handleJumpSearchPage(false)">
         <span>搜文章，搜博客</span>
         <!-- <el-input class="c-w100" placeholder="搜问题，搜博客" /> -->
       </div>
@@ -80,10 +85,10 @@
               发布<i class="el-icon-edit-outline" />
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="/edit">
+              <el-dropdown-item command="/edit/bbs">
                 问题
               </el-dropdown-item>
-              <el-dropdown-item command="/edit">
+              <el-dropdown-item command="/edit/blog">
                 博客
               </el-dropdown-item>
             </el-dropdown-menu>
@@ -119,6 +124,7 @@ export default {
 
   data () {
     return {
+      searchContent: ''
     }
   },
   computed: {
@@ -139,6 +145,19 @@ export default {
     },
     handleEdit (url) {
       this.$router.push(url)
+    },
+    handleJumpSearchPage (hasParams) {
+      if (hasParams) {
+        this.$router.push({
+          path: '/search',
+          query: {
+            keyWord: this.searchContent,
+            type: 'blog'
+          }
+        })
+      } else {
+        this.$router.push('/search')
+      }
     }
   }
 }
@@ -166,13 +185,16 @@ export default {
     width: 40px;
     text-align: left;
 
-    span {
+    a {
       font-weight: 900;
       font-size: 24px;
       display: block;
       width: 100%;
       height: 100%;
       color: #ffffff;
+      &:hover {
+        color: #f0f0f0;
+      }
     }
   }
   .user {
@@ -182,6 +204,11 @@ export default {
       width: 100%;
       text-align: right;
       color: #cccccc;
+      a {
+        &:hover {
+          color: #f0f0f0;;
+        }
+      }
     }
     .user-release {
       width: 80px;
@@ -227,6 +254,11 @@ export default {
       .nav-list {
         margin-left: 30px;
         max-width: 200px;
+        a {
+          &:hover {
+            color: #f0f0f0;;
+          }
+        }
       }
     }
     .nav-small {

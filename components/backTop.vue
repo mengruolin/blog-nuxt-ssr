@@ -31,7 +31,8 @@
     position: relative;
     left: 0;
     top: 10px;
-    color: #ffffff;
+    color: #000;
+    background-color: rgba($color: #ffffff, $alpha: .0);
   }
 }
 </style>

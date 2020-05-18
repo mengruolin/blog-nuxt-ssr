@@ -1,6 +1,12 @@
 <template>
   <div class="_listSwiper">
-    <div v-for="(item, k) of lsitData" :key="k" class="list-items">
+    <div v-if="!listData[0]" class="noDate">
+      还没有人发布问题，快去<nuxt-link to="/edit/bbs">
+        发表
+      </nuxt-link>吧！
+      😊
+    </div>
+    <div v-for="(item, k) of listData" :key="k" class="list-items">
       <div class="operate-box">
         <div class="icon">
           <svg-icon :icon-class="item.is_solved ? 'fit' : 'qMark'" class-name="icon-svg" />
@@ -27,20 +33,28 @@
               <i class="el-icon-view" />
               {{ item.visit_count }}
             </span>
+            <span class="iview">
+              <i class="el-icon-chat-line-round" />
+              {{ item.reply_count }}
+            </span>
           </span>
         </div>
         <div class="q-title">
-          <nuxt-link :to="'/bbs?_id=' + item._id">
-            <el-tag v-if="item.top" type="success">
-              置顶
-            </el-tag>
-            <el-tag v-if="item.good" type="info">
-              精品
-            </el-tag>
-            <el-tag v-if="item.hot" type="warning">
-              热门
-            </el-tag>
-            {{ item.title }}
+          <nuxt-link :to="'/bbs?_id=' + item._id" class="title-link">
+            <div v-if="item.top" class="text-svg-box">
+              <img src="/img/topTab.png" alt="">
+            </div>
+
+            <div v-if="item.hot" class="text-svg-box">
+              <img src="/img/hotTab.png" alt="">
+            </div>
+
+            <div v-if="item.good" class="text-svg-box">
+              <img src="/img/goodTab.png" alt="">
+            </div>
+            <span class="title_content">
+              {{ item.title }}
+            </span>
           </nuxt-link>
         </div>
       </div>
@@ -51,7 +65,7 @@
 <script>
 export default {
   props: {
-    lsitData: {
+    listData: {
       type: Array,
       required: true,
       default: () => []
@@ -70,14 +84,28 @@ export default {
 
 <style lang="scss" scoped>
 ._listSwiper {
+  min-height: 100vh;
+  position: relative;
   // height: 40px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  padding: 10px 10px;
+  .noDate {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $headerBgColor;
+    font-size: 20px;
+  }
+  & .list-items:last-child {
+    border: none;
+  }
   .list-items {
     height: 70px;
     padding: 10px 5px;
     display: flex;
     //border-top: springgreen solid 1px;
-    border-bottom: rgb(189, 199, 194) solid 1px;
+    border-bottom: #e2e2e2 solid 1px;
     .operate-box {
       width: 50px;
       height: 100%;
@@ -144,7 +172,27 @@ export default {
         height: 35px;
         width: 100%;
         padding-right: 20px;
-        @include nobr;
+        .title-link {
+          display: flex;
+          width: 100%;
+          align-content: center;
+          @include nobr;
+          .text-svg-box {
+            width: 25px;
+            height: 25px;
+            margin-top: 5px;
+            overflow: hidden;
+            margin-right: 2px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .title_content {
+            flex: 1;
+            width: 200px;
+          }
+        }
       }
     }
   }

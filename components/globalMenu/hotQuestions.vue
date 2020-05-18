@@ -1,19 +1,28 @@
 <template>
   <div class="_hotQuestions">
-    <el-row class="_title">
+    <el-row class="_title" :style="{color: headerFontColor, backgroundColor: headerBgColor}">
       <el-col :span="16">
-        浏览榜单
+        {{ headerTitle }}
       </el-col>
       <el-col :span="8" class="ta-r">
-        更多...
+        <!-- 更多... -->
       </el-col>
     </el-row>
-    <div class="_list">
-      <div class="_items">
-        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
-        <nuxt-link to="ttt">
-          梦想去远方，然而梦想只是梦想，希望不负韶华
+    <div v-if="hotList[0]" class="_list">
+      <div v-for="item of hotList.slice(0, 6)" :key="item._id" class="_items">
+        <el-avatar
+          size="small"
+          shape="square"
+          :src="item.author_id.avatarUrl"
+          :title="item.author_id.nickName"
+        />
+        <nuxt-link :to="itemJumpLink + item._id">
+          {{ item.title }}
         </nuxt-link>
+        <span class="iview c-ml10">
+          <i class="el-icon-view" />
+          {{ item.visit_count }}
+        </span>
       </div>
     </div>
   </div>
@@ -21,35 +30,61 @@
 
 <script>
 export default {
+  props: {
+    hotList: {
+      type: Array,
+      default: () => []
+    },
+    headerBgColor: {
+      type: String,
+      default: () => '#FFF'
+    },
+    headerFontColor: {
+      type: String,
+      default: () => '#000'
+    },
+    headerTitle: {
+      type: String,
+      default: () => '展示框'
+    },
+    itemJumpLink: {
+      type: String,
+      default: () => ''
+    }
+  },
   data () {
     return {
       active: 'first'
     }
+  },
+  methods: {
   }
 }
 </script>
 
 <style lang="scss" scoped>
-$globalheight: 300px;
-$titleHight: 30px;
+$globalheight: 290px;
+$titleHight: 40px;
 $listHeight: $globalheight - $titleHight - 20px;
 
 ._hotQuestions {
   height: $globalheight;
-  padding: 10px 10px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  //padding: 10px 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  border-radius: 5px;
    ._title {
      height: $titleHight;
      line-height: $titleHight;
      color: black;
-     padding: 0 5px;
+     padding: 0 10px;
      font-size: 14px;
+     padding: 0px 10px;
      font-weight: 300;
    }
    ._list {
      position: relative;
-     top: 10px;
+     padding: 5px 10px 10px 10px;
      width: 100%;
      height: $listHeight;
      //border: chartreuse solid 1px;
@@ -58,12 +93,16 @@ $listHeight: $globalheight - $titleHight - 20px;
        line-height: $listHeight / 6;
        overflow: hidden;
        display: flex;
+       align-items: center;
        a {
          flex: 1;
          display: inline-block;
          @include nobr;
-         padding-left: 20px;
+         padding-left: 10px;
          vertical-align: top;
+       }
+       .iview {
+         width: 50px;
        }
        //border: chartreuse solid 1px;
      }

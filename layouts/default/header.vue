@@ -54,10 +54,15 @@
       </div>
 
       <div class="search-big">
-        <el-input class="input-w200" placeholder="搜问题，搜博客" />
+        <el-input
+          v-model="searchContent"
+          class="input-w200"
+          placeholder="搜问题，搜博客"
+          @keyup.enter.native="handleJumpSearchPage(true)"
+        />
       </div>
 
-      <div class="search-small">
+      <div class="search-small" @click="handleJumpSearchPage(false)">
         <span>搜文章，搜博客</span>
         <!-- <el-input class="c-w100" placeholder="搜问题，搜博客" /> -->
       </div>
@@ -80,10 +85,10 @@
               发布<i class="el-icon-edit-outline" />
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="/edit">
+              <el-dropdown-item command="/edit/bbs">
                 问题
               </el-dropdown-item>
-              <el-dropdown-item command="/edit">
+              <el-dropdown-item command="/edit/blog">
                 博客
               </el-dropdown-item>
             </el-dropdown-menu>
@@ -119,6 +124,7 @@ export default {
   data () {
     return {
       // isLogin: true
+      searchContent: ''
     }
   },
   computed: {
@@ -139,6 +145,19 @@ export default {
     },
     handleEdit (url) {
       this.$router.push(url)
+    },
+    handleJumpSearchPage (hasParams) {
+      if (hasParams) {
+        this.$router.push({
+          path: '/search',
+          query: {
+            keyWord: this.searchContent,
+            type: 'bbs'
+          }
+        })
+      } else {
+        this.$router.push('/search')
+      }
     }
   }
 }

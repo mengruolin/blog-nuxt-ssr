@@ -66,29 +66,49 @@ export default new ( class {
    * @param {*} res 
    */
   async logOut (req, res) {
-    req.session.userInfo && req.session.destroy()
+    //console.log(res.session);
+    req.session.destroy()
+    //req.session.userInfo && req.session.destroy()
     return R.send('0', null, '退出成功')
   }
 
   /**
    * 
+   * @params {nicnName: string} params 
    */
-
-  async userInfo (params) {
+  async alreadyNickName(params) {
     try {
-      
-      let res = await user.findOne(params).exec()
-      
-      return res ? R.send('0', res) : R.send('0', null)
-  
-    } catch (err) {
-      return R.send('999', err)
+      const res = await User.findOne({nickName: params.nickName})
+
+      return res ? R.send('1', null, '用户已存在') : R.send('0', null, '可以使用')
+    } catch (error) {
+      return R.send('999', null)
     }
-   
-    // if (res.userName) {
-    //   return R.send('0', res)
-    // } else {
-    //   return R.send('0', {})
-    // }
   }
+  /**
+   * 
+   * @params {nicnName: string} params 
+   */
+  async saveBaseInfo(params) {
+    if (!params._id) return R.send('999', null, '缺少用户信息')
+    try {
+      const newUser = await User.findOne({_id: params._id})
+      newUser.nickName = params.nickName
+      newUser.avatarUrl = params.avatarUrl
+      newUser.sex = params.sex
+      newUser.nickName = params.nickName
+      newUser.sign = params.sign
+      newUser.email = params.email
+      newUser.website = params.website
+      newUser.address = params.address
+      newUser.job = params.job
+      newUser.company = params.company
+      const data = await newUser.save()
+
+      return data ? R.send('0', data) : R.send('1', null, '保存失败')
+    } catch (error) {
+      return R.send('999', null, error)
+    }
+  }
+
 })()

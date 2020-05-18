@@ -66,14 +66,15 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 import md5 from 'md5'
 
 export default {
-  layout: 'empty',
+  middleware: 'isLogin',
+  layout: 'loginEmpty',
   data () {
     return {
-      loginType: 0, // 登陆方式  =》》 0. 验证码 1 . 密码
+      loginType: 1, // 登陆方式  =》》 0. 验证码 1 . 密码
       userName: '',
       password: '',
       authCode: '',
@@ -81,7 +82,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['userInfo']),
     loginDisabled () {
       if (this.userName !== '' && (this.password !== '' || this.authCode !== '')) {
         return false
@@ -98,13 +98,7 @@ export default {
       }
     }
   },
-  mounted () {
-    //
-    // this.$loading.start()
-    if (this.userInfo) {
-      this.$router.go(-1)
-    }
-  },
+  mounted () {},
   methods: {
     ...mapActions(['login', 'nuxtServerInit']),
     async handleSubmit () {
@@ -121,9 +115,7 @@ export default {
       if (this.$route.query.jumpAddres) {
         jumpAddres = this.$route.query.jumpAddres
       }
-      //
-      // 原生跳转
-      // window.location.replace(jumpAddres)
+
       this.$router.push(jumpAddres)
     },
     handleChangeLogin (type) {

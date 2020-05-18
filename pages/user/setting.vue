@@ -1,75 +1,116 @@
 <template>
-  <div>
+  <div class="_layout">
+    <el-row :gutter="50">
+      <el-col :span="6">
+        <el-card class="menu-card">
+          <div class="menu-header">
+            导航菜单
+          </div>
+          <div
+            v-for="item of navList"
+            :key="item.index"
+            :class="menuIndex === item.index ? 'menu-card-item menu-card-select-item' : 'menu-card-item'"
+            @click="handleChangeUserMenu(item)"
+          >
+            {{ item.value }}
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="17" class="content-box">
+        <div class="content-text">
+          {{ contentText }}
+        </div>
+        <el-divider />
+        <nuxt-child />
+      </el-col>
+    </el-row>
     <!-- <input ref="avatar" type="file" name="avatar" @change="handleChange"> -->
-    <el-upload
-      class="avatar-uploader"
-      action
-      :http-request="cosUpload"
-      :show-file-list="false"
-    >
-      <img v-if="imageUrl" :src="imageUrl" class="avatar">
-      <i v-else class="el-icon-plus avatar-uploader-icon" />
-    </el-upload>
   </div>
 </template>
 
 <script>
-import Cos from '@/store/untils/cos'
+const navList = [
+  { index: 'baseInfo', value: '用户基本信息' },
+  { index: 'accountSetting', value: '账户设置' },
+  { index: 'otherSetting', value: '其他设置' }
+]
 
 export default {
   middleware: 'noLogin',
   layout: 'default',
-  data () {
+  head () {
     return {
-      imageUrl: ''
+      meta: [{ name: 'viewport', content: 'user-scalable=yes' }]
     }
   },
+  data () {
+    return {
+      menuIndex: navList[0].index,
+      contentText: navList[0].value,
+      navList
+    }
+  },
+  mounted () {
+    Object.freeze(this.navList)
+  },
   methods: {
-    cosUpload (option) {
-      // console.log(option.file)
-
-      Cos.putObj({
-        Bucket: 'blog-sso-1254604265',
-        Region: 'ap-chengdu',
-        Dir: 'image/',
-        Body: option.file
-      })
-        .then((res) => {
-          if (res.statusCode === 200) {
-            this.imageUrl = `//${res.Location}`
-          } else {
-            this.$message.error('上传失败')
-          }
-        })
-
-      // console.log(res)
+    handleChangeUserMenu (item) {
+      this.menuIndex = item.index
+      this.contentText = item.value
+      this.$router.push(`/user/setting/${item.index}`)
     }
   }
 }
 </script>
 
-<style>
-  .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+<style lang="scss" scoped>
+._layout {
+  padding: 60px 80px;
+  width: $headerWidth;
+  .menu-card {
+    & /deep/ .el-card__body {
+      padding: 10px 1px 0 0;
+    }
+    & .menu-card-item:last-child {
+      border-bottom: none;
+    }
+    .menu-header {
+      height: 40px;
+      line-height: 40px;
+      font-size: 18px;
+      text-align: center;
+    }
+    .menu-card-item {
+      text-align: center;
+      height: 45px;
+      line-height: 45px;
+      margin-top: 1px;
+      border-bottom: solid 1px #e2e2e2;
+      overflow: hidden;
+      cursor: pointer;
+      translate: background-color;
+      &:hover {
+        background-color: #e2e2e2;
+      }
+    }
+    .menu-card-select-item {
+      border-left: 3px solid #e73838;
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+      background-color: rgb(138, 136, 136);
+      color: #e2e2e2;
+      &:hover {
+        background-color: rgb(138, 136, 136);
+      }
+    }
   }
-  .avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
+  .content-box {
+    // display: flex;
+    .content-text {
+      font-size: 20px;
+      font-weight: 500;
+    }
   }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
-  }
-  .avatar {
-    width: 178px;
-    height: 178px;
-    display: block;
-  }
+
+}
 </style>
