@@ -4,13 +4,15 @@ import {
   apiLogin,
   apiLogOut,
   apiRegister,
-  HANDLE_LOGOUT
+  HANDLE_LOGOUT,
+  apiSetUserBaseInfo
 } from './mutation-types'
 
 const actions = {
   login: createActions('postl', apiLogin, SET_USERINFO),
   register: createActions('postl', apiRegister, SET_USERINFO),
-  logOut: createActions('getl', apiLogOut, HANDLE_LOGOUT)
+  logOut: createActions('getl', apiLogOut, HANDLE_LOGOUT),
+  setUserBaseInfo: createActions('postl', apiSetUserBaseInfo, SET_USERINFO)
 }
 
 export default actions

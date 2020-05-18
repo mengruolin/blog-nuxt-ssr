@@ -1,12 +1,18 @@
 <template>
-  <dynamic />
+  <quiz :the-user-info="theUserInfo" />
 </template>
 
 <script>
-import dynamic from './dynamic.vue'
+import quiz from './quiz.vue'
 export default {
   components: {
-    dynamic
+    quiz
+  },
+  props: {
+    theUserInfo: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>

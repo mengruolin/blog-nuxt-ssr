@@ -157,6 +157,8 @@ export default {
 
       if (res.code === '0') {
         this.$message.success('发布回复成功')
+        this.replyText = ''
+        this.requstReplys()
       }
     },
     async requstReplys () {

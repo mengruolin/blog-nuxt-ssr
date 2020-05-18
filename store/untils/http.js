@@ -1,7 +1,7 @@
 import axios from 'axios'
 // import QS from 'qs'
 import { Loading } from 'element-ui'
-// import env from './env'
+import { inBrowser } from './env.js'
 
 let loadingInstance = null
 
@@ -21,6 +21,7 @@ axios.interceptors.request.use((config) => {
 axios.interceptors.response.use((response) => {
   // Do something before response is sent
   loadingInstance && loadingInstance.close()
+  inBrowser && window && window.$nuxt.$loading.finish && window.$nuxt.$loading.finish()
 
   return response
 }, (error) => {
@@ -33,7 +34,8 @@ const get = (url, params) => {
 }
 
 const getl = (url, params) => {
-  loadingInstance = Loading.service({ fullscreen: true })
+  // loadingInstance = Loading.service({ fullscreen: true })
+  inBrowser && window.$nuxt.$loading.start && window.$nuxt.$loading.start()
   return axios.get(url, { params })
 }
 

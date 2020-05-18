@@ -97,7 +97,7 @@ export default {
 
   methods: {
     handleSelectNav (index) {
-      console.log(index)
+      if (index === this.menuType) { return false }
 
       this.$router.push(`/user/${this.userId}/${index}`)
     },

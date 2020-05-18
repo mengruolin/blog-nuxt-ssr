@@ -33,12 +33,12 @@
             <div class="reply-header">
               <el-avatar shape="square" :src="item.author_id.avatarUrl" />
               <div class="user-info">
-                <div>{{ item.create_at | DateFormat }}</div>
                 <div>
                   <nuxt-link :to="`/user/${item.author_id._id}`">
                     {{ item.author_id.nickName }}
                   </nuxt-link>
                 </div>
+                <div>{{ item.create_at | DateFormat }}</div>
               </div>
             </div>
             <div class="reply-content">
@@ -135,7 +135,9 @@ export default {
     async handleSubmit () {
       const res = await createBbsReply(this.createReplayParams)
       if (res.code === '0') {
-        this.$message('发布成功 ')
+        this.$message.success('发布成功 ')
+        this.content = ''
+        this.handleGetReply()
       }
     },
     async handleGetReply () {

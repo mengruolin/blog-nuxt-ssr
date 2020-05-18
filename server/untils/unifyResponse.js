@@ -15,6 +15,12 @@ export const response = new(class {
           code: '0',
           message: description || 'Success'
         });
+      case '1':
+        return Object.assign({}, this.response, {
+          data: data,
+          code: '1',
+          message: description || 'Success'
+        });
       case '999':
         return Object.assign({}, this.response, {
           data: data,

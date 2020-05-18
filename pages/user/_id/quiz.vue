@@ -7,7 +7,7 @@
         placement="top"
       >
         <el-card class="timeline-card">
-          <nuxt-link :to="`/blog/${item._id}`">
+          <nuxt-link :to="`/bbs?_id=${item._id}`">
             {{ item.title }}
           </nuxt-link>
           <div class="c-mt10">
