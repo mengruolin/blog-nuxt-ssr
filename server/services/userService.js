@@ -1,18 +1,20 @@
 import User from '../dbs/models/user'
 import { response as R } from '../untils'
+import redis from 'redis'
 
 export default new ( class {
   /**
    * 
-   * @param {*} req 
-   * @param {*} res 
+   * @req {
+   *  loginType: string,
+   *  userName: string,
+   *  password: string
+   *  uid?: strring
+   * } req.body 
    */
-  async login (req, res) {
-    
-    if (req.session.token) {
-      //console.log(req.session.token);
-      
-    } else {
+  async login (req) {
+    if (!req.body.loginType, !req.body.userName, !req.body.password) return R.send('999', null, '缺少相关信息')
+     try {
       const { loginType, userName, password } = req.body
       if (loginType === 1) {
         let userInfo = await User.findOne({ userName })
@@ -20,13 +22,38 @@ export default new ( class {
         if (!userInfo) {
           return R.send('999', null, '用户名不存在')
         } else if (userInfo.toObject().password === password) {
-          req.session.token = {loginType, userName, password}
-          return R.send('0', userInfo, '登陆成功')
+            if (!req.body.uid) {
+          
+              req.sessionStore.all((err, sessions) => {
+                if (err) {}
+
+                sessions.forEach((item) => {
+                  let ar = item.id.split('_uid')
+                  if (req.sessionID !== item.id && ar[0] === userName) {
+                    req.sessionStore.destroy(item.id, () => {})
+                  }
+                })
+
+              })
+              req.session.token = {loginType, userName, password, uid: req.sessionID}
+              return R.send('0', userInfo, '登陆成功')
+            } else {
+              const res = (err, reslute) => reslute
+
+              req.sessionStore.get(req.body.sid, res)
+
+              return res ? R.send('0', userInfo, '登陆成功') : R.send('1', null, '登陆已失效')
+            }
+            
         } else {
           return R.send('999', null, '密码错误')
         }
       }
-    }
+    } catch (error) {
+      //console.log(error);
+      
+       R.send('999', null, error)
+    } 
   }
 
 

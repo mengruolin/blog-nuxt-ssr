@@ -14,7 +14,9 @@ router.get('/cheshi', (req, res) => {
 
 router.post('/login', async (req, res) => {
   //const user = new UserService()
-  const logInfo = await UserService.login(req, res)
+  const logInfo = await UserService.login(req)
+  //console.log('api' + logInfo);
+  
   res.json(logInfo)
 })
 

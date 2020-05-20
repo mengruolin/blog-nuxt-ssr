@@ -20,7 +20,11 @@ export default async ({ app }) => {
 
   app.use(session({
     genid: req => {
-      return req.body.userName},
+      if (req.body.uid) return req.body.uid
+      const uid = Math.random().toString(16).slice(2)
+      
+      return req.body.userName+'_uid:'+uid
+    },
     secret: process.env.SESSION_SECRET || 'IISSECRET',
     name: 'token',
     store: new RedisStore({
@@ -29,6 +33,7 @@ export default async ({ app }) => {
     }),
     resave: false,
     saveUninitialized: false,
+    rolling: true,
     cookie: { maxAge: 1 * 60 * 60 * 1000 }
   }))
 
