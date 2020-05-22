@@ -77,7 +77,7 @@ export default new ( class {
       if (savaRes) {
         let loginType = 1
         req.session.token = {loginType, userName, password}
-        return R.send('0', null, '注册成功')
+        return R.send('0', savaRes, '注册成功')
       } else {
         return R.send('999', null, '注册失败')
       }

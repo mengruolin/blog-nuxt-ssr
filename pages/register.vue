@@ -81,9 +81,6 @@ export default {
       }
     }
   },
-  mounted () {
-    // this.$loading.start()
-  },
   methods: {
     ...mapActions(['register']),
     async handleSubmit () {
