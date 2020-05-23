@@ -14,6 +14,8 @@ const state = () => ({
 
 const mutations = {
   [SET_USERINFO] (state, res) {
+    // console.log(res)
+
     state.userInfo = res.data
   },
   changeDisableLoad (state, type) {

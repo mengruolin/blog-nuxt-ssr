@@ -1,11 +1,12 @@
 import { createActions } from '../../untils/helps.js'
 
 const actions = {
-  async nuxtServerInit ({ dispatch, commit }, { req }) {
+  async nuxtServerInit ({ dispatch, commit }, { req, route }) {
     const token = req.session.token
     if (token) {
       try {
         const res = await dispatch('login', token)
+
         if (res.code === '0') {
           commit('SET_USERINFO', res)
         }

@@ -100,7 +100,7 @@ export default {
   },
   mounted () {},
   methods: {
-    ...mapActions(['login', 'nuxtServerInit']),
+    ...mapActions(['login']),
     async handleSubmit () {
       const res = await this.login(this.loginInfo)
       if (res.code === '0') {

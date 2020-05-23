@@ -31,7 +31,7 @@ export default new (class {
       let {tab = null, index = 1, pages = 30} = params 
       let indexPage = (index - 1) * pages
 
-      let serchOption = tab ? {tab} : null
+      let serchOption = tab ? {tab, deleted: false} : {deleted: false}
 
       let res = await bbsTopic.find(serchOption)
       .sort({top: -1, update_at: -1})
@@ -57,6 +57,10 @@ export default new (class {
       .populate({path: 'author_id', select: ['_id', 'avatarUrl', 'nickName']})
       .exec()
 
+      if(topic.deleted) {
+        return R.send('999', '帖子已删除')
+      }
+
       topic.visit_count += 1
       topic.save()
       
@@ -71,7 +75,7 @@ export default new (class {
    */
   async getBrowseListTopics () {
     try {
-      let res = await bbsTopic.find()
+      let res = await bbsTopic.find({deleted: false})
       .sort({visit_count: -1, update_at: -1})
       .skip(0)
       .limit(10)
