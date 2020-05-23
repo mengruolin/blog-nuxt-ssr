@@ -1,22 +1,7 @@
-# blog_ssr
+# 基于 Nuxt.js & Express 的技术交流社区
 
 > My brilliant Nuxt.js project
 
-## Build Setup
-
-``` bash
-# install dependencies
-$ npm run install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## 使用的插件、服务
+前端  `ElementUI` `mavon-editor` `nprogress`
+服务端 `Mongodb` `Redis` `腾讯云COS`
