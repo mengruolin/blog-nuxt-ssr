@@ -116,6 +116,9 @@ export default {
       // cursor: pointer;
       // background: #c5c3c327;
     }
+    &:last-child {
+      border-style: none;
+    }
     ._user-info {
       height: 30px;
       line-height: 30px;

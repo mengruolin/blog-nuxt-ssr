@@ -9,26 +9,7 @@
         :lg="16"
         :xl="16"
       >
-        <div class="nav-swieper" :style="openNavList ? 'height: 100%; padding-right: 10px;' : 'height: 50px; padding-right: 80px;'">
-          <el-button v-if="!openNavList" type="text" class="open-list c-ml10" @click="handleSwitchNavList(true)">
-            展开更多<i class="el-icon-arrow-down" />
-          </el-button>
-          <nuxt-link key="all" :to="`/`">
-            <span>
-              全部
-            </span>
-            <template v-for="item of bbsTabs">
-              <nuxt-link :key="item.value" :to="`/bbs/${item.value}`">
-                <span>
-                  {{ item.label }}
-                </span>
-              </nuxt-link>
-            </template>
-            <el-button v-if="openNavList" type="text" class="close-list" @click="handleSwitchNavList(false)">
-              收起<i class="el-icon-arrow-up" />
-            </el-button>
-          </nuxt-link>
-        </div>
+        <nav-list :list-data="bbsTabs" />
         <scroll-page
           class="context"
           @scroll="handleGetList"
@@ -51,6 +32,9 @@
         <web-site-info />
       </el-col>
     </el-row>
+    <el-divider v-if="isNoPage">
+      我是底线
+    </el-divider>
   </page-view>
 </template>
 
@@ -62,6 +46,7 @@ import queList from '@/components/queList/queList.vue'
 import loginMenu from '@/components/globalMenu/loginMenu.vue'
 import hotQuestions from '@/components/globalMenu/hotQuestions.vue'
 import webSiteInfo from '@/components/globalMenu/webSiteInfo.vue'
+import NavList from '@/components/queList/NavList.vue'
 import { getBbsTopics } from '@/store/api/global.js'
 
 export default {
@@ -71,11 +56,14 @@ export default {
     queList,
     loginMenu,
     hotQuestions,
-    webSiteInfo
+    webSiteInfo,
+    NavList
   },
   data () {
     return {
-      openNavList: false
+      pages: 30,
+      index: 1,
+      isNoPage: false
     }
   },
   computed: {
@@ -96,8 +84,23 @@ export default {
   },
   methods: {
     ...mapActions(['getBbsTabs', 'getBbsBrowseListTopics']),
-    handleGetList () {
+    async handleGetList () {
+      if (this.isNoPage) { return false }
 
+      this.$nuxt.$loading.start()
+      const index = this.index + 1
+      this.index = index
+      console.log(1)
+
+      const res = await getBbsTopics({ index, pages: this.pages })
+      if (res.code === '0') {
+        this.$nuxt.$loading.finish()
+        if (res.data[0]) {
+          this.bbsListData.push(...res.data)
+        } else {
+          this.isNoPage = true
+        }
+      }
     },
     handleSwitchNavList (type) {
       this.openNavList = type
@@ -110,32 +113,6 @@ export default {
 ._index {
   padding: 10px 10px;
   padding-top: 0px;
-  .nav-swieper {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    //border: salmon solid 1px;
-    padding: 10px 10px 10px 0;
-    .open-list {
-      position: absolute;
-      right: 0px;
-      top: 50%;
-      transform: translate(0, -50%)
-    }
-    span {
-      display: inline-block;
-      margin-right: 10px;
-      margin-bottom: 10px;
-      border-radius: 1.2em;
-      background: #ffffff;
-      color: $navListColor;
-      font-weight: 500;
-      border: solid 1px;
-      padding: 8px 8px;
-      border-color: $navListColor;
-      border-spacing: 1px;
-    }
-  }
   .context {
     padding: 10px 0;
     //border-top: rgb(114, 162, 250) solid 1px;

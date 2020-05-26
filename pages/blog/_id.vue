@@ -65,44 +65,7 @@
       </el-col>
 
       <el-col :span="6" :offset="2" class="hidden-sm-and-down">
-        <el-card class="c-mb20">
-          <div class="user_register_Info">
-            <el-avatar
-              class="avatar_box"
-              shape="circle"
-              :size="60"
-              :src="topicData.author_id.avatarUrl"
-            />
-            <div class="name_box">
-              <div class="nickName_text">
-                <nuxt-link :to="`/user/${topicData.author_id._id}`">
-                  {{ topicData.author_id.nickName }}
-                </nuxt-link>
-              </div>
-              <div class="time_text">
-                {{ topicData.createTime | DateZnFormat }}
-              </div>
-            </div>
-          </div>
-          <div class="user_collection">
-            <div class="wenda_box">
-              <div class="wenda_text">
-                问答
-              </div>
-              <div class="wenda_count">
-                22
-              </div>
-            </div>
-            <div class="boke_box">
-              <div class="boke_text">
-                博客
-              </div>
-              <div class="boke_count">
-                22
-              </div>
-            </div>
-          </div>
-        </el-card>
+        <user-info-menu :user-info="topicData" class="c-mb20" />
         <login-menu v-if="!userInfo" class="c-mb20" />
       </el-col>
     </el-row>
@@ -116,13 +79,15 @@ import mavonEditorShow from '@/components/editor/mavonEditorShow'
 import loginMenu from '@/components/globalMenu/loginMenu.vue'
 import isLoginEditor from '@/components/isLoginEditor'
 import blogReplyList from '@/components/blogList/blogReplyList.vue'
+import UserInfoMenu from '@/components/globalMenu/UserInfoMenu.vue'
 
 export default {
   components: {
     mavonEditorShow,
     loginMenu,
     isLoginEditor,
-    blogReplyList
+    blogReplyList,
+    UserInfoMenu
   },
   data () {
     return {
@@ -213,33 +178,8 @@ export default {
     margin-top: 20px;
   }
 
-  .user_register_Info {
-    display: flex;
-    padding-bottom: 10px;
-    //border-bottom: solid 1px #e2e2e2;
-    .avatar_box {
-      //border: solid 1px #b4b4b4;
-      &:hover {
-        animation: $bgRotate;
-      }
-    }
-    .name_box {
-      margin-left: 20px;
-      .nickName_text, .time_text {
-        line-height: 29px;
-        height: 29px;
-        font-size: 14px;
-        color: $blogHeaderColor;
-        a {
-          font-size: 14px;
-          color: $blogHeaderColor;
-        }
-      }
-    }
-  }
-
   .user_replys_box {
-    padding: 10px 10px;
+    padding: 10px 10px 0 10px;
     margin-top: 20px;
     border: solid 1px #e2e2e2;
     .user_replys_header {
@@ -247,31 +187,5 @@ export default {
     }
   }
 
-  .user_collection {
-    height: 70px;
-    display: flex;
-    .wenda_box, .boke_box {
-      margin-top: 10px;
-      flex: 1;
-      text-align: center;
-      .wenda_text, .boke_text {
-        line-height: 30px;
-        height: 30px;
-        color: $blogHeaderColor;
-        font-size: 16px;
-
-      }
-      .wenda_count, .boke_count {
-        line-height: 30px;
-        height: 30px;
-        color: rgb(117, 175, 223);
-        font-size: 14px;
-      }
-    }
-    .wenda_box {
-      border-right: solid 1px #e2e2e2;
-    }
-
-  }
 }
 </style>

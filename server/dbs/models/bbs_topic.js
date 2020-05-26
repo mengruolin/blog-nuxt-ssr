@@ -15,6 +15,7 @@ const schemas =  new mongoose.Schema({
   update_at: { type: Date, default: Date.now },
   tab: {type: String},
   is_solved: {type: Boolean, default: false},
+  isolved_id: {type: String},
   deleted: {type: Boolean, default: false},
 })
 

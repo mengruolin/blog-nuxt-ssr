@@ -176,7 +176,6 @@ export default {
           display: flex;
           width: 100%;
           align-content: center;
-          @include nobr;
           .text-svg-box {
             width: 25px;
             height: 25px;
@@ -190,7 +189,8 @@ export default {
           }
           .title_content {
             flex: 1;
-            width: 200px;
+            @include nobr;
+            //width: 200px;
           }
         }
       }

@@ -34,6 +34,9 @@ export default {
   .reply_item {
     padding-bottom: 10px;
     border-bottom: 1px solid #e2e2e2;
+    &:last-child {
+      border-style: none;
+    }
     .item_header {
       height: 40px;
       overflow: hidden;

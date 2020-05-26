@@ -19,7 +19,9 @@
             </el-radio-button>
           </el-radio-group>
         </div>
-        <scroll-list>
+        <scroll-list
+          @scroll="handleGetList"
+        >
           <el-card slot="list" class="content-list">
             <blog-list :list-data="blogListData" />
           </el-card>
@@ -38,6 +40,9 @@
         <web-site-info />
       </el-col>
     </el-row>
+    <el-divider v-if="isNoPage">
+      我，底线！打钱！！！
+    </el-divider>
   </page-view>
 </template>
 
@@ -62,7 +67,10 @@ export default {
   },
   data () {
     return {
-      navLabel: ''
+      navLabel: '',
+      pages: 30,
+      index: 1,
+      isNoPage: false
     }
   },
   computed: {
@@ -88,6 +96,23 @@ export default {
 
       if (res.code === '0') {
         this.blogListData = res.data
+      }
+    },
+    async handleGetList () {
+      if (this.isNoPage) { return false }
+
+      this.$nuxt.$loading.start()
+      const index = this.index + 1
+      this.index = index
+
+      const res = await getBlogTopics({ tab: this.navLabel, index, pages: this.pages })
+      if (res.code === '0') {
+        this.$nuxt.$loading.finish()
+        if (res.data[0]) {
+          this.blogListData.push(...res.data)
+        } else {
+          this.isNoPage = true
+        }
       }
     }
   }

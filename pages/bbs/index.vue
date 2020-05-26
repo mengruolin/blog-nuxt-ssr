@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="reply-box">
-          <div v-for="item of replyList" :key="item._id" class="reply-item">
+          <div v-for="(item, index) of replyList" :key="item._id" class="reply-item">
             <div class="reply-header">
               <el-avatar shape="square" :src="item.author_id.avatarUrl" />
               <div class="user-info">
@@ -37,8 +37,27 @@
                   <nuxt-link :to="`/user/${item.author_id._id}`">
                     {{ item.author_id.nickName }}
                   </nuxt-link>
+                  <span class="c-ml10">{{ index+1 }}楼</span>
                 </div>
                 <div>{{ item.create_at | DateFormat }}</div>
+              </div>
+              <div class="user_handl">
+                <el-button
+                  v-if="userInfo
+                    && userInfo._id === topicData.author_id._id
+                    && !topicData.is_solved
+                    && item.author_id._id !== topicData.author_id._id"
+                  type="text"
+                  size="small"
+                >
+                  采纳该答案
+                </el-button>
+                <el-button
+                  type="text"
+                  size="small"
+                >
+                  回复
+                </el-button>
               </div>
             </div>
             <div class="reply-content">
@@ -63,14 +82,8 @@
         </div>
       </el-col>
       <el-col :span="7" :offset="1" class="right-menu hidden-sm-and-down">
+        <user-info-menu :user-info="topicData" class="c-mb20" />
         <login-menu :is-login="userInfo" class="c-mb20" />
-        <hotQuestions
-          :hot-list="bbsBrowseListTopicsList"
-          header-font-color="#fff"
-          header-bg-color="#e41749"
-          header-title="问答浏览榜"
-          item-jump-link="/bbs?_id="
-        />
       </el-col>
     </el-row>
   </div>
@@ -83,7 +96,7 @@ import mavonEditorShow from '@/components/editor/mavonEditorShow'
 import mavonEditor from '@/components/editor/mavonEditor'
 import isLoginEditor from '@/components/isLoginEditor'
 import loginMenu from '@/components/globalMenu/loginMenu.vue'
-import hotQuestions from '@/components/globalMenu/hotQuestions.vue'
+import UserInfoMenu from '@/components/globalMenu/UserInfoMenu.vue'
 
 export default {
   header: {
@@ -94,7 +107,7 @@ export default {
     mavonEditor,
     isLoginEditor,
     loginMenu,
-    hotQuestions
+    UserInfoMenu
   },
   data () {
     return {
@@ -103,7 +116,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['userInfo', 'bbsBrowseListTopicsList']),
+    ...mapGetters(['userInfo']),
     createReplayParams () {
       return {
         'author_id': this.userInfo._id,
@@ -128,7 +141,6 @@ export default {
   mounted () {
     this.handleGetReply()
     this.$nuxt.$loading.finish && this.$nuxt.$loading.finish()
-    this.getBbsBrowseListTopics()
   },
   methods: {
     ...mapActions(['getBbsBrowseListTopics']),
@@ -194,6 +206,10 @@ export default {
             height: 50%;
             line-height: 20px;
           }
+        }
+        .user_handl {
+          flex: 1;
+          text-align: right;
         }
       }
     }

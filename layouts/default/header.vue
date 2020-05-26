@@ -105,8 +105,11 @@
               <el-dropdown-item @click.native="$router.push('/user')">
                 个人中心
               </el-dropdown-item>
-              <el-dropdown-item>消息</el-dropdown-item>
-              <el-dropdown-item>日志</el-dropdown-item>
+              <el-dropdown-item>
+                消息
+                <el-badge class="el-badge" :value="919" :max="99" />
+              </el-dropdown-item>
+              <!-- <el-dropdown-item>日志</el-dropdown-item> -->
               <el-dropdown-item @click.native="handleLogOut">
                 退出
               </el-dropdown-item>
@@ -221,8 +224,19 @@ export default {
         width: 35px;
         height: 35px;
         margin-top: 7px;
-        overflow: hidden;
         cursor: pointer;
+        &::before {
+            content: " ";
+            width: 8px;
+            height: 8px;
+            display: block;
+            background-color: red;
+            position: absolute;
+            border-radius: 6px;
+            border: solid 2px #ffffff;
+            right: -2px;
+            bottom: -2px;
+          }
         .avatar {
           height: 100%;
           width: 100%;
